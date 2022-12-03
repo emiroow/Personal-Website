@@ -1,11 +1,10 @@
 import React from 'react'
-import { MdOutlineLanguage } from "react-icons/md"
-import { MdOutlineLightMode } from "react-icons/md"
 import { HiOutlineHome } from "react-icons/hi"
 import { MdOutlineCategory } from "react-icons/md"
 import { MdHomeRepairService } from "react-icons/md"
 import { MdTextsms } from "react-icons/md"
-
+import Toggle from './SideMenuComponents/toggle'
+import Language from './SideMenuComponents/language'
 export default function SideMenu() {
   return (
     <div className="w-[5%] relative h-[96vh] ">
@@ -15,10 +14,10 @@ export default function SideMenu() {
 
           <div className='space-y-24 -mt-5 mb-28'>
             <div>
-              <MdOutlineLanguage className='text-DarkPurple text-[42px] cursor-pointer' />
+             <Language />
             </div>
             <div>
-              <MdOutlineLightMode className='text-DarkPurple text-[42px] cursor-pointer' />
+              <Toggle />
             </div>
           </div>
 
