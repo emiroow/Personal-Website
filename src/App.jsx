@@ -21,17 +21,17 @@ const languages = [
 
 function App() {
   const [Loading, SetLoading] = useState(false)
-  const currentLanguageCode = i18n.language || 'en'
+  const currentLanguageCode = i18n.language || 'fa'
   const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
   const { t } = useTranslation()
-
   useEffect(() => {
-    document.body.dir = currentLanguage.dir || 'ltr'
+    document.body.dir = currentLanguage.dir || 'rlt'
+    document.title = t("TabTitleOfApp")
   }, [t, currentLanguage])
 
   return (
     <>
-      {Loading ? <Preloader/> : null }
+      {Loading ? <Preloader /> : null}
       <PreloaderContext.Provider value={{ Loading, SetLoading }}>
         <div className=" w-[98%] mt-[15px] justify-between m-auto flex  relative text-white">
           <SidePortfolio />
