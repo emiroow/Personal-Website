@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import SidePortfolio from "./Components/SidePortfolio"
 import Main from "./Components/Main"
 import i18n from './i18n';
-import i18next from 'i18next'
 import { PreloaderContext } from './ContextApi/loaderContext'
 import { useTranslation } from "react-i18next";
 import Preloader from "./Components/Preloader";

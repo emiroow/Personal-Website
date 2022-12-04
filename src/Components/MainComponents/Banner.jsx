@@ -25,7 +25,9 @@ export default function Banner() {
                     </button>
                 </div>
             </div>
-            <div className='w-[40%] '>s</div>
+            <div className='w-[40%] '>
+                IMG
+            </div>
         </div>
     )
 }
