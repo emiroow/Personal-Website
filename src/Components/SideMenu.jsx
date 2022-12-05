@@ -10,29 +10,29 @@ export default function SideMenu() {
     <div className="w-[5%] relative h-[96vh] ">
       <div className="w-[5%] h-[97vh] fixed items-center justify-center flex bg-BackColor shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)] rounded-md border-b-2 border-DarkPurple">
 
-        <div className='w-full flex-col  flex justify-center items-center '>
+        <div className='w-full flex-col h-[97vh] justify-center relative flex  items-center '>
 
-          <div className='space-y-24 -mt-5 mb-28'>
+          <div className='lg:space-y-14 xl:space-y-18 2xl:space-y-18 mb-20 '>
             <div>
-             <Language />
+              <Language />
             </div>
             <div>
               <Toggle />
             </div>
           </div>
 
-          <div className='space-y-28'>
+          <div className='lg:space-y-20  xl:space-y-20 2xl:space-y-20 text-[27px] lg:text-[20px] xl:text-[28px] 2xl:text-[32px]'>
             <div className='rounded-full cursor-pointer bg-DarkPurple p-2 flex items-center shadow-[0px_2px_4px_0px_rgba(0,0,0,0.50)]'>
-              <HiOutlineHome className='text-white  text-[32px]' />
+              <HiOutlineHome className='text-white ' />
             </div>
             <div className='rounded-full cursor-pointer bg-DarkPurple p-2 flex items-center shadow-[0px_2px_4px_0px_rgba(0,0,0,0.50)]'>
-              <MdOutlineCategory className='text-white  text-[32px]' />
+              <MdOutlineCategory className='text-white ' />
             </div>
             <div className='rounded-full cursor-pointer bg-DarkPurple p-2 flex items-center shadow-[0px_2px_4px_0px_rgba(0,0,0,0.50)]'>
-              <MdHomeRepairService className='text-white  text-[32px]' />
+              <MdHomeRepairService className='text-white ' />
             </div>
             <div className='rounded-full cursor-pointer bg-DarkPurple p-2 flex items-center shadow-[0px_2px_4px_0px_rgba(0,0,0,0.50)]'>
-              <MdTextsms className='text-white  text-[32px]' />
+              <MdTextsms className='text-white ' />
             </div>
           </div>
 
