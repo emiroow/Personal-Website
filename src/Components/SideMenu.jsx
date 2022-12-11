@@ -11,7 +11,6 @@ export default function SideMenu() {
       <div className="w-[5%] h-[97vh] fixed items-center justify-center flex bg-BackColor shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)] rounded-md border-b-2 border-DarkPurple">
 
         <div className='w-full flex-col h-[97vh] justify-center relative flex  items-center '>
-
           <div className='lg:space-y-14 xl:space-y-18 2xl:space-y-18 mb-20 '>
             <div>
               <Language />
@@ -43,3 +42,5 @@ export default function SideMenu() {
   )
 }
 
+// I Not Trying To Be Programmer 
+// I Just Trying To Be Fucking Weapon :)

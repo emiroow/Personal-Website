@@ -15,6 +15,12 @@ const en = {
     InfoCountry : "Iran" ,
     InfoState : "East Azarbaijan" ,
     InfoCity : "Tabriz" ,
-    InfoYearsOld : "21"
+    InfoYearsOld : "21" ,
+    LangProgress1 : "Turkish" ,
+    LangProgress2 : "English" , 
+    LangProgress3 : "Persian" ,
+    Skills : "Skills" ,
+    AdditionalSkills : "Additional Skills" ,
+    DownloadCv : "Get My CV" ,
 };
 export default en ;

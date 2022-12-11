@@ -15,6 +15,13 @@ const fa = {
     InfoCountry : "ایران" ,
     InfoState : "آذربایجان شرقی" ,
     InfoCity : "تبریز" ,
-    InfoYearsOld : "20"
+    InfoYearsOld : "20" ,
+    LangProgress1 : "ترکی" ,
+    LangProgress2 : "انگلیسی" , 
+    LangProgress3 : "فارسی" ,
+    Skills : "مهارت ها" ,
+    AdditionalSkills : "دیگر مهارت ها" ,
+    DownloadCv : "دریافت رزومه"
+
 };
 export default fa;
