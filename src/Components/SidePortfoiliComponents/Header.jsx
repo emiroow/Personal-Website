@@ -3,10 +3,10 @@ import { useTranslation } from "react-i18next";
 export default function Header() {
     const { t } = useTranslation()
     return (
-        <div className='w-full h-[35vh] flex justify-center items-center p-10 border-b-2 border-DarkPurple'>
+        <div className='w-full h-[35vh] flex justify-center items-center p-10 border-b-2 dark:border-DarkPurple shadow-[1px_12px_10px_-5px_rgba(0,0,0,0.25)] border-LightYellow'>
             <div className=' space-y-2 w-[80%] flex-col flex justify-center items-center'>
-                <img className=' mb-2 max-w-[60%] rounded-full border-4 border-DarkPurple' src={require("../../assets/images/ProfileImg.jpg")} alt="" />
-                <p className='text-center  font-IranBold'>{t("HeadName")}</p>
+                <img className=' mb-2 max-w-[60%] min-w-[60%] rounded-full border-4 dark:border-DarkPurple border-LightBackcolor' src={require("../../assets/images/ProfileImg.jpg")} alt="" />
+                <p className='text-center text-lg md:text-lg 2xl:text-xl  font-IranBold'>{t("HeadName")}</p>
                 <span className='text-center text-sm font-IranLight'>{t("Fild")}</span>
             </div>
         </div>

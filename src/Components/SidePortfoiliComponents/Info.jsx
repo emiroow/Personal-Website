@@ -4,7 +4,7 @@ export default function Info() {
     const { t } = useTranslation()
     return (
         <div className='w-full flex justify-center items-center mt-5'>
-            <div className='w-[85%] border-b-2 pb-8 border-DarkPurple'>
+            <div className='w-[85%] text-sm md:text-md 2xl:text-lg border-b-2 pb-8 dark:border-DarkPurple border-LightYellow'>
                 <div className='flex justify-between mt-5'>
                     <span className='font-IranBold'>{t("HeadInfoCountry")} : </span>
                     <span className='font-IranLight'>{t("InfoCountry")}</span>

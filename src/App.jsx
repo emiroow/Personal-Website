@@ -6,6 +6,7 @@ import i18n from './i18n';
 import { PreloaderContext } from './ContextApi/loaderContext'
 import { useTranslation } from "react-i18next";
 import Preloader from "./Components/Preloader";
+import MobileDviceMenu from "./Components/MobileDviceMenu";
 const languages = [
   {
     code: 'en',
@@ -29,16 +30,17 @@ function App() {
   }, [t, currentLanguage])
 
   return (
-    <>
+    <div className="dark:bg-MainColorDark duration-100 bg-LightBackcolor">
       {Loading ? <Preloader /> : null}
       <PreloaderContext.Provider value={{ Loading, SetLoading }}>
-        <div className=" w-[98%] mt-[15px] justify-between m-auto flex  relative text-white">
+        <div className=" w-[98%] mt-[15px] max-md:flex-col justify-between m-auto flex  relative text-white ">
+          <MobileDviceMenu />
           <SidePortfolio />
           <Main />
           <SideMenu />
         </div>
       </PreloaderContext.Provider>
-    </>
+    </div>
   );
 }
 

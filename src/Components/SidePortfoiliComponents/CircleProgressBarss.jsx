@@ -6,7 +6,7 @@ export default function CircleProgressBarss() {
     const { t } = useTranslation()
     return (
         <div className='w-full flex justify-center items-center'>
-            <div className='w-[85%] flex-wrap flex justify-between border-b-2 pb-5 border-DarkPurple '>
+            <div className='w-[85%] text-sm md:text-md 2xl:text-lg flex-wrap flex justify-center border-b-2 pb-5 dark:border-DarkPurple border-LightYellow '>
                 <CircleProgress percentage={20} LangProgress={t("LangProgress1")} />
                 <CircleProgress percentage={80} LangProgress={t("LangProgress2")} />
                 <CircleProgress percentage={40} LangProgress={t("LangProgress3")} />

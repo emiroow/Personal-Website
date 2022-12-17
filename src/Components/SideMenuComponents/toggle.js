@@ -12,14 +12,14 @@ const Toggle = () => {
                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                     className=" shadow-none focus:outline-none text-lg rounded-full outline-none ring-transparent cursor-pointer"
                 >
-                    <MdOutlineLightMode className='text-DarkPurple text-center text-[27px] lg:text-[40px] xl:text-[40px] 2xl:text-[42px] cursor-pointer' />
+                    <MdOutlineLightMode className='text-LightYellow dark:text-DarkPurple text-center text-[35px] lg:text-[40px] xl:text-[40px] 2xl:text-[42px] cursor-pointer' />
                 </button>
             ) : (
                 <button
                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                     className=" focus:outline-none shadow-none text-lg rounded-full outline-none ring-transparent cursor-pointer"
                 >
-                    <HiOutlineMoon className=' text-DarkPurple text-center text-[27px] lg:text-[40px] xl:text-[40px] 2xl:text-[42px] cursor-pointer' />
+                    <HiOutlineMoon className=' text-LightYellow dark:text-DarkPurple text-center text-[35px] lg:text-[40px] xl:text-[40px] 2xl:text-[42px] cursor-pointer' />
                 </button>
             )}
         </div>

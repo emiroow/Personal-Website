@@ -5,19 +5,19 @@ import i18n from '../../i18n';
 export default function Banner() {
     const { t } = useTranslation()
     return (
-        <div className='bg-BackColor w-full flex shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)] rounded-md border-b-[3px] border-DarkPurple'>
-            <div className='w-[60%] mt-10 mb-10 mx-10' >
+        <div id='home' className='dark:bg-BackColor max-lg:mt-[65px] bg-LightMaincolor flex-col md:flex-row w-full flex shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] rounded-md border-b-[3px] border-LightYellow dark:border-DarkPurple'>
+            <div className=' md:w-[60%] md:my-10 my-3 mx-3 md:mx-10' >
                 <div className='w-full'>
-                    <h1 className=' text-shadow-dark mb-5 font-IranBold text-[45px]'>{t('BannerTitleSelfDis')}</h1>
-                    <span className=' text-shadow-dark font-IranBold text-DarkPurple text-[45px]'>{t('BannerTitleSelfField')}<span className='text-white'>.</span></span>
+                    <h1 className=' text-shadow-dark mb-3 md:mb-5 font-IranBold text-[25px] md:text-[35px] 2xl:text-[45px]'>{t('BannerTitleSelfDis')}</h1>
+                    <span className=' text-shadow-dark font-IranBold dark:text-DarkPurple text-LightYellow text-[25px] md:text-[35px] 2xl:text-[45px]'>{t('BannerTitleSelfField')}<span className='text-white'>.</span></span>
                 </div>
-                <div className="w-full mt-5">
+                <div className="w-full md:mt-5 mt-3">
                     <span className='font-IranLight'>
                         {t('BannerDisSelf')}
                     </span>
                 </div>
-                <div className='w-full mt-5'>
-                    <button className='p-3 flex text-md font-IranLight justify-center items-center bg-DarkPurple rounded-md'>
+                <div className='w-full md:mt-5 mt-3'>
+                    <button className='md:p-3 p-2 flex text-sm md:text-md font-IranBold justify-center items-center dark:text-white text-LightBackcolor dark:bg-DarkPurple bg-LightYellow rounded-md'>
                         {t('BannerBtn')}
                         {
                            i18n.language === "fa" ? <FiArrowLeft className=' mx-1 text-xl' /> : <FiArrowRight className=' mx-1 text-xl' />
@@ -25,7 +25,7 @@ export default function Banner() {
                     </button>
                 </div>
             </div>
-            <div className='w-[40%] '>
+            <div className='md:w-[40%] hidden md:block '>
                 IMG
             </div>
         </div>
