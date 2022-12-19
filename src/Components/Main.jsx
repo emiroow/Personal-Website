@@ -6,6 +6,8 @@ import PortfolioGallery from './MainComponents/PortfolioGallery'
 import Comments from './MainComponents/Comments'
 import History from './MainComponents/History'
 import Footer from './Footer'
+import ContactMe from './MainComponents/ContactMe'
+import Map from './MainComponents/Map'
 export default function Main() {
 
     return (
@@ -16,6 +18,8 @@ export default function Main() {
             <Comments />
             <PortfolioGallery />
             <History />
+            <ContactMe />
+            <Map />
             <Footer />
         </div>
     )

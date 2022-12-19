@@ -36,7 +36,7 @@ export default function PortfolioGallery() {
     const { t } = useTranslation()
     return (
         <div id='Portfolio' className='mt-5 md:mt-20 duration-700 justify-center flex flex-col items-center transition-all'>
-            <div className='w-[95%] max-md:m-auto flex justify-between md:w-full items-center'>
+            <div className='w-[98%] md:w-[95%] 2xl:w-[95%] max-md:m-auto flex justify-between items-center'>
                 <div>
                     <h1 className='text-shadow-dark mb-0 md:mb-3 font-IranBold text-xl md:text-2xl 2xl:text-3xl md:mx-5'>{t("MyPortfoliosGalleryTitle")}</h1>
                 </div>
@@ -61,7 +61,7 @@ export default function PortfolioGallery() {
                 {
                     GetImgs.map((item, i) => {
                         return (
-                            <div key={i} className="relative shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] mb-5 group md:mx-4 2xl:mx-5 2xl:mt-5">
+                            <div key={i} className="relative shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] mb-5 group md:mx-4 2xl:mx-5 ">
                                 <div className='flex flex-col absolute transition-all opacity-0 duration-700 group-hover:opacity-100 left-0 bottom-0 h-max w-full z-20 dark:bg-DarkPurple/60 p-2 border-t-[2.5px] dark:border-DarkPurple border-LightMaincolor bg-LightMaincolor/60 rounded-b-lg'>
                                     <span className='font-IranBold'>{item.title}</span>
                                     <span className='font-IranLight'>{item.dis}</span>

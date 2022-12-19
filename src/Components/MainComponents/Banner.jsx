@@ -17,12 +17,14 @@ export default function Banner() {
                     </span>
                 </div>
                 <div className='w-full md:mt-5 mt-3'>
-                    <button className='md:p-3 p-2 flex text-sm md:text-md font-IranBold justify-center items-center dark:text-white text-LightBackcolor dark:bg-DarkPurple bg-LightYellow rounded-md'>
-                        {t('BannerBtn')}
-                        {
-                           i18n.language === "fa" ? <FiArrowLeft className=' mx-1 text-xl' /> : <FiArrowRight className=' mx-1 text-xl' />
-                        }
-                    </button>
+                    <a href='#contact'>
+                        <button className='md:p-3 p-2 flex text-sm md:text-md font-IranBold justify-center items-center dark:text-white text-LightBackcolor dark:bg-DarkPurple bg-LightYellow rounded-md'>
+                            {t('BannerBtn')}
+                            {
+                                i18n.language === "fa" ? <FiArrowLeft className=' mx-1 text-xl' /> : <FiArrowRight className=' mx-1 text-xl' />
+                            }
+                        </button>
+                    </a>
                 </div>
             </div>
             <div className='md:w-[40%] hidden md:block '>

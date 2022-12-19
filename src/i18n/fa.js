@@ -36,7 +36,19 @@ const fa = {
     MyPortfoliosGalleryTitle: "نمونه کار های من",
     CommentTitle: "عالی 🤩!",
     CommentDis: "لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم ",
-    commetedName : "علی موسوی" ,
-    commetedSide : "برنامه نویس" ,
+    commetedName: "علی موسوی",
+    commetedSide: "برنامه نویس",
+    education: "تحصیلات",
+    WorkHistory: "تاریخچه کار",
+    historyTitle: "عنوان",
+    historyDate: "تاریخ",
+    historyDis: "لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم ",
+    Cuntact: "تماس با من",
+    Fullname: "نام و نام خانوادگی",
+    Email: "ایمیل",
+    Subject: "عنوان",
+    Description: "پیام",
+    Sendmessage: "ارسال پیام"
+
 };
 export default fa;

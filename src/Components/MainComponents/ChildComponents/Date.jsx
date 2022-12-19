@@ -1,7 +1,8 @@
 import React from 'react'
 import { SlCalender } from "react-icons/sl"
-
+import { useTranslation } from 'react-i18next'
 export default function Date() {
+    const { t } = useTranslation()
     return (
         <div class="container">
             <div class="flex flex-col md:grid grid-cols-12 text-gray-50  mb-8">
@@ -15,12 +16,12 @@ export default function Date() {
                         </div>
                     </div>
                     <div class=" col-start-2 col-end-12 p-4 rounded-xl  mr-auto w-full">
-                        <h3 class="font-semibold text-md 2xl:text-lg mb-1 font-IranBold text-shadow-dark ">عنوان</h3>
+                        <h3 class="font-semibold text-md 2xl:text-lg mb-1 font-IranBold text-shadow-dark ">{t("historyTitle")}</h3>
                         <p class="leading-tight text-justify mb-1 w-full text-sm 2xl:text-md  font-IranBold dark:text-DarkPurple text-LightBackcolor">
-                            تاریخ
+                            {t("historyDate")}
                         </p>
                         <span className='font-IranLight text-sm 2xl:text-md'>
-                            لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم
+                            {t("historyDis")}
                         </span>
                     </div>
                 </div>
