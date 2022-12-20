@@ -5,6 +5,7 @@ import { MdHomeRepairService } from "react-icons/md"
 import { MdTextsms } from "react-icons/md"
 import Toggle from '../SideMenuComponents/toggle'
 import Language from '../SideMenuComponents/language'
+import {Link} from "react-router-dom"
 export default function MobileSideMenu({ sidestatus, sidesetstatue }) {
     const gotop = ()=>{
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -43,7 +44,7 @@ export default function MobileSideMenu({ sidestatus, sidesetstatue }) {
 
             </div>
             <div onClick={e => sidesetstatue(false)} className={sidestatus ? "w-full  z-10 bg-black/40 h-[100vh] fixed top-0 duration-700 right-0" : "w-full z-10 bg-black/40 h-[100vh] fixed top-0 duration-100 -right-[100%]"}>
-                <span className='top-1 px-2 rounded-md bg-black right-1  absolute text-[12px] font-IranLight'>طراحی شده توسط <a href='' className='text-LightMaincolor dark:text-DarkPurple'>Emiroow@</a></span>
+                <span className='top-1 px-2 rounded-md bg-black right-1  absolute text-[12px] font-IranLight'><Link to={"/Admin"} className='text-LightMaincolor dark:text-DarkPurple'>Admin</Link></span>
             </div>
         </>
     )

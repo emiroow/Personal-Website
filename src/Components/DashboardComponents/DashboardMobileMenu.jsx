@@ -4,7 +4,7 @@ import { MdOutlineCategory } from "react-icons/md"
 import { MdHomeRepairService } from "react-icons/md"
 import { MdTextsms } from "react-icons/md"
 import Toggle from '../SideMenuComponents/toggle'
-import { NavLink } from "react-router-dom";
+import { NavLink , Link } from "react-router-dom";
 import Language from '../SideMenuComponents/language'
 export default function DashboardMobileMenu({ sidestatus, sidesetstatue }) {
     return (
@@ -40,7 +40,7 @@ export default function DashboardMobileMenu({ sidestatus, sidesetstatue }) {
 
             </div>
             <div onClick={e => sidesetstatue(false)} className={sidestatus ? "w-full  z-10 bg-black/40 h-[100vh] fixed top-0 duration-700 right-0" : "w-full z-10 bg-black/40 h-[100vh] fixed top-0 duration-100 -right-[100%]"}>
-                <span className='top-1 px-2 rounded-md bg-black right-1  absolute text-[12px] font-IranLight'>طراحی شده توسط <a href='' className='text-LightMaincolor dark:text-DarkPurple'>Emiroow@</a></span>
+                <span className='top-1 px-2 rounded-md bg-black right-1  absolute text-[12px] font-IranLight'><Link to={"/"} className='text-LightMaincolor dark:text-DarkPurple'>LogeOut</Link></span>
             </div>
         </>
     )
