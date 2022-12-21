@@ -6,6 +6,7 @@ import Preloader from "./Components/Preloader";
 import { Route, Routes } from "react-router";
 import Dashboard from "./Pages/Dashboard";
 import Client from './Pages/Client';
+import Login from "./Components/DashboardComponents/Login"
 const languages = [
   {
     code: 'en',
@@ -20,6 +21,7 @@ const languages = [
 
 function App() {
   const [Loading, SetLoading] = useState(false)
+  const [authorizing, Setauthorizing] = useState(false)
   const currentLanguageCode = i18n.language || 'fa'
   const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
   const { t } = useTranslation()
@@ -30,14 +32,15 @@ function App() {
 
   return (
     <>
-      <PreloaderContext.Provider value={{ Loading, SetLoading }}>
+      <PreloaderContext.Provider value={{ Loading, SetLoading, Setauthorizing, authorizing }}>
         <div className="dark:bg-MainColorDark duration-100 bg-LightBackcolor">
           {Loading ? <Preloader /> : null}
           <div className=" w-[98%] mt-[15px] max-md:flex-col justify-between m-auto flex  relative text-white ">
             <Routes>
               <Route path="/" element={<Client />} />
-              <Route path="/Admin*" element={<Dashboard />} >
-              {/* <Route index element={} /> */}
+              <Route path="/Login" element={<Login />} />
+              <Route path="/Admin/*" element={<Dashboard />} >
+                {/* <Route index element={} /> */}
               </Route>
             </Routes>
           </div>

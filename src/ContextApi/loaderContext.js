@@ -1,6 +1,8 @@
 import { createContext } from 'react';
 
 export const PreloaderContext = createContext({
-    Loading: false,
-    SetLoading: () => { }
+    Loading: null,
+    SetLoading: () => { },
+    authorizing: null,
+    Setauthorizing: () => { }
 })
