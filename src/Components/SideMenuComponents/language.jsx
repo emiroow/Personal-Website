@@ -1,22 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { MdOutlineLanguage } from "react-icons/md"
-import { PreloaderContext } from '../../ContextApi/loaderContext'
 import i18n from "../../i18n"
 export default function Language() {
   const [GetLangState, SetLangState] = useState(false)
   const [GetChangeLang, SetChangeLang] = useState(i18n.language)
-  const { SetLoading } = useContext(PreloaderContext)
 
   useEffect(() => {
-    SetLoading(true)
     i18n.changeLanguage(GetChangeLang)
-    SetLangState(false)
-    // test
-    setTimeout(() => {
-      SetLoading(false)
-    }, 1000);
   }, [GetChangeLang])
-
 
   return (
     <>

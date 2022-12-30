@@ -48,7 +48,15 @@ const fa = {
     Email: "ایمیل",
     Subject: "عنوان",
     Description: "پیام",
-    Sendmessage: "ارسال پیام"
-
+    Sendmessage: "ارسال پیام",
+    // Formik
+    UserRequired: "نام کاربری یک فیلد الزامی است",
+    Passwordrequired: "رمز عبور یک فیلد الزامی است",
+    min: "رمز عبور باید حداقل 8 کاراکتر باشد",
+    // login
+    Title: "داشبورد",
+    Username: "نام کاربری",
+    password: "رمز عبور",
+    InvalidPass : "لطفا نام کاربری و رمز عبور را درست وارد کنید"
 };
 export default fa;

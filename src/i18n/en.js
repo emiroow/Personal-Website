@@ -1,5 +1,5 @@
 const en = {
-    TabTitleOfApp: "Amir esmaeelzadeh | Personal",
+    TabTitleOfApp: "Amir esmaeelzadeh | Personal WebSite",
     // Banner Componnet
     BannerTitleSelfDis: "I am Amir Ismailzadeh",
     BannerTitleSelfField: "Front-End Programmer",
@@ -42,12 +42,21 @@ const en = {
     WorkHistory: "Work History",
     historyTitle: "Title",
     historyDate: "Date",
-    historyDis: "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem " ,
-    Cuntact :"Cuntact Me" ,
+    historyDis: "Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem ",
+    Cuntact: "Cuntact Me",
     Fullname: "Full Name",
     Email: "Email",
     Subject: "Subject",
     Description: "Description",
-    Sendmessage: "Send Email"
+    Sendmessage: "Send Email",
+    // Formik
+    UserRequired: "User is a required field",
+    Passwordrequired: "Password is a required field",
+    min: "Password must be at least 8 characters",
+    // login
+    Title: "Dashboard",
+    Username: "User",
+    password: "Password",
+    InvalidPass:"Pless Enter Invalid Password !"
 };
 export default en;

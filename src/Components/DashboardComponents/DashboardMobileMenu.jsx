@@ -14,9 +14,6 @@ export default function DashboardMobileMenu({ sidestatus, sidesetstatue }) {
                 <div className='w-full flex-col relative flex mt-10 items-center '>
                     <div className='space-y-20 mb-24 '>
                         <div>
-                            <Language />
-                        </div>
-                        <div>
                             <Toggle />
                         </div>
                     </div>

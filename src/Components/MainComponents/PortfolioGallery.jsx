@@ -33,7 +33,9 @@ export default function PortfolioGallery() {
             SetImgs(filteredPortfolio)
         }
     }, [GetGalleryState])
+
     const { t } = useTranslation()
+    
     return (
         <div id='Portfolio' className='mt-5 md:mt-20 duration-700 justify-center flex flex-col items-center transition-all'>
             <div className='w-[98%] md:w-[95%] 2xl:w-[95%] max-md:m-auto flex justify-between items-center'>

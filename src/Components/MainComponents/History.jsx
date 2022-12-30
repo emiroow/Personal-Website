@@ -10,7 +10,7 @@ export default function History() {
                     <div className='mt-8 md:mx-2'>
                         <h1 className='text-shadow-dark font-IranBold text-xl md:text-2xl 2xl:text-3xl'>{t("education")}</h1>
                     </div>
-                    <div class="py-4 mt-5">
+                    <div className="py-4 mt-5">
                         <Date />
                         <Date />
                     </div>
@@ -19,7 +19,7 @@ export default function History() {
                     <div className='mt-8 md:mx-2'>
                         <h1 className='text-shadow-dark font-IranBold text-xl md:text-2xl 2xl:text-3xl'>{t("WorkHistory")}</h1>
                     </div>
-                    <div class="py-4 mt-5">
+                    <div className="py-4 mt-5">
                         <Date />
                     </div>
                 </div>

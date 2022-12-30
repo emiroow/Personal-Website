@@ -15,9 +15,6 @@ export default function DashboardMenu() {
                     <div className='w-full flex-col h-[97vh] justify-center relative flex  items-center '>
                         <div className='lg:space-y-14 2xl:space-y-24 mb-24 '>
                             <div>
-                                <Language />
-                            </div>
-                            <div>
                                 <Toggle />
                             </div>
                         </div>
