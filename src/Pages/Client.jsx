@@ -6,7 +6,7 @@ import SidePortfolio from '../Components/SidePortfolio'
 import Preloader from "../Components/Preloader";
 import { AllContext } from "../ContextApi/AllContext"
 export default function Client() {
-    const {Loading} = useContext(AllContext)
+    const { Loading } = useContext(AllContext)
     return (
         <>
             {Loading ? <Preloader /> : null}

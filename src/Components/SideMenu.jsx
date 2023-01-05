@@ -9,7 +9,6 @@ export default function SideMenu() {
 
   const gotop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
   }
 
   return (

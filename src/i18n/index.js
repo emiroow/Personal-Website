@@ -5,7 +5,6 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import en from "./en";
 import fa from "./fa";
 
-
 const resources = {
     en: {
         translation: en
@@ -15,12 +14,22 @@ const resources = {
     }
 };
 
+const GetLocalStorageLangOrDefualt = () => {
+    const LocalstorageLang = localStorage.getItem("i18nextLng")
+    const DefaultLang = "fa"
+    if (LocalstorageLang) {
+        return LocalstorageLang
+    } else {
+        return DefaultLang
+    }
+}
+
 i18n
-    .use(initReactI18next) // passes i18n down to react-i18next
+    .use(initReactI18next)
     .use(LanguageDetector)
     .init({
         resources,
-        lng: "fa",
+        lng: GetLocalStorageLangOrDefualt(),
         interpolation: {
             escapeValue: false
         }
