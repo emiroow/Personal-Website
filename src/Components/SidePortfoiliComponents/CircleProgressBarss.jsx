@@ -9,7 +9,7 @@ export default function CircleProgressBarss() {
 
     useEffect(() => {
         if (GetPersonal !== undefined) {
-            SetAbout(GetPersonal.skills)
+            SetAbout(GetPersonal.circleSkills)
         }
     }, [GetPersonal])
 
@@ -18,9 +18,7 @@ export default function CircleProgressBarss() {
             <div className='w-[85%] text-sm md:text-md 2xl:text-lg flex-wrap flex justify-center border-b-2 pb-5 dark:border-DarkPurple border-LightYellow '>
                 {
                     GetAbout?.map((item, index) => {
-                        if (item.progressBar) {
-                            return (<CircleProgress key={index} percentage={item.value} LangProgress={item.title} />)
-                        }
+                        return (<CircleProgress key={index} percentage={item.value} LangProgress={item.title} />)
                     })
                 }
             </div>

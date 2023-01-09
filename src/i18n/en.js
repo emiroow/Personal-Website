@@ -57,6 +57,7 @@ const en = {
     Title: "Dashboard",
     Username: "User",
     password: "Password",
-    InvalidPass:"Pless Enter Invalid Password !"
+    InvalidPass:"Pless Enter Invalid Password !" ,
+    AgeFrontError : "Your age is older than this year" ,
 };
 export default en;

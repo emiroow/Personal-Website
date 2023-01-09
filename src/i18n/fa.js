@@ -57,6 +57,7 @@ const fa = {
     Title: "داشبورد",
     Username: "نام کاربری",
     password: "رمز عبور",
-    InvalidPass : "لطفا نام کاربری و رمز عبور را درست وارد کنید"
+    InvalidPass : "لطفا نام کاربری و رمز عبور را درست وارد کنید" ,
+    AgeFrontError : "سن خود بزرگتر از سال جاری است" ,
 };
 export default fa;

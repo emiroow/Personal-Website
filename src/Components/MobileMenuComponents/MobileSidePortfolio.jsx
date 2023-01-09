@@ -5,6 +5,7 @@ import CircleProgressBarss from '../SidePortfoiliComponents/CircleProgressBarss'
 import SkilsLineProgress from '../SidePortfoiliComponents/SkilsLineProgress'
 import AdditionalSkills from '../SidePortfoiliComponents/AdditionalSkills'
 import DownloadCv from '../SidePortfoiliComponents/DownloadCv'
+import Socials from "../../Components/SidePortfoiliComponents/Socials"
 import { BsInstagram } from "react-icons/bs"
 import { BsLinkedin } from "react-icons/bs"
 import { BsTelegram } from "react-icons/bs"
@@ -24,11 +25,7 @@ export default function MobileSidePortfolio({ sidestatus, sidesetstatue }) {
                     <DownloadCv dowloadlink={"#"} />
                 </div>
                 <div className='w-full text-2xl dark:text-DarkPurple text-LightYellow flex items-center dark:bg-BackColor bg-LightMaincolor shadow-[-1px_-12px_10px_-9px_rgba(0,0,0,0.25)] justify-evenly h-[6vh]'>
-                    <a href="http://"><BsInstagram /></a>
-                    <a href="http://"><BsLinkedin /></a>
-                    <a href="http://"><BsTelegram /></a>
-                    <a href="http://"><BsGithub /></a>
-                    <a href="http://"><BsWhatsapp /></a>
+                    <Socials />
                 </div>
             </div>
             {/* closer */}

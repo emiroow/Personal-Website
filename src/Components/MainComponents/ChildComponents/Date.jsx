@@ -1,8 +1,19 @@
 import React from 'react'
 import { SlCalender } from "react-icons/sl"
-import { useTranslation } from 'react-i18next'
-export default function Date() {
-    const { t } = useTranslation()
+import i18n from '../../../i18n'
+import * as shamsi from 'shamsi-date-converter';
+
+export default function Date({ dateTime, title, description }) {
+
+    const Date = (date) => {
+        const Split = date.split("T")[0]
+        if (i18n.language === "en") {
+            return (Split)
+        } else {
+            return (shamsi.gregorianToJalali(Split).join("/"))
+        }
+    }
+
     return (
         <div className="container">
             <div className="flex flex-col md:grid grid-cols-12 text-gray-50  mb-8">
@@ -16,12 +27,12 @@ export default function Date() {
                         </div>
                     </div>
                     <div className=" col-start-2 col-end-12 p-4 rounded-xl  mr-auto w-full">
-                        <h3 className="font-semibold text-md 2xl:text-lg mb-1 font-IranBold text-shadow-dark ">{t("historyTitle")}</h3>
+                        <h3 className="font-semibold text-md 2xl:text-lg mb-1 font-IranBold text-shadow-dark ">{title}</h3>
                         <p className="leading-tight text-justify mb-1 w-full text-sm 2xl:text-md  font-IranBold dark:text-DarkPurple text-LightBackcolor">
-                            {t("historyDate")}
+                            {Date(dateTime)}
                         </p>
                         <span className='font-IranLight text-sm 2xl:text-md'>
-                            {t("historyDis")}
+                            {description}
                         </span>
                     </div>
                 </div>
