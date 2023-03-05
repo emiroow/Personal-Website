@@ -1,0 +1,25 @@
+import React from 'react'
+import { BsInstagram } from "react-icons/bs"
+import { BsLinkedin } from "react-icons/bs"
+import { BsTelegram } from "react-icons/bs"
+import { BsGithub } from "react-icons/bs"
+import { BsWhatsapp } from "react-icons/bs"
+import { useSelector } from 'react-redux'
+export default function Socials() {
+    const aboutData = useSelector((store) => store.client.clientState.socials)
+
+    return (
+        <>
+            {
+                aboutData?.map((item, index) => {
+                    return (
+                        item.iconName === "Instagram" ? <a key={index} href={item.link}><BsInstagram /></a> :
+                            item.iconName === "Linkedin" ? <a key={index} href={item.link}><BsLinkedin /></a> :
+                                item.iconName === "Telegram" ? <a key={index} href={item.link}><BsTelegram /></a> :
+                                    item.iconName === "Github" ? <a key={index} href={item.link}><BsGithub /></a> :
+                                        <a key={index} href={item.link}><BsWhatsapp /></a>)
+                })
+            }
+        </>
+    )
+}
