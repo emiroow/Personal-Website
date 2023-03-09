@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
 import { AiFillPlusCircle } from "react-icons/ai"
 import { AllContext } from "../../../../ContextApi/AllContext"
-import { SetAdminAnalysis } from "../../../../Service/PersonalServices"
+import { SetAdminAnalysis } from "../../../../Service/index"
 import { toast } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 

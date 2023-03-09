@@ -1,18 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { AllContext } from "../../ContextApi/AllContext"
 import { useTranslation } from "react-i18next"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
+import { useSelector } from 'react-redux';
 import i18n from '../../i18n';
 export default function Banner() {
     const { t } = useTranslation()
-    const { GetPersonal } = useContext(AllContext)
-    const [GetAbout, SetAbout] = useState(undefined)
-
-    useEffect(() => {
-        if (GetPersonal !== undefined) {
-            SetAbout(GetPersonal.about)
-        }
-    }, [GetPersonal])
+    const GetAbout = useSelector((store) => store.client.clientState.about)
 
     return (
         <div id='home' className='dark:bg-BackColor max-lg:mt-[65px] bg-LightMaincolor flex-col md:flex-row w-full flex shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] rounded-md border-b-[3px] border-LightYellow dark:border-DarkPurple'>
@@ -23,7 +16,7 @@ export default function Banner() {
                 </div>
                 <div className="w-full md:mt-5 mt-3">
                     <span className='font-IranLight'>
-                    {GetAbout?.description}
+                        {GetAbout?.description}
                     </span>
                 </div>
                 <div className='w-full md:mt-5 mt-3'>

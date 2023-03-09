@@ -1,5 +1,5 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import { GetPerspnalData } from "../Service/PersonalServices"
+import { GetPerspnalData } from "../Service"
 
 const initialState = {
     clientState: [],

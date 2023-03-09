@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import L from 'leaflet';
 import { AllContext } from "../../ContextApi/AllContext"
-import { TileLayer, LayersControl, Marker, Popup, MapContainer } from "react-leaflet";
-import { useMap, useMapEvent, useMapEvents } from "react-leaflet/hooks";
+import { TileLayer, Marker, MapContainer } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
+import { useSelector } from 'react-redux';
 
 export default function Map() {
     delete L.Icon.Default.prototype._getIconUrl;
@@ -12,21 +12,21 @@ export default function Map() {
         iconUrl: require('../../assets/images/Leaflet/marker-icon.png.png'),
         shadowUrl: require('../../assets/images/Leaflet/marker-shadow.png.png')
     });
-    const { GetPersonal } = useContext(AllContext)
+    const getData = useSelector((store) => store.client.clientState.about)
     const [GetPosition, SetPosition] = useState({
         lat: '',
         lng: '',
     });
     // Get From Server Type : {lat: 48.936934954094035, lng: 791.7654298413416}
     useEffect(() => {
-        if (GetPersonal !== undefined) {
-            let Parsed = JSON.parse(GetPersonal?.about.locationAddress)
+        if (getData !== undefined) {
+            let Parsed = JSON.parse(getData?.locationAddress)
             SetPosition({ ...GetPosition, ...Parsed })
         }
-    }, [GetPersonal])
+    }, [getData])
 
     return (
-        <div className='text-center m-auto w-[98%] mt-2 md:w-[95%] 2xl:w-[93%] rounded-md border-b-4 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] dark:border-DarkPurple border-LightMaincolor ' >
+        <div className='text-center m-auto w-[98%] mt-8 md:w-[95%] 2xl:w-[93%] rounded-md border-b-4 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] dark:border-DarkPurple border-LightMaincolor ' >
             {
                 GetPosition?.lat || GetPosition?.lng ?
                     <MapContainer

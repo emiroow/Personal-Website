@@ -7,7 +7,7 @@ import ContentFa from "./Components/ContentFa"
 import ContentEn from "./Components/ContentEn"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GetAdminEducations } from "../../../Service/PersonalServices"
+import { GetAdminEducations } from "../../../Service/index"
 export default function Certificates() {
   const { t } = useTranslation()
   const [educationsServerData, setEducationsServerData] = useState()

@@ -6,7 +6,7 @@ import { Route, Routes } from "react-router";
 import Dashboard from "./Pages/Dashboard";
 import Client from './Pages/Client';
 import Login from "./Pages/Login"
-import { GetPerspnalData } from './Service/PersonalServices';
+import { GetPerspnalData } from './Service/index';
 import NotFound from "./Pages/NotFound"
 import BadRequest from './Pages/BadRequest';
 import About from './Components/DashboardComponents/About/About';
@@ -23,6 +23,7 @@ import Portfolios from "./Components/DashboardComponents/Portfolio/Portfolios"
 import DashboardIndex from "./Components/DashboardComponents/DashboardIndex/DashboardIndex"
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchClientData } from './Reducers/clientSlice';
+import { fetchGetSetting } from './Reducers/settingSlice';
 const languages = [
   {
     code: 'en',
@@ -60,7 +61,7 @@ function App() {
     document.body.dir = currentLanguage.dir || 'rlt'
     document.title = t("TabTitleOfApp")
     dispatch(fetchClientData(i18n.language))
-
+    dispatch(fetchGetSetting())
   }, [t, currentLanguage])
 
   return (

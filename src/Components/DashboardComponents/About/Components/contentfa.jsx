@@ -5,7 +5,7 @@ import * as Yup from "yup"
 import { AllContext } from "../../../../ContextApi/AllContext"
 import AddLocation from './AddLocation'
 import i18n from '../../../../i18n';
-import { SetAbout } from "../../../../Service/PersonalServices"
+import { SetAbout } from "../../../../Service/index"
 import { toast } from 'react-toastify';
 export default function Contentfa({ AdminAboutFa, SetupdateState, updateState }) {
   const { t } = useTranslation()

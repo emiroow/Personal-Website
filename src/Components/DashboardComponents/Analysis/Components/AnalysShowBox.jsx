@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback, useRef, useContext } from 'react'
-import { DeleteAdminAnalysis } from "../../../../Service/PersonalServices"
+import { DeleteAdminAnalysis } from "../../../../Service/index"
 import { toast } from 'react-toastify';
 import { useTranslation } from "react-i18next";
 import { AllContext } from "../../../../ContextApi/AllContext"
-import { EditAdminAnalysis } from "../../../../Service/PersonalServices"
+import { EditAdminAnalysis } from "../../../../Service/index"
 export default function AnalysShowBox({ value, title, id, SetupdateStates, updateStates, TabState , setAnalysisData , analysisData }) {
     const [editeing, setEditing] = useState(false)
     const { t } = useTranslation()

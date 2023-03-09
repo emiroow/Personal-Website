@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { GetAdminAbout } from "../../../Service/PersonalServices"
+import { GetAdminAbout } from "../../../Service/index"
 import { AllContext } from "../../../ContextApi/AllContext"
 import { DashboardContext } from "../../../ContextApi/DashboardContext"
 import { useTranslation } from "react-i18next";

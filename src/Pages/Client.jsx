@@ -7,9 +7,11 @@ import Preloader from "../Components/Preloader";
 import { useSelector } from 'react-redux'
 export default function Client() {
     const Loader = useSelector((store) => store.client.status === "Loading")
+    const contactLoader = useSelector((sotre) => sotre.contact.loader)
+
     return (
         <>
-            {Loader ? <Preloader /> : null}
+            {Loader || contactLoader ? <Preloader /> : null}
             <MobileDviceMenu />
             <SidePortfolio />
             <Main />

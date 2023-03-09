@@ -1,20 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AllContext } from "../../ContextApi/AllContext"
+import React from 'react'
 import Date from './ChildComponents/Date'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 export default function History() {
     const { t } = useTranslation()
-
-    const { GetPersonal } = useContext(AllContext)
-    const [Geteducations, Seteducations] = useState(undefined)
-    const [Gethistories, Sethistories] = useState(undefined)
-
-    useEffect(() => {
-        if (GetPersonal !== undefined) {
-            Seteducations(GetPersonal.educations);
-            Sethistories(GetPersonal.histories);
-        }
-    }, [GetPersonal])
+    const getEducationsData = useSelector((store) => store.client.clientState.educations)
+    const getHistoriesData = useSelector((store) => store.client.clientState.histories)
 
 
     return (
@@ -26,7 +17,7 @@ export default function History() {
                     </div>
                     <div className="py-4 mt-5">
                         {
-                            Geteducations?.map((item, index) => {
+                            getEducationsData?.map((item, index) => {
                                 return (<Date key={index} dateTime={item.dateTime} title={item.title} description={item.description} />)
                             })
                         }
@@ -38,7 +29,7 @@ export default function History() {
                     </div>
                     <div className="py-4 mt-5">
                         {
-                            Gethistories?.map((item, index) => {
+                            getHistoriesData?.map((item, index) => {
                                 return (<Date key={index} dateTime={item.dateTime} title={item.title} description={item.description} />)
                             })
                         }

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useTranslation } from "react-i18next";
-import { DeleteAdminEducation } from '../../../../Service/PersonalServices';
+import { DeleteAdminEducation } from '../../../../Service/index';
 import { AllContext } from '../../../../ContextApi/AllContext';
 import Modal from '../../Modal';
 import { useEffect } from 'react';

@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import { useEffect, useContext } from 'react';
 import { toast } from 'react-toastify';
 import { AllContext } from "../../../../ContextApi/AllContext"
-import { SetAdminEducation } from '../../../../Service/PersonalServices';
+import { SetAdminEducation } from '../../../../Service/index';
 export default function AddEducationBox({ AddEducationArr, SetEducationArr, SetupdateStates, updateStates, TabState }) {
     const { t } = useTranslation()
     const { SetDashboardLoader } = useContext(AllContext)

@@ -1,17 +1,14 @@
 import axios from "axios";
-const Endpoint = "https://resume.cryptosiginal.com";
-
-// Token
-const TOKEN = localStorage.getItem("TK")
+const Endpoint = process.env.REACT_APP_BASE_URL
 
 // Home
 export const GetPerspnalData = (Lang) => {
     const Url = `${Endpoint}/api/personal/${Lang}`;
     return axios.get(Url);
 };
-export const GetSetting = (Lang) => {
-    const Url = `${Endpoint}/api/GetSetting/${Lang}`;
-    return axios.post(Url);
+export const GetSetting = () => {
+    const Url = `${Endpoint}/api/admin/setting`;
+    return axios.get(Url);
 };
 export const AddContactMessage = (Body) => {
     const Url = `${Endpoint}/api/AddContactMessage`;

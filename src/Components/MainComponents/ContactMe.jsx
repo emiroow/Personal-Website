@@ -6,17 +6,18 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import i18n from '../../i18n';
 import { useState } from 'react';
-import { useEffect, useContext } from 'react';
+import { useEffect } from 'react';
 import { BinerConvert } from "../../Helpers/LangConvertToBiner";
-import { GetIp, AddContactMessage } from '../../Service/PersonalServices';
-import { AllContext } from "../../ContextApi/AllContext"
+import { GetIp } from '../../Service';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContactMessage } from '../../Reducers/contactSlice';
 export default function ContactMe() {
     const { t } = useTranslation()
-    const { GetPersonal, SetLoading } = useContext(AllContext)
-    const [GetAbout, SetAbout] = useState(undefined)
-
+    const getAboutData = useSelector((store) => store.client.clientState.about)
+    const getContactMssgStatus = useSelector((store) => store.contact.status)
+    const dispatch = useDispatch();
     const [ContactInfo, SetContactInfo] = useState({
         fullName: null,
         email: null,
@@ -25,45 +26,20 @@ export default function ContactMe() {
         ip: null,
         lang: null
     })
-    useEffect(() => {
-        if (GetPersonal !== undefined) {
-            SetAbout(GetPersonal.about)
-        }
-    }, [GetPersonal])
 
     useEffect(() => {
-        const FetchData = async () => {
-            try {
-                const Adddata = await AddContactMessage(ContactInfo)
-                if (Adddata.status === 200) {
-                    toast.success(t("AddContactSuccess"), {
-                        position: "top-center",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
-                }
-                SetLoading(false)
-            } catch (error) {
-                console.log(error.response.status);
-                toast.error(t("AddContactError"), {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            }
-        }
         if (ContactInfo.fullName !== null) {
-            FetchData()
+            dispatch(fetchContactMessage(ContactInfo))
+            toast.success(t("AddContactSuccess"), {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
     }, [ContactInfo])
 
@@ -79,7 +55,6 @@ export default function ContactMe() {
         let Merged = { ...Values, ...values }
         const FetchData = async () => {
             try {
-                SetLoading(true)
                 const { data } = await GetIp()
                 let ipMerging = { ...Merged, "ip": data?.ip }
                 let BinerLangMerge = { ...ipMerging, "lang": BinerConvert() }
@@ -163,12 +138,12 @@ export default function ContactMe() {
 
                         <div className='w-full text-sm md:text-md 2xl:text-lg '>
                             <div className='flex justify-between mt-5'>
-                                <span className='font-IranBold text-[16px]'>{t("HeadInfoCountry")} :</span>
-                                <span className='font-IranLight text-[8px] xl:text-[13px] 2xl:text-[15px]'>{GetAbout?.country}</span>
+                                <span className='font-IranBold text-[14px] md:text-[18px] lg:text-[14px]'>{t("HeadInfoCountry")} :</span>
+                                <span className='font-IranLight text-[13px] md:text-[18px] xl:text-[11px] 2xl:text-[15px]'>{getAboutData?.country}</span>
                             </div>
                             <div className='flex justify-between mt-5'>
-                                <span className='font-IranBold text-[16px]'>{t("HeadInfoState")} :</span>
-                                <span className='font-IranLight text-[8px] xl:text-[13px] 2xl:text-[15px]'>{GetAbout?.city}</span>
+                                <span className='font-IranBold text-[14px] md:text-[18px] lg:text-[14px]'>{t("HeadInfoState")} :</span>
+                                <span className='font-IranLight text-[13px] md:text-[18px] xl:text-[11px] 2xl:text-[15px]'>{getAboutData?.city}</span>
                             </div>
                         </div>
 
@@ -183,12 +158,12 @@ export default function ContactMe() {
 
                         <div className='w-full text-sm md:text-md 2xl:text-lg '>
                             <div className='flex justify-between mt-5'>
-                                <span className='font-IranBold text-[16px]'>{t("ContactShowEmail")} :</span>
-                                <span className='font-IranLight text-[8px] xl:text-[12px] 2xl:text-[15px]'>{GetAbout?.email}</span>
+                                <span className='font-IranBold text-[14px] md:text-[18px] lg:text-[14px]'>{t("ContactShowEmail")} :</span>
+                                <span className='font-IranLight text-[13px] md:text-[18px] xl:text-[11px] 2xl:text-[15px]'>{getAboutData?.email}</span>
                             </div>
                             <div className='flex justify-between mt-5'>
-                                <span className='font-IranBold text-[16px]'>{t("ContactShowPhoneNumber")} :</span>
-                                <span className='font-IranLight text-[8px] xl:text-[13px] 2xl:text-[15px]'>{GetAbout?.phoneNumber}</span>
+                                <span className='font-IranBold text-[14px] md:text-[18px] lg:text-[14px]'>{t("ContactShowPhoneNumber")} :</span>
+                                <span className='font-IranLight text-[13px] md:text-[18px] xl:text-[11px] 2xl:text-[15px]'>{getAboutData?.phoneNumber}</span>
                             </div>
                         </div>
 

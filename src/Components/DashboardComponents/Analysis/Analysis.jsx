@@ -5,7 +5,7 @@ import { DashboardContext } from "../../../ContextApi/DashboardContext"
 import { useTranslation } from "react-i18next";
 import ContentEn from './Components/ContentEn';
 import ContentFa from './Components/ContentFa';
-import { GetAdminAnalysis } from "../../../Service/PersonalServices"
+import { GetAdminAnalysis } from "../../../Service/index"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export default function Analysis() {

@@ -1,17 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AllContext } from "../../ContextApi/AllContext"
+import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 export default function MyService() {
     const { t } = useTranslation()
-
-    const { GetPersonal } = useContext(AllContext)
-    const [GetAbout, SetAbout] = useState(undefined)
-
-    useEffect(() => {
-        if (GetPersonal !== undefined) {
-            SetAbout(GetPersonal.services)
-        }
-    }, [GetPersonal])
+    const getData = useSelector((store) => store.client.clientState.analyses)
 
     return (
         <>
@@ -20,7 +12,7 @@ export default function MyService() {
             </div>
             <div className=' w-[98%] md:w-[95%] 2xl:w-[93%] m-auto flex justify-between flex-row flex-wrap'>
                 {
-                    GetAbout?.map((item , index) => {
+                    getData?.map((item, index) => {
                         return (
                             <div key={index} className=' mb-5 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] w-[95%] max-md:m-auto max-md:mb-2 md:w-[30%] dark:bg-BackColorWhiter bg-LightMaincolor border-2 dark:border-DarkPurple rounded-md p-3 border-LightYellow'>
                                 <h1 className='font-IranBold text-shadow-dark mb-1 text-lg 2xl:text-xl'>{item.title}</h1>

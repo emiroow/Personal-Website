@@ -6,17 +6,15 @@ import SkilsLineProgress from '../SidePortfoiliComponents/SkilsLineProgress'
 import AdditionalSkills from '../SidePortfoiliComponents/AdditionalSkills'
 import DownloadCv from '../SidePortfoiliComponents/DownloadCv'
 import Socials from "../../Components/SidePortfoiliComponents/Socials"
-import { BsInstagram } from "react-icons/bs"
-import { BsLinkedin } from "react-icons/bs"
-import { BsTelegram } from "react-icons/bs"
-import { BsGithub } from "react-icons/bs"
-import { BsWhatsapp } from "react-icons/bs"
 import { ImCancelCircle } from "react-icons/im"
 export default function MobileSidePortfolio({ sidestatus, sidesetstatue }) {
     return (
         <div className={sidestatus ? 'fixed bg-BackColor shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] w-[100%] h-full z-20 top-0 right-0 duration-700' : 'fixed bg-BackColor shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] w-[100%] h-full z-20 top-0 -right-[101%] duration-700'}>
             <div className="w-full h-[100vh] fixed dark:bg-BackColor bg-LightMaincolor shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)] rounded-md border-b-2 dark:border-DarkPurple border-LightYellow">
                 <Header />
+                <div className='w-full lg:hidden text-2xl dark:text-DarkPurple text-LightYellow flex items-center dark:bg-BackColor border-b-2 dark:border-DarkPurple border-LightYellow bg-LightMaincolor shadow-[-1px_-12px_10px_-9px_rgba(0,0,0,0.25)] justify-evenly h-[6vh]'>
+                    <Socials />
+                </div>
                 <div className=' text-sm md:text-[15px] h-[58vh] md:h-[56vh] pb-5 overflow-auto RemoveScroll cursor-pointer' >
                     <Info />
                     <CircleProgressBarss />
@@ -24,7 +22,7 @@ export default function MobileSidePortfolio({ sidestatus, sidesetstatue }) {
                     <AdditionalSkills />
                     <DownloadCv dowloadlink={"#"} />
                 </div>
-                <div className='w-full text-2xl dark:text-DarkPurple text-LightYellow flex items-center dark:bg-BackColor bg-LightMaincolor shadow-[-1px_-12px_10px_-9px_rgba(0,0,0,0.25)] justify-evenly h-[6vh]'>
+                <div className='w-full max-lg:hidden text-2xl dark:text-DarkPurple text-LightYellow flex items-center dark:bg-BackColor bg-LightMaincolor shadow-[-1px_-12px_10px_-9px_rgba(0,0,0,0.25)] justify-evenly h-[6vh]'>
                     <Socials />
                 </div>
             </div>

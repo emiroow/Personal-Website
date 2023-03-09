@@ -8,45 +8,38 @@ import History from './MainComponents/History'
 import Footer from './Footer'
 import ContactMe from './MainComponents/ContactMe'
 import Map from './MainComponents/Map'
-import { AllContext } from "../ContextApi/AllContext"
 import Certificate from './MainComponents/Certificate'
+import { useSelector } from 'react-redux'
 export default function Main() {
-
-    const { GetPersonal } = useContext(AllContext)
-    const [GetAbout, SetAbout] = useState(undefined)
-
-    useEffect(() => {
-        if (GetPersonal !== undefined) {
-            SetAbout(GetPersonal)
-        }
-    }, [GetPersonal])
-
-
+    const getData = useSelector((store) => store.client.clientState)
+    const getSetting = useSelector((store) => store.setting.setting)
+    console.log(getSetting)
     return (
         <div className="w-[100%] lg:w-[69%] relative h-max mb-[15px]">
             <Banner />
             {
-                GetAbout?.analyses ? <Analyze /> : null
+                getData?.analyses && getSetting.analysis ? <Analyze /> : null
             }
             {
-                GetAbout?.services ? <MyService /> : null
+                getData?.services && getSetting.services ? <MyService /> : null
             }
             {
-                GetAbout?.comments ? <Comments /> : null
+                getData?.comments && getSetting.comments ? <Comments /> : null
             }
             {
-                GetAbout?.portfolios && GetAbout?.portfolioCatagories ? <PortfolioGallery /> : null
+                getData?.portfolios && getSetting.portfolios && getData?.portfolioCatagories ? <PortfolioGallery /> : null
             }
             {
-                GetAbout?.certificates || GetAbout?.certificates ? <Certificate /> : null
+                getData?.certificates && getSetting.certificates ? <Certificate /> : null
             }
             {
-                GetAbout?.histories || GetAbout?.educations ? <History /> : null
+                getData?.histories && getSetting.histories ? <History /> : null
             }
-            {/* add */}
-            <ContactMe />
             {
-                GetAbout?.about.locationAddress.length >= 0 ? <Map /> : null
+                getSetting?.contactUsBox ? <ContactMe /> : null
+            }
+            {
+                getData?.about?.locationAddress.length >= 0 ? <Map /> : null
             }
             <Footer />
         </div>

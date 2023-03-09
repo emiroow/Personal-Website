@@ -1,11 +1,11 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import i18n from '../../i18n';
 import Comment from './ChildComponents/Comment';
 import { useTranslation } from 'react-i18next';
-import { AllContext } from '../../ContextApi/AllContext';
+import { useSelector } from 'react-redux';
 export default function Comments() {
   const currentLanguageCode = i18n.language
   const poss = () => {
@@ -42,13 +42,8 @@ export default function Comments() {
   };
 
   const { t } = useTranslation()
-  const { GetPersonal } = useContext(AllContext)
-  const [GetAbout, SetAbout] = useState(undefined)
-  useEffect(() => {
-    if (GetPersonal !== undefined) {
-      SetAbout(GetPersonal.comments)
-    }
-  }, [GetPersonal])
+  const getData = useSelector((store) => store.client.clientState.comments)
+
 
   return (
     <>
@@ -58,7 +53,7 @@ export default function Comments() {
       <div className=' w-[85%] md:w-[95%] 2xl:w-[94%] m-auto'>
         <Slider {...settings}>
           {
-            GetAbout?.map((item, index) => {
+            getData?.map((item, index) => {
               return (<Comment fromName={item.fromName} starCount={item.starCount} fromImgUrl={item.fromImgUrl} fromPosition={item.fromPosition} message={item.message} subject={item.subject} key={index} />)
             })
           }

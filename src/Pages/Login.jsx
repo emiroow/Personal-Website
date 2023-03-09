@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import i18n from '../i18n'
 import { MdOutlineArrowForwardIos } from "react-icons/md"
-import { AuthLogin } from '../Service/PersonalServices'
+import { AuthLogin } from '../Service/index'
 import Toggle from "../Components/SideMenuComponents/toggle"
 import Preloader from "../Components/Preloader"
 export default function Login() {
