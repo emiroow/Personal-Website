@@ -2,13 +2,15 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Formik } from "formik";
 import { useTranslation } from "react-i18next";
 import * as Yup from "yup"
-import { AllContext } from "../../../../ContextApi/AllContext"
 import AddLocation from './AddLocation'
 import i18n from '../../../../i18n';
-import { SetAbout } from "../../../../Service/index"
 import { toast } from 'react-toastify';
-export default function Contentfa({ AdminAboutEn, SetupdateState, updateState }) {
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSetGeneralData, SetGeneraltDataFa } from '../../../../Reducers/DashboardSlices/GeneralSlice';
+export default function Contentfa() {
     const { t } = useTranslation()
+    const AdminAboutEn = useSelector((state) => state.general.generalEn)
+    const dispatch = useDispatch()
 
     const [AllContentInfo, SetAllContentInfo] = useState({
         avatarUrl: "",
@@ -25,8 +27,6 @@ export default function Contentfa({ AdminAboutEn, SetupdateState, updateState })
         secondAvatarUrl: "",
         lang: "en"
     })
-
-    const { SetDashboardLoader } = useContext(AllContext)
 
     const schema = Yup.object().shape({
         avatarUrl: Yup.string().required(t("avatarUrl")),
@@ -58,37 +58,28 @@ export default function Contentfa({ AdminAboutEn, SetupdateState, updateState })
                 phoneNumber,
                 position,
                 secondAvatarUrl,
-            } = AdminAboutEn[0]
+            } = AdminAboutEn
             SetAllContentInfo({ avatarUrl, birthday, city, country, cvUrl, description, email, locationAddress, name, phoneNumber, position, secondAvatarUrl, secondAvatarUrl, lang: "en" })
         }
     }, [AdminAboutEn])
 
-
-    useEffect(() => {
-        console.log(AllContentInfo);
-    }, [AllContentInfo])
-
-    const HandleUpdateFaChanges = () => {
-        console.log(AllContentInfo);
-        const GetFromServer = async () => {
-            try {
-                SetDashboardLoader(true)
-                const { status } = await SetAbout(AllContentInfo)
-                if (status === 200) {
-                    toast.success(t("SuccessChanged"), {
-                        position: "top-center",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
-                    SetupdateState(!updateState)
-                }
-            } catch (error) {
-                console.log(error);
+    const HandleUpdateFaChanges = async () => {
+        const hasEmptyField = Object.values(AllContentInfo).some(value => value === "");
+        if (!hasEmptyField) {
+            dispatch(SetGeneraltDataFa(AllContentInfo))
+            const respons = await dispatch(fetchSetGeneralData(AllContentInfo))
+            if (respons.payload.status === 200) {
+                toast.success(t("SuccessEdited"), {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            } else {
                 toast.error(t("Problem"), {
                     position: "top-center",
                     autoClose: 3000,
@@ -100,9 +91,18 @@ export default function Contentfa({ AdminAboutEn, SetupdateState, updateState })
                     theme: "light",
                 });
             }
-            SetDashboardLoader(false)
+        } else {
+            toast.error(t("PleaseFill"), {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
-        GetFromServer()
     }
 
     return (
@@ -111,19 +111,19 @@ export default function Contentfa({ AdminAboutEn, SetupdateState, updateState })
                 AllContentInfo.avatarUrl !== undefined ?
                     <Formik validationSchema={schema}
                         initialValues={{
-                            avatarUrl: AllContentInfo.avatarUrl,
-                            birthday: AllContentInfo.birthday,
-                            city: AllContentInfo.city,
-                            country: AllContentInfo.country,
-                            cvUrl: AllContentInfo.cvUrl,
-                            description: AllContentInfo.description,
-                            email: AllContentInfo.email,
-                            locationAddress: AllContentInfo.locationAddress,
-                            name: AllContentInfo.name,
-                            phoneNumber: AllContentInfo.phoneNumber,
-                            position: AllContentInfo.position,
-                            secondAvatarUrl: AllContentInfo.secondAvatarUrl,
-                            lang: "fa"
+                            avatarUrl: AdminAboutEn.avatarUrl,
+                            birthday: AdminAboutEn.birthday,
+                            city: AdminAboutEn.city,
+                            country: AdminAboutEn.country,
+                            cvUrl: AdminAboutEn.cvUrl,
+                            description: AdminAboutEn.description,
+                            email: AdminAboutEn.email,
+                            locationAddress: AdminAboutEn.locationAddress,
+                            name: AdminAboutEn.name,
+                            phoneNumber: AdminAboutEn.phoneNumber,
+                            position: AdminAboutEn.position,
+                            secondAvatarUrl: AdminAboutEn.secondAvatarUrl,
+                            lang: "en"
                         }}
                         enableReinitialize
                         onSubmit={(values) => {
@@ -249,7 +249,7 @@ export default function Contentfa({ AdminAboutEn, SetupdateState, updateState })
                                 </div>
                             </form>
                         )}
-                    </Formik> : null
+                    </Formik> : <div className='w-full text-center p-16'>{t("Problem")}</div>
             }
         </div>
     )

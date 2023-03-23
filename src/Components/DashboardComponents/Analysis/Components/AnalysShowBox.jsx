@@ -1,13 +1,14 @@
-import React, { useEffect, useState, useCallback, useRef, useContext } from 'react'
-import { DeleteAdminAnalysis } from "../../../../Service/index"
+import React, { useState, useRef, useEffect } from 'react'
 import { toast } from 'react-toastify';
 import { useTranslation } from "react-i18next";
-import { AllContext } from "../../../../ContextApi/AllContext"
-import { EditAdminAnalysis } from "../../../../Service/index"
-export default function AnalysShowBox({ value, title, id, SetupdateStates, updateStates, TabState , setAnalysisData , analysisData }) {
+import { fetchDeletAdminAnalysis, fetchUpdateAdminAnalysis } from '../../../../Reducers/DashboardSlices/AnalysisSlice';
+import { useDispatch } from 'react-redux';
+export default function AnalysShowBox({ value, title, id, SetupdateStates, updateStates, TabState }) {
+
     const [editeing, setEditing] = useState(false)
+
     const { t } = useTranslation()
-    const { SetDashboardLoader } = useContext(AllContext)
+    const dispatch = useDispatch()
     const [GetAnalysis, SetAnalysis] = useState({
         id: 0,
         title: "",
@@ -21,11 +22,41 @@ export default function AnalysShowBox({ value, title, id, SetupdateStates, updat
 
     const HandleDeleteAnalys = (ID) => {
         const setSetverData = async () => {
-            try {
-                SetDashboardLoader(true)
-                const { status } = await DeleteAdminAnalysis(ID)
-                if (status === 200) {
-                    toast.success(t("SuccessTopdelete"), {
+            const response = await dispatch(fetchDeletAdminAnalysis(ID))
+            if (response.payload.status === 200) {
+                toast.success(t("SuccessTopdelete"), {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            } else {
+                toast.error(t("Problem"), {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+        }
+        setSetverData()
+    }
+
+    useEffect(() => {
+        if (GetAnalysis.title) {
+            const setSetverData = async () => {
+                const response = await dispatch(fetchUpdateAdminAnalysis(GetAnalysis))
+                if (response.payload.status === 200) {
+                    setEditing(false)
+                    toast.success(t("SuccessEdited"), {
                         position: "top-center",
                         autoClose: 3000,
                         hideProgressBar: false,
@@ -35,8 +66,6 @@ export default function AnalysShowBox({ value, title, id, SetupdateStates, updat
                         progress: undefined,
                         theme: "light",
                     });
-                    SetupdateStates(!updateStates)
-                    console.log(analysisData)
                 } else {
                     toast.error(t("Problem"), {
                         position: "top-center",
@@ -49,69 +78,6 @@ export default function AnalysShowBox({ value, title, id, SetupdateStates, updat
                         theme: "light",
                     });
                 }
-            } catch (error) {
-                console.log(error);
-                toast.error(t("Problem"), {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            }
-            SetDashboardLoader(false)
-        }
-        setSetverData()
-    }
-
-    useEffect(() => {
-        if (GetAnalysis.title) {
-            const setSetverData = async () => {
-                try {
-                    SetDashboardLoader(true)
-                    const { status } = await EditAdminAnalysis(GetAnalysis)
-                    if (status === 200) {
-                        toast.success(t("SuccessEdited"), {
-                            position: "top-center",
-                            autoClose: 3000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
-                        SetupdateStates(!updateStates)
-                        setEditing(false)
-                    } else {
-                        toast.error(t("Problem"), {
-                            position: "top-center",
-                            autoClose: 3000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
-                    }
-                } catch (error) {
-                    console.log(error);
-                    toast.error(t("Problem"), {
-                        position: "top-center",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
-                }
-                SetDashboardLoader(false)
                 SetAnalysis({ ...GetAnalysis, [titleRef.current.name]: "", [valueRef.current.name]: "", id: 0 })
             }
             setSetverData()

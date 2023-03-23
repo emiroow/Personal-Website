@@ -13,33 +13,33 @@ import { useSelector } from 'react-redux'
 export default function Main() {
     const getData = useSelector((store) => store.client.clientState)
     const getSetting = useSelector((store) => store.setting.setting)
-    console.log(getSetting)
+
     return (
         <div className="w-[100%] lg:w-[69%] relative h-max mb-[15px]">
             <Banner />
             {
-                getData?.analyses && getSetting.analysis ? <Analyze /> : null
+                getSetting.analysis ? <Analyze /> : null
             }
             {
-                getData?.services && getSetting.services ? <MyService /> : null
+                getSetting.services ? <MyService /> : null
             }
             {
-                getData?.comments && getSetting.comments ? <Comments /> : null
+                getSetting.comments ? <Comments /> : null
             }
             {
-                getData?.portfolios && getSetting.portfolios && getData?.portfolioCatagories ? <PortfolioGallery /> : null
+                getSetting.portfolios && getData?.portfolioCatagories ? <PortfolioGallery /> : null
             }
             {
-                getData?.certificates && getSetting.certificates ? <Certificate /> : null
+                getSetting.certificates ? <Certificate /> : null
             }
             {
-                getData?.histories && getSetting.histories ? <History /> : null
+                getSetting.histories ? <History /> : null
             }
             {
                 getSetting?.contactUsBox ? <ContactMe /> : null
             }
             {
-                getData?.about?.locationAddress.length >= 0 ? <Map /> : null
+                getSetting?.map ? <Map /> : null
             }
             <Footer />
         </div>

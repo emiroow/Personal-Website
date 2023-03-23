@@ -1,7 +1,6 @@
 import React from 'react'
-import { useEffect, useContext, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AllContext } from "../ContextApi/AllContext"
 import { Link } from "react-router-dom"
 import { Formik } from "formik";
 import { useTranslation } from "react-i18next";
@@ -9,51 +8,32 @@ import Language from "../Components/SideMenuComponents/language"
 import * as Yup from "yup";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import i18n from '../i18n'
 import { MdOutlineArrowForwardIos } from "react-icons/md"
-import { AuthLogin } from '../Service/index'
 import Toggle from "../Components/SideMenuComponents/toggle"
 import Preloader from "../Components/Preloader"
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchAuthLogin } from '../Reducers/authenticationSlice'
 export default function Login() {
-  const { authorizing, Setauthorizing, LoadingSecond, SetLoadingSecond } = useContext(AllContext)
   const [LoginInfo, SetLoginInfo] = useState()
   const Navgate = useNavigate()
   const { t } = useTranslation()
-
-  useEffect(() => {
-    if (authorizing) {
-      Navgate(`/Admin`)
-    }
-  }, [authorizing])
+  const dispatch = useDispatch()
+  const store = useSelector((store) => store.authentication)
 
   useEffect(() => {
     const GetFromServer = async () => {
-      try {
-        SetLoginInfo(null)
-        const { data } = await AuthLogin(LoginInfo.user, LoginInfo.password)
-        if (data.success === true) {
-          localStorage.setItem("TK", data.token)
-          Setauthorizing(true)
-        }
-        SetLoadingSecond(false)
-      } catch (error) {
-        if (error.response) {
-          toast.error(t("InvalidPass"), {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
-      }
-
+      dispatch(fetchAuthLogin({ userName: LoginInfo.user, password: LoginInfo.password }))
     }
-    GetFromServer()
+    if (LoginInfo) {
+      GetFromServer()
+    }
   }, [LoginInfo])
+
+  useEffect(() => {
+    if (store.isToken) {
+      Navgate(`/Admin`)
+    }
+  }, [store])
 
   // Creating schema
   const schema = Yup.object().shape({
@@ -64,10 +44,9 @@ export default function Login() {
       .min(5, t("min")),
   });
 
-
   return (
     <>
-      {LoadingSecond ? <Preloader /> : null}
+      {store.loader ? <Preloader /> : null}
       <div className='w-full h-[97vh] flex-col font-IranBold flex justify-center items-center m-auto'>
         <ToastContainer />
         <div className='absolute top-2 left-4 lg:left-0'>
@@ -85,7 +64,6 @@ export default function Login() {
         <div className='w-[98%] flex-col 2xl:w-[20%] xl:w-[25%] dark:bg-BackColorWhiter shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)] p-5 flex justify-center  bg-LightMaincolor rounded-md'>
           <Formik validationSchema={schema} initialValues={{ user: "", password: "" }} onSubmit={(values) => {
             SetLoginInfo(values)
-            SetLoadingSecond(true)
           }}>
             {({
               values,

@@ -20,10 +20,17 @@ appAxios.interceptors.response.use(
         return res;
     },
     (err) => {
-        console.log(err)
         if (err.response.status === 401) {
-            // window.location.reload();
-            console.log("not Found Token")
+            toast.error('problm !!!', {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
         } else if (err) {
             toast.error('Problem var, yenidən cəhd edin !', {
                 position: "top-right",
@@ -47,6 +54,7 @@ appAxios.interceptors.response.use(
                 theme: "colored",
             });
         }
+        return err.response
     }
 );
 

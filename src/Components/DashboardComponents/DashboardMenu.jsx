@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { NavLink } from "react-router-dom";
 import Toggle from '../SideMenuComponents/toggle'
 import Language from '../SideMenuComponents/language'
@@ -9,13 +9,14 @@ import { Tooltip as ReactTooltip } from 'react-tooltip'
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 import { FaIconDynamic } from '../../Helpers/ReturnIconCommponent';
+import { useDispatch } from 'react-redux';
+import { logOutUser } from '../../Reducers/authenticationSlice';
 export default function DashboardMenu() {
-    const { Setauthorizing } = useContext(AllContext)
     const { t } = useTranslation()
+    const dispatch = useDispatch()
 
     const LogOut = () => {
-        localStorage.removeItem("TK");
-        Setauthorizing(false)
+        dispatch(logOutUser())
     }
 
     const Menus = [

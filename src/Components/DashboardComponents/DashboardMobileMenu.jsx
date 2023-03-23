@@ -1,22 +1,21 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Toggle from '../SideMenuComponents/toggle'
 import { NavLink } from "react-router-dom";
 import Language from '../SideMenuComponents/language'
-import { AllContext } from "../../ContextApi/AllContext"
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineLogout } from "react-icons/md"
 import { FaIconDynamic } from '../../Helpers/ReturnIconCommponent';
-
+import { useDispatch } from 'react-redux';
+import { logOutUser } from "../../Reducers/authenticationSlice"
 export default function DashboardMobileMenu({ sidestatus, sidesetstatue }) {
-    const { Setauthorizing } = useContext(AllContext)
     const { t } = useTranslation()
+    const dispatch = useDispatch()
 
     const LogOut = () => {
-        localStorage.removeItem("TK");
-        Setauthorizing(false)
+        dispatch(logOutUser())
     }
 
     const Menus = [

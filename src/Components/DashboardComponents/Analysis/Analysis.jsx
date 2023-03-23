@@ -5,59 +5,27 @@ import { DashboardContext } from "../../../ContextApi/DashboardContext"
 import { useTranslation } from "react-i18next";
 import ContentEn from './Components/ContentEn';
 import ContentFa from './Components/ContentFa';
-import { GetAdminAnalysis } from "../../../Service/index"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAdminAnalysis } from '../../../Reducers/DashboardSlices/AnalysisSlice';
+import PreLoader from "../../Preloader"
 export default function Analysis() {
-  const { t } = useTranslation()
-  const [AnalysisServerData, SetAnalysisServerData] = useState()
   const [TabState, SetTabState] = useState(1)
-  const { SetDashboardLoader } = useContext(AllContext)
-  const [updateStates, SetupdateStates] = useState(false)
   const { TabsInfo } = useContext(DashboardContext)
-
+  const dispatch = useDispatch()
+  const LoaderStatus = useSelector((state) => state.analysis.status)
+  
   useEffect(() => {
-    const GetFromServer = async () => {
-      try {
-        SetDashboardLoader(true)
-        const { data } = await GetAdminAnalysis()
-        if (data) {
-          SetAnalysisServerData(data)
-        } else {
-          toast.error(t("Problem"), {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
-      } catch (error) {
-        console.log(error);
-        toast.error(t("Problem"), {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      }
-      SetDashboardLoader(false)
-    }
-    GetFromServer()
-  }, [updateStates])
+    dispatch(fetchAdminAnalysis())
+  }, [])
 
   return (
     <>
+      {LoaderStatus === "pending" ? <PreLoader /> : null}
       <Layout TabsInfo={TabsInfo} SetTabState={SetTabState} TabState={TabState}>
         {
-          TabState === 1 ? <ContentFa TabState={TabState} AnalysisServerData={AnalysisServerData} SetupdateStates={SetupdateStates} updateStates={updateStates} /> : <ContentEn TabState={TabState} updateStates={updateStates} AnalysisServerData={AnalysisServerData} SetupdateStates={SetupdateStates} />
+          TabState === 1 ? <ContentFa TabState={TabState} /> : <ContentEn TabState={TabState} />
         }
       </Layout>
     </>

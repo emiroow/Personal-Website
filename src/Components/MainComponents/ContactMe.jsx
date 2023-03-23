@@ -121,7 +121,7 @@ export default function ContactMe() {
                                     </p>
                                 </div>
                                 <div className='w-full mt-3'>
-                                    <input className='flex items-center justify-center dark:text-white text-sm  2xl:text-md text-LightBackcolor dark:bg-DarkPurple bg-LightYellowDark rounded-md text-center p-2 font-IranBold' type="submit" value={t("Sendmessage")} />
+                                    <input className='flex items-center cursor-pointer justify-center dark:text-white text-sm  2xl:text-md text-LightBackcolor dark:bg-DarkPurple bg-LightYellowDark rounded-md text-center p-2 font-IranBold' type="submit" value={t("Sendmessage")} />
                                 </div>
                             </form>
                         )}

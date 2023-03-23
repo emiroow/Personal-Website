@@ -1,4 +1,5 @@
 import axios from "axios";
+import { appAxios } from "./axiosConfig";
 const Endpoint = process.env.REACT_APP_BASE_URL
 
 // Home
@@ -26,13 +27,9 @@ export const GetIp = () => {
 };
 
 // Auth
-export const AuthLogin = (User, Password) => {
+export const AuthLogin = (data) => {
     const Url = `${Endpoint}/api/Auth`;
-    let Data = {
-        userName: User,
-        password: Password,
-    }
-    return axios.post(Url, Data);
+    return appAxios["post"](Url, data);
 };
 
 // Admin Setting
@@ -41,11 +38,11 @@ export const AuthLogin = (User, Password) => {
 // Admin Get
 export const GetAdminAbout = () => {
     const Url = `${Endpoint}/api/admin/Abouts`;
-    return axios.get(Url);
+    return appAxios["get"](Url);
 };
 export const GetAdminAnalysis = () => {
     const Url = `${Endpoint}/api/admin/Analysis`;
-    return axios.get(Url);
+    return appAxios["get"](Url);
 };
 export const GetAdminEducations = () => {
     const Url = `${Endpoint}/api/admin/Educations`;
@@ -56,7 +53,7 @@ export const GetAdminEducations = () => {
 // Admin Edit
 export const EditAdminAnalysis = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/EditAnalysis`;
-    return axios.post(Url, Data);
+    return appAxios["post"](Url, Data);
 };
 export const EditAdminEducation = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/EditEducation`;
@@ -67,7 +64,7 @@ export const EditAdminEducation = (Data) => {
 // Admin Delete
 export const DeleteAdminAnalysis = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/DeleteAnalysis/${Id}`;
-    return axios.post(Url);
+    return appAxios["post"](Url);
 };
 export const DeleteAdminEducation = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/DeleteEducation/${Id}`;
@@ -78,11 +75,11 @@ export const DeleteAdminEducation = (Id) => {
 // Admin Add
 export const SetAbout = (UpdateDate) => {
     const Url = `${Endpoint}/api/admin/add/SetAbout`;
-    return axios.post(Url, UpdateDate)
+    return appAxios["post"](Url, UpdateDate)
 };
 export const SetAdminAnalysis = (Data) => {
     const Url = `${Endpoint}/api/admin/add/AddAnalysis`;
-    return axios.post(Url, Data);
+    return appAxios["post"](Url, Data);
 };
 export const SetAdminEducation = (Data) => {
     const Url = `${Endpoint}/api/admin/add/AddEducation`;

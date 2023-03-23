@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 export default function MyService() {
     const { t } = useTranslation()
-    const getData = useSelector((store) => store.client.clientState.analyses)
+    const getData = useSelector((store) => store.client.clientState.services)
 
     return (
         <>

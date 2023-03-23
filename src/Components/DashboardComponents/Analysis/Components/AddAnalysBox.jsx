@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
 import { AiFillPlusCircle } from "react-icons/ai"
-import { AllContext } from "../../../../ContextApi/AllContext"
-import { SetAdminAnalysis } from "../../../../Service/index"
 import { toast } from 'react-toastify';
 import { useTranslation } from "react-i18next";
+import { useDispatch } from 'react-redux';
+import { fetchAddAdminAnalysis } from '../../../../Reducers/DashboardSlices/AnalysisSlice';
 
 export default function AddAnalysBox({ AddNewAnalisArr, SetAddNewAnalisArr, SetupdateStates, updateStates, TabState }) {
-    const { SetDashboardLoader } = useContext(AllContext)
     const { t } = useTranslation()
+    const titleRef = useRef()
+    const valueRef = useRef()
+    const dispatch = useDispatch()
     const [GetAnalysis, SetAnalysis] = useState({
         id: 0,
         title: "",
@@ -16,8 +18,6 @@ export default function AddAnalysBox({ AddNewAnalisArr, SetAddNewAnalisArr, Setu
         isActive: true
     })
 
-    const titleRef = useRef()
-    const valueRef = useRef()
 
     const NewAnalys = () => {
         return (
@@ -35,38 +35,22 @@ export default function AddAnalysBox({ AddNewAnalisArr, SetAddNewAnalisArr, Setu
     }
 
     useEffect(() => {
-        if (GetAnalysis.title) {
+        if (GetAnalysis.title && GetAnalysis.value) {
             const setSetverData = async () => {
-                try {
-                    SetDashboardLoader(true)
-                    const { status } = await SetAdminAnalysis(GetAnalysis)
-                    if (status === 200) {
-                        toast.success(t("SuccessToAdd"), {
-                            position: "top-center",
-                            autoClose: 3000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
-                        SetupdateStates(!updateStates)
-                        SetAddNewAnalisArr([])
-                    } else {
-                        toast.error(t("Problem"), {
-                            position: "top-center",
-                            autoClose: 3000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
-                    }
-                } catch (error) {
-                    console.log(error);
+                const response = await dispatch(fetchAddAdminAnalysis(GetAnalysis))
+                if (response.payload.status === 200) {
+                    toast.success(t("SuccessToAdd"), {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    SetAddNewAnalisArr([])
+                } else {
                     toast.error(t("Problem"), {
                         position: "top-center",
                         autoClose: 3000,
@@ -78,8 +62,7 @@ export default function AddAnalysBox({ AddNewAnalisArr, SetAddNewAnalisArr, Setu
                         theme: "light",
                     });
                 }
-                SetDashboardLoader(false)
-                SetAnalysis({ ...GetAnalysis, [titleRef.current.name]: "", [valueRef.current.name]: "", id: 0 })
+                SetAnalysis({ ...GetAnalysis, [titleRef.current.name]: "", [valueRef.current.name]: "" })
             }
             setSetverData()
         } else {
@@ -99,7 +82,7 @@ export default function AddAnalysBox({ AddNewAnalisArr, SetAddNewAnalisArr, Setu
     }, [GetAnalysis])
 
     const handleGetAllChangs = () => {
-        SetAnalysis({ ...GetAnalysis, [titleRef.current.name]: titleRef.current.value, [valueRef.current.name]: valueRef.current.value, id: parseInt(titleRef.current.id) })
+        SetAnalysis({ ...GetAnalysis, [titleRef.current.name]: titleRef.current.value, [valueRef.current.name]: valueRef.current.value})
     }
 
     const HandleAddAnalys = () => {
