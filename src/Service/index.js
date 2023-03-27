@@ -19,7 +19,6 @@ export const AddContactMessage = (Body) => {
         })
 };
 
-
 // Get Ip
 export const GetIp = () => {
     const Url = `https://api.ipify.org?format=json`;
@@ -34,7 +33,6 @@ export const AuthLogin = (data) => {
 
 // Admin Setting
 
-
 // Admin Get
 export const GetAdminAbout = () => {
     const Url = `${Endpoint}/api/admin/Abouts`;
@@ -46,9 +44,8 @@ export const GetAdminAnalysis = () => {
 };
 export const GetAdminEducations = () => {
     const Url = `${Endpoint}/api/admin/Educations`;
-    return axios.get(Url);
+    return appAxios["get"](Url);
 };
-
 
 // Admin Edit
 export const EditAdminAnalysis = (Data) => {
@@ -57,9 +54,8 @@ export const EditAdminAnalysis = (Data) => {
 };
 export const EditAdminEducation = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/EditEducation`;
-    return axios.post(Url, Data);
+    return appAxios["post"](Url, Data);
 };
-
 
 // Admin Delete
 export const DeleteAdminAnalysis = (Id) => {
@@ -68,9 +64,8 @@ export const DeleteAdminAnalysis = (Id) => {
 };
 export const DeleteAdminEducation = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/DeleteEducation/${Id}`;
-    return axios.post(Url);
+    return appAxios["post"](Url);
 };
-
 
 // Admin Add
 export const SetAbout = (UpdateDate) => {
@@ -83,5 +78,5 @@ export const SetAdminAnalysis = (Data) => {
 };
 export const SetAdminEducation = (Data) => {
     const Url = `${Endpoint}/api/admin/add/AddEducation`;
-    return axios.post(Url, Data);
+    return appAxios["post"](Url, Data);
 };

@@ -1,16 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { AiFillPlusCircle } from "react-icons/ai"
 import { useTranslation } from "react-i18next";
-import { useState } from 'react';
-import { useRef } from 'react';
-import { useEffect, useContext } from 'react';
 import { toast } from 'react-toastify';
-import { AllContext } from "../../../../ContextApi/AllContext"
 import { SetAdminEducation } from '../../../../Service/index';
-export default function AddEducationBox({ AddEducationArr, SetEducationArr, SetupdateStates, updateStates, TabState }) {
+import { useDispatch } from 'react-redux';
+import { fetchSetAdminEducation } from '../../../../Reducers/DashboardSlices/EducationsSlice';
+export default function AddEducationBox({ AddEducationArr, SetEducationArr, TabState }) {
     const { t } = useTranslation()
-    const { SetDashboardLoader } = useContext(AllContext)
-
+    const dispatch = useDispatch()
     const [getEducation, setEducation] = useState({
         id: 0,
         title: "",
@@ -27,20 +24,20 @@ export default function AddEducationBox({ AddEducationArr, SetEducationArr, Setu
     const NewAnalys = () => {
         return (
             <>
-                <div className=" w-[48%] text-gray-50 p-3 mb-8">
+                <div className=" w-full bg-BackColorWhiter rounded-xl shadow-[0px_0px_10px_0px_rgba(0,0,0,0.30)] lg:w-[48%] h-max flex items-center justify-center text-gray-50 p-1 mb-8">
                     <div className="flex md:contents">
                         <div className=" border-y-2 pb-8 dark:border-DarkPurple w-full  p-4 rounded-xl  mr-auto ">
                             <div className='flex flex-col mb-4'>
-                                <label>Title</label>
+                                <label>{t("TitleLabel")} :</label>
                                 <input type="text" name='title' ref={title} className={` text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black lg:w-[60%] h-10 mt-1 rounded-md mb-2 outline-none dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]`} />
                             </div>
                             <div className='flex flex-col mb-4'>
-                                <label>Date</label>
+                                <label>{t("dateLable")} :</label>
                                 <input type="date" name="dateTime" ref={dateTime} className=' text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black lg:w-[60%] h-10 mt-1 rounded-md mb-2 outline-none dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]' />
                                 <p className='font-IranLight'></p>
                             </div>
                             <div className='flex flex-col mb-5'>
-                                <label>Date</label>
+                                <label>{t("descriptionLable")} :</label>
                                 <textarea name='description' ref={description} className='outline-none p-3 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black rounded-xl' id="" rows="5"></textarea>
                             </div>
                             <div className='flex flex-row '>
@@ -61,36 +58,20 @@ export default function AddEducationBox({ AddEducationArr, SetEducationArr, Setu
     useEffect(() => {
         if (getEducation.title && getEducation.dateTime && getEducation.description) {
             const setSetverData = async () => {
-                try {
-                    SetDashboardLoader(true)
-                    const { status } = await SetAdminEducation(getEducation)
-                    if (status === 200) {
-                        toast.success(t("SuccessToAdd"), {
-                            position: "top-center",
-                            autoClose: 3000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
-                        SetupdateStates(!updateStates)
-                        SetEducationArr([])
-                    } else {
-                        toast.error(t("Problem"), {
-                            position: "top-center",
-                            autoClose: 3000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
-                    }
-                } catch (error) {
-                    console.log(error);
+                const response = await dispatch(fetchSetAdminEducation(getEducation))
+                if (response.payload.status === 200) {
+                    toast.success(t("SuccessToAdd"), {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    SetEducationArr([])
+                } else {
                     toast.error(t("Problem"), {
                         position: "top-center",
                         autoClose: 3000,
@@ -102,7 +83,6 @@ export default function AddEducationBox({ AddEducationArr, SetEducationArr, Setu
                         theme: "light",
                     });
                 }
-                SetDashboardLoader(false)
                 setEducation({ ...getEducation, [title.current.name]: "", [dateTime.current.name]: "", [description.current.name]: "", id: 0 })
             }
             setSetverData()
@@ -129,9 +109,10 @@ export default function AddEducationBox({ AddEducationArr, SetEducationArr, Setu
     return (
         <>
             {AddEducationArr.length === 0 ?
-                <div onClick={HandleAddAnalys} className='w-[48%] h-[48vh] border-2 text-gray-50 flex justify-center rounded-lg items-center p-3 mb-8'>
-                    <AiFillPlusCircle className='dark:text-white text-4xl text-emerald-400' />
-                </div> : null
+                <button onClick={HandleAddAnalys} className='border-2 text-gray-50 flex justify-center rounded-lg items-center p-3 mb-3'>
+                    <span className='mx-2 text-sm'>{t("addbtn")}</span>
+                    <AiFillPlusCircle className='dark:text-white text-lg text-emerald-400' />
+                </button> : null
             }
         </>
     )

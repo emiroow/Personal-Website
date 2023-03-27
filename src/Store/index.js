@@ -5,6 +5,7 @@ import settingReduser from "../Reducers/settingSlice"
 import authenticationReduser from "../Reducers/authenticationSlice"
 import GeneralReduser from "../Reducers/DashboardSlices/GeneralSlice";
 import AnalysisReduser from "../Reducers/DashboardSlices/AnalysisSlice";
+import EducationsReduser from "../Reducers/DashboardSlices/EducationsSlice"
 export const store = configureStore({
     reducer: {
         client: clientReducer,
@@ -14,5 +15,6 @@ export const store = configureStore({
         // Dashboard
         general: GeneralReduser,
         analysis: AnalysisReduser,
+        educations: EducationsReduser,
     },
 });

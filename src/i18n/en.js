@@ -137,8 +137,11 @@ const en = {
     TitleLabel: "Title",
     ValueLabel: "Value",
     SaveBtn: "Save",
-    AddAnalysis : "Add New" ,
-    DeletAlert : "Are you sure about your deletion?"
+    AddAnalysis: "Add New",
+    DeletAlert: "Are you sure about your deletion?",
+    addbtn: "Add New",
+    dateLable: "date"
+
 
 };
 export default en;

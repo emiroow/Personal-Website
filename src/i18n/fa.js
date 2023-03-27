@@ -138,6 +138,9 @@ const fa = {
     TitleLabel: "عنوان",
     ValueLabel: "مقدار",
     AddAnalysis: "افزودن جدید",
-    DeletAlert: "آیا از حذف خود مطمعن هستید ؟"
+    DeletAlert: "آیا از حذف خود مطمعن هستید ؟" ,
+    addbtn: "افزودن" ,
+    dateLable: "تاریخ"
+
 };
 export default fa;

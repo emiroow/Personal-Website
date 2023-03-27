@@ -1,6 +1,5 @@
-import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { GetAdminAnalysis, SetAdminAnalysis, DeleteAdminAnalysis, EditAdminAnalysis } from "../../Service";
-
 
 const initialState = {
     allAnalysis: [],
@@ -31,9 +30,6 @@ export const fetchUpdateAdminAnalysis = createAsyncThunk("/analysis/fetchUpdateA
 const analysisSlice = createSlice({
     name: "analysis",
     initialState,
-    reducers: {
-
-    },
     extraReducers: (builder) => {
         builder
             // fetchAdminAnalysis
@@ -50,7 +46,6 @@ const analysisSlice = createSlice({
             })
             .addCase(fetchAddAdminAnalysis.fulfilled, (state, action) => {
                 state.status = "conmpleted"
-                console.log(action.payload)
                 if (action.payload.status === 200) {
                     state.allAnalysis.push(action.payload.data)
                 }
@@ -70,12 +65,9 @@ const analysisSlice = createSlice({
                 state.status = "pending"
             })
             .addCase(fetchUpdateAdminAnalysis.fulfilled, (state, action) => {
-                console.log(action.payload)
                 state.status = "conmpleted"
                 if (action.payload.status === 200) {
                     const findedIndex = state.allAnalysis.findIndex((item) => item.id === action.payload.data.id)
-                    console.log(findedIndex)
-                    console.log(action.payload.data)
                     state.allAnalysis[findedIndex] = action.payload.data
                 }
             })
