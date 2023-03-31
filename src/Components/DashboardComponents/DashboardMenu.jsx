@@ -2,7 +2,6 @@ import React from 'react'
 import { NavLink } from "react-router-dom";
 import Toggle from '../SideMenuComponents/toggle'
 import Language from '../SideMenuComponents/language'
-import { AllContext } from "../../ContextApi/AllContext"
 import { MdOutlineLogout } from "react-icons/md"
 import 'react-tooltip/dist/react-tooltip.css'
 import { Tooltip as ReactTooltip } from 'react-tooltip'

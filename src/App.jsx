@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import i18n from './i18n';
-import { AllContext } from './ContextApi/AllContext'
 import { useTranslation } from "react-i18next";
 import { Route, Routes } from "react-router";
 import Dashboard from "./Pages/Dashboard";
 import Client from './Pages/Client';
 import Login from "./Pages/Login"
-import { GetPerspnalData } from './Service/index';
 import NotFound from "./Pages/NotFound"
 import BadRequest from './Pages/BadRequest';
 import About from './Components/DashboardComponents/About/About';
@@ -21,7 +19,7 @@ import Skills from "./Components/DashboardComponents/Skills/Skills"
 import Socials from "./Components/DashboardComponents/Socials/Socials"
 import Portfolios from "./Components/DashboardComponents/Portfolio/Portfolios"
 import DashboardIndex from "./Components/DashboardComponents/DashboardIndex/DashboardIndex"
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { fetchClientData } from './Reducers/clientSlice';
 import { fetchGetSetting } from './Reducers/settingSlice';
 const languages = [
@@ -38,24 +36,10 @@ const languages = [
 ]
 
 function App() {
-  const [Loading, SetLoading] = useState(false)
-  const [authorizing, Setauthorizing] = useState(false)
-  const [DashboardLoader, SetDashboardLoader] = useState(false)
   const currentLanguageCode = i18n.language || "fa"
-  const [GetPersonal, SetPersonal] = useState()
-  const [LoadingSecond, SetLoadingSecond] = useState(false)
   const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
   const { t } = useTranslation()
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    let Token = localStorage.getItem("TK")
-    if (Token) {
-      Setauthorizing(true)
-    } else {
-      Setauthorizing(false)
-    }
-  }, [])
 
   useEffect(() => {
     document.body.dir = currentLanguage.dir || 'rlt'
@@ -66,32 +50,30 @@ function App() {
 
   return (
     <>
-      <AllContext.Provider value={{ Loading, SetLoading, Setauthorizing, authorizing, GetPersonal, SetPersonal, SetLoadingSecond, LoadingSecond, SetDashboardLoader, DashboardLoader }}>
-        <div className="dark:bg-MainColorDark duration-100 bg-LightBackcolor">
-          <div className=" w-[98%] mt-[15px] max-md:flex-col justify-between m-auto flex  relative text-white ">
-            <Routes>
-              <Route path="/" element={<Client />} />
-              <Route path="/Login" element={<Login />} />
-              <Route path="/Admin/*" element={<Dashboard />} >
-                <Route index element={<DashboardIndex />} />
-                <Route path='About' element={<About />} />
-                <Route path='Analyze' element={<Analyze />} />
-                <Route path='Certificate' element={<Certificate />} />
-                <Route path='Comments' element={<Comments />} />
-                <Route path='ContactUsMessages' element={<ContactUsMessages />} />
-                <Route path='Educations' element={<Educations />} />
-                <Route path='Histories' element={<Histories />} />
-                <Route path='Services' element={<Services />} />
-                <Route path='Skills' element={<Skills />} />
-                <Route path='Socials' element={<Socials />} />
-                <Route path='Portfolios' element={<Portfolios />} />
-              </Route>
-              <Route path="*" element={<NotFound />} />
-              <Route path="500" element={<BadRequest />} />
-            </Routes>
-          </div>
+      <div className="dark:bg-MainColorDark duration-100 bg-LightBackcolor">
+        <div className=" w-[98%] mt-[15px] max-md:flex-col justify-between m-auto flex  relative text-white ">
+          <Routes>
+            <Route path="/" element={<Client />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Admin/*" element={<Dashboard />} >
+              <Route index element={<DashboardIndex />} />
+              <Route path='About' element={<About />} />
+              <Route path='Analyze' element={<Analyze />} />
+              <Route path='Certificate' element={<Certificate />} />
+              <Route path='Comments' element={<Comments />} />
+              <Route path='ContactUsMessages' element={<ContactUsMessages />} />
+              <Route path='Educations' element={<Educations />} />
+              <Route path='Histories' element={<Histories />} />
+              <Route path='Services' element={<Services />} />
+              <Route path='Skills' element={<Skills />} />
+              <Route path='Socials' element={<Socials />} />
+              <Route path='Portfolios' element={<Portfolios />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+            <Route path="500" element={<BadRequest />} />
+          </Routes>
         </div>
-      </AllContext.Provider>
+      </div>
     </>
   );
 }

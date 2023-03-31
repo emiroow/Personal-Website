@@ -31,6 +31,8 @@ appAxios.interceptors.response.use(
                 progress: undefined,
                 theme: "colored",
             });
+            localStorage.clear()
+            window.location.reload()
         } else if (err) {
             toast.error('Problem var, yenidən cəhd edin !', {
                 position: "top-right",

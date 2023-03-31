@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import L from 'leaflet';
-import { AllContext } from "../../ContextApi/AllContext"
 import { TileLayer, Marker, MapContainer } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import { useSelector } from 'react-redux';

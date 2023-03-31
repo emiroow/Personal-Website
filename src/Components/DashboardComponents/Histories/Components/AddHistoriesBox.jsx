@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { fetchSetAdminEducation } from '../../../../Reducers/DashboardSlices/EducationsSlice';
+import { fetchSetAdminHistories } from '../../../../Reducers/DashboardSlices/HistoriesSlice';
 export default function AddEducationBox({ AddEducationArr, SetEducationArr, TabState }) {
     const { t } = useTranslation()
     const dispatch = useDispatch()
@@ -57,7 +58,7 @@ export default function AddEducationBox({ AddEducationArr, SetEducationArr, TabS
     useEffect(() => {
         if (getEducation.title && getEducation.dateTime && getEducation.description) {
             const setSetverData = async () => {
-                const response = await dispatch(fetchSetAdminEducation(getEducation))
+                const response = await dispatch(fetchSetAdminHistories(getEducation))
                 if (response.payload.status === 200) {
                     toast.success(t("SuccessToAdd"), {
                         position: "top-center",

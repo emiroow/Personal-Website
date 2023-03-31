@@ -46,6 +46,11 @@ export const GetAdminEducations = () => {
     const Url = `${Endpoint}/api/admin/Educations`;
     return appAxios["get"](Url);
 };
+export const GetAdminHistories = () => {
+    const Url = `${Endpoint}/api/admin/Histories`;
+    return appAxios["get"](Url);
+};
+
 
 // Admin Edit
 export const EditAdminAnalysis = (Data) => {
@@ -56,6 +61,10 @@ export const EditAdminEducation = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/EditEducation`;
     return appAxios["post"](Url, Data);
 };
+export const EditAdminHistory = (Data) => {
+    const Url = `${Endpoint}/api/admin/edit/EditHistory`;
+    return appAxios["post"](Url, Data);
+};
 
 // Admin Delete
 export const DeleteAdminAnalysis = (Id) => {
@@ -64,6 +73,10 @@ export const DeleteAdminAnalysis = (Id) => {
 };
 export const DeleteAdminEducation = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/DeleteEducation/${Id}`;
+    return appAxios["post"](Url);
+};
+export const DeleteAdminHistory = (Id) => {
+    const Url = `${Endpoint}/api/admin/delete/DeleteHistory/${Id}`;
     return appAxios["post"](Url);
 };
 
@@ -78,5 +91,9 @@ export const SetAdminAnalysis = (Data) => {
 };
 export const SetAdminEducation = (Data) => {
     const Url = `${Endpoint}/api/admin/add/AddEducation`;
+    return appAxios["post"](Url, Data);
+};
+export const SetAdminHistories = (Data) => {
+    const Url = `${Endpoint}/api/admin/add/AddHistory`;
     return appAxios["post"](Url, Data);
 };

@@ -14,6 +14,7 @@ export default function Dashboard() {
     { Title: "FA", Icon: "ir", index: 1, CommponentName: "ContentFa" },
     { Title: "EN", Icon: "en", index: 0, CommponentName: "ContentEn" },
   ])
+  const [TabState, SetTabState] = useState(1)
 
   useEffect(() => {
     if (!store.isToken) {
@@ -23,7 +24,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <DashboardContext.Provider value={{ TabsInfo, SetTabsInfo }}>
+      <DashboardContext.Provider value={{ TabsInfo, SetTabsInfo, SetTabState, TabState }}>
         <div className='flex w-full justify-between'>
           <DashboardMenu />
           <div className='w-full lg:w-[94.5%]'>
