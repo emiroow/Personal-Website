@@ -11,8 +11,7 @@ export default function Histories() {
   const dispatch = useDispatch()
   const serverData = useSelector((state) => state.histories.allHistories)
   const loaderStatus = useSelector((state) => state.histories.status)
-  const { TabsInfo } = useContext(DashboardContext)
-  const [TabState, SetTabState] = useState(1)
+  const { TabsInfo , SetTabState , TabState  } = useContext(DashboardContext)
 
   useEffect(() => {
     const GetFromServer = () => {

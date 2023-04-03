@@ -7,6 +7,7 @@ import GeneralReduser from "../Reducers/DashboardSlices/GeneralSlice";
 import AnalysisReduser from "../Reducers/DashboardSlices/AnalysisSlice";
 import EducationsReduser from "../Reducers/DashboardSlices/EducationsSlice"
 import historiesReduser from "../Reducers/DashboardSlices/HistoriesSlice"
+import servicesRedusers from "../Reducers/DashboardSlices/ServiceSlice"
 export const store = configureStore({
     reducer: {
         client: clientReducer,
@@ -17,6 +18,7 @@ export const store = configureStore({
         general: GeneralReduser,
         analysis: AnalysisReduser,
         educations: EducationsReduser,
-        histories: historiesReduser
+        histories: historiesReduser ,
+        services : servicesRedusers
     },
 });

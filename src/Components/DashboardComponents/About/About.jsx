@@ -8,8 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchGeneraltData } from '../../../Reducers/DashboardSlices/GeneralSlice';
 import Preloader from '../../Preloader';
 export default function About() {
-  const [TabState, SetTabState] = useState(1)
-  const { TabsInfo } = useContext(DashboardContext)
+  const { TabsInfo , SetTabState , TabState  } = useContext(DashboardContext)
   
   const loader = useSelector((state) => state.general.status)
 

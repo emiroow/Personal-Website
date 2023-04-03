@@ -24,7 +24,7 @@ export const GetIp = () => {
     const Url = `https://api.ipify.org?format=json`;
     return axios.get(Url);
 };
-
+ 
 // Auth
 export const AuthLogin = (data) => {
     const Url = `${Endpoint}/api/Auth`;
@@ -50,7 +50,10 @@ export const GetAdminHistories = () => {
     const Url = `${Endpoint}/api/admin/Histories`;
     return appAxios["get"](Url);
 };
-
+export const GetAdminService = () => {
+    const Url = `${Endpoint}/api/admin/services`;
+    return appAxios["get"](Url);
+}
 
 // Admin Edit
 export const EditAdminAnalysis = (Data) => {

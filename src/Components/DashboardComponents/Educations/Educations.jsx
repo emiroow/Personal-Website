@@ -8,8 +8,7 @@ import { fetchGetAdminEducations } from '../../../Reducers/DashboardSlices/Educa
 import Preloader from '../../Preloader'
 
 export default function Certificates() {
-  const [TabState, SetTabState] = useState(1)
-  const { TabsInfo } = useContext(DashboardContext)
+  const { TabsInfo , SetTabState , TabState  } = useContext(DashboardContext)
   const dispatch = useDispatch()
   const educationsServerData = useSelector((state) => state.educations.allEducations)
   const LoaderStatus = useSelector((state) => state.educations.status)
