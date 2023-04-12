@@ -129,7 +129,7 @@ const en = {
     PortfoliosHeaderPath: "Portfolios",
     DashboardRouteHeaderPath: "",
     SuccessTopdelete: "Success remove",
-    SuccessToAdd: "Success add",
+    SuccessToAdd: "Success to add",
     PleaseFill: "Please fill in the items you want to add",
     SuccessEdited: "Success Edited ",
     RemoveBtn: "Remove",

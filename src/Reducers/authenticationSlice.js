@@ -59,6 +59,19 @@ const authenticationSlice = createSlice({
                 }
                 state.loader = false
             })
+            .addCase(fetchAuthLogin.rejected, (state, action) => {
+                state.loader = false
+                toast.warning("cheack User & Password", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            })
     }
 })
 

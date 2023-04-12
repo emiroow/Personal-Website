@@ -129,7 +129,7 @@ const fa = {
     PortfoliosHeaderPath: "نمونه کار ها",
     DashboardRouteHeaderPath: "",
     SuccessTopdelete: "با موفقت حذف گردید",
-    SuccessToAdd: "آنالیز مورد نظر اضافه گردید",
+    SuccessToAdd: "آیتم مورد نظر اضافه گردید",
     PleaseFill: "لطفا مواردی که میخواهید اضافه گردد پر کنید",
     SuccessEdited: "با موفقیت ویرایش گردید",
     RemoveBtn: "حذف",

@@ -24,7 +24,7 @@ export const GetIp = () => {
     const Url = `https://api.ipify.org?format=json`;
     return axios.get(Url);
 };
- 
+
 // Auth
 export const AuthLogin = (data) => {
     const Url = `${Endpoint}/api/Auth`;
@@ -82,6 +82,10 @@ export const DeleteAdminHistory = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/DeleteHistory/${Id}`;
     return appAxios["post"](Url);
 };
+export const DeleteAdminService = (Id) => {
+    const Url = `${Endpoint}/api/admin/delete/deleteService/${Id}`;
+    return appAxios["post"](Url);
+};
 
 // Admin Add
 export const SetAbout = (UpdateDate) => {
@@ -98,5 +102,9 @@ export const SetAdminEducation = (Data) => {
 };
 export const SetAdminHistories = (Data) => {
     const Url = `${Endpoint}/api/admin/add/AddHistory`;
+    return appAxios["post"](Url, Data);
+};
+export const SetAdminService = (Data) => {
+    const Url = `${Endpoint}/api/admin/add/AddService`;
     return appAxios["post"](Url, Data);
 };

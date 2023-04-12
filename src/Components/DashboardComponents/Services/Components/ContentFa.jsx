@@ -30,9 +30,9 @@ export default function ContentFa() {
           newServerState ? <NewService setNewServerState={setNewServerState} /> : null
         }
         {
-          services.map((item) => {
+          services.map((item, index) => {
             if (item.lang === 1) {
-              return <Service data={item} />
+              return <Service key={index} data={item} />
             }
           })
         }
