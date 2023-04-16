@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-
+import { RiLoginCircleFill } from "react-icons/ri"
+import { Link } from 'react-router-dom'
 export default function Header() {
     const aboutData = useSelector((store) => store.client.clientState.about)
     const [profileimg, Setprofileimg] = useState(require("../../assets/images/ProfileImg.png"))
@@ -19,7 +20,10 @@ export default function Header() {
     };
 
     return (
-        <div className='w-full h-[35vh] flex justify-center items-center p-10 border-b-2 dark:border-DarkPurple shadow-[1px_12px_10px_-5px_rgba(0,0,0,0.25)] border-LightYellow'>
+        <div className='relative w-full h-[35vh] flex justify-center items-center p-10 border-b-2 dark:border-DarkPurple shadow-[1px_12px_10px_-5px_rgba(0,0,0,0.25)] border-LightYellow'>
+            <Link to={"/login"}>
+                <RiLoginCircleFill className='absolute top-4 left-4 text-2xl text-white dark:text-DarkPurple cursor-pointer' />
+            </Link>
             <div className=' space-y-2 w-[80%] flex-col flex justify-center items-center'>
                 <img className=' mb-2  md:max-w-[45%] lg:max-w-[60%] max-w-[60%] rounded-full border-4 dark:border-DarkPurple border-LightBackcolor' src={profileimg} alt="" />
                 <p className='text-center text-lg md:text-lg 2xl:text-xl  font-IranBold'>{aboutData?.name}</p>

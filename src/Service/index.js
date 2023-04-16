@@ -68,6 +68,10 @@ export const EditAdminHistory = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/EditHistory`;
     return appAxios["post"](Url, Data);
 };
+export const EditAdminService = (Data) => {
+    const Url = `${Endpoint}/api/admin/edit/editservice`;
+    return appAxios["post"](Url, Data);
+};
 
 // Admin Delete
 export const DeleteAdminAnalysis = (Id) => {

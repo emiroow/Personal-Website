@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { DeleteAdminService, GetAdminService, SetAdminService } from "../../Service";
+import { DeleteAdminService, EditAdminService, GetAdminService, SetAdminService } from "../../Service";
 
 const initialState = {
     allServices: [],
@@ -21,6 +21,11 @@ export const fetchDeleteAdminService = createAsyncThunk("/services/fetchDeleteAd
     return { data: response.data, status: response.status, id: id }
 })
 
+export const fetchEditAdminService = createAsyncThunk('/services/fetchEditAdminService', async (data) => {
+    const response = await EditAdminService(data)
+    return { data: response.data, status: response.status }
+})
+
 const serviceSlice = createSlice({
     name: "services",
     initialState,
@@ -36,6 +41,7 @@ const serviceSlice = createSlice({
                     state.allServices = action.payload.data
                 }
             })
+            // fetchSetAdminService
             .addCase(fetchSetAdminService.pending, (state, action) => {
                 state.status = "pending"
             })
@@ -46,6 +52,7 @@ const serviceSlice = createSlice({
             .addCase(fetchSetAdminService.rejected, (state, action) => {
                 state.status = "idel"
             })
+            // fetchDeleteAdminService
             .addCase(fetchDeleteAdminService.pending, (state, action) => {
                 state.status = "pending"
             })
@@ -56,6 +63,21 @@ const serviceSlice = createSlice({
                 state.status = "completed"
             })
             .addCase(fetchDeleteAdminService.rejected, (state, action) => {
+                state.status = "idel"
+            })
+
+            // fetchEditAdminService
+            .addCase(fetchEditAdminService.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(fetchEditAdminService.fulfilled, (state, action) => {
+                if (action.payload.status === 200) {
+                    const findedIndex = state.allServices.findIndex((item) => item.id === action.payload.data.id)
+                    state.allServices[findedIndex] = action.payload.data
+                }
+                state.status = "completed"
+            })
+            .addCase(fetchEditAdminService.rejected, (state, action) => {
                 state.status = "idel"
             })
     }
