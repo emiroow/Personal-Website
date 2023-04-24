@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { SetAdminSocials, getAdminSocials } from "../../Service";
+import { DeleteAdminSocial, SetAdminSocials, getAdminSocials } from "../../Service";
 
 const initialState = {
     socials: [],
@@ -16,6 +16,12 @@ export const fetchSetAdminSocials = createAsyncThunk("/socials/fetchSetAdminSoci
     return { data: response.data, status: response.status }
 })
 
+export const fetchDeleteAdminSocial = createAsyncThunk("/socials/fetchDeleteAdminSocial", async (id) => {
+    const response = await DeleteAdminSocial(id)
+    return { data: response.data, status: response.status, id: id }
+})
+
+
 const socialsSlice = createSlice({
     name: "socials",
     initialState,
@@ -25,7 +31,6 @@ const socialsSlice = createSlice({
                 state.status = "pending"
             })
             .addCase(fetchGetAdminSocials.fulfilled, (state, action) => {
-                console.log(action.payload)
                 state.socials = action.payload.data
                 state.status = "completed"
             })
@@ -33,7 +38,15 @@ const socialsSlice = createSlice({
                 state.status = "pending"
             })
             .addCase(fetchSetAdminSocials.fulfilled, (state, action) => {
-                console.log(action.payload)
+                state.socials.push(action.payload.data)
+                state.status = "completed"
+            })
+            .addCase(fetchDeleteAdminSocial.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(fetchDeleteAdminSocial.fulfilled, (state, action) => {
+                let filteredBack = state.socials.filter((item) => item.id !== action.payload.id)
+                state.socials = filteredBack
                 state.status = "completed"
             })
     }

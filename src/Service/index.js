@@ -59,6 +59,7 @@ export const getAdminSocials = () => {
     return appAxios["get"](Url);
 }
 
+
 // Admin Edit
 export const EditAdminAnalysis = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/EditAnalysis`;
@@ -92,6 +93,10 @@ export const DeleteAdminHistory = (Id) => {
 };
 export const DeleteAdminService = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/deleteService/${Id}`;
+    return appAxios["post"](Url);
+};
+export const DeleteAdminSocial = (Id) => {
+    const Url = `${Endpoint}/api/admin/delete/deleteSocial/${Id}`;
     return appAxios["post"](Url);
 };
 
