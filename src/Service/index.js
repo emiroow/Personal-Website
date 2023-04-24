@@ -54,6 +54,10 @@ export const GetAdminService = () => {
     const Url = `${Endpoint}/api/admin/services`;
     return appAxios["get"](Url);
 }
+export const getAdminSocials = () => {
+    const Url = `${Endpoint}/api/admin/Socials `;
+    return appAxios["get"](Url);
+}
 
 // Admin Edit
 export const EditAdminAnalysis = (Data) => {
@@ -110,5 +114,9 @@ export const SetAdminHistories = (Data) => {
 };
 export const SetAdminService = (Data) => {
     const Url = `${Endpoint}/api/admin/add/AddService`;
+    return appAxios["post"](Url, Data);
+};
+export const SetAdminSocials = (Data) => {
+    const Url = `${Endpoint}/api/admin/add/AddSocial`;
     return appAxios["post"](Url, Data);
 };

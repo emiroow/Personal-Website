@@ -40,28 +40,41 @@ export default function Service({ data }) {
 
     const handleEditeService = async (id) => {
         if (titleRef.current.value && valueRef.current.value) {
-            const response = await dispatch(fetchEditAdminService({
-                id: id,
-                title: titleRef.current.value,
-                description: valueRef.current.value,
-                link: "string",
-                lang: TabState,
-                isActive: true
-            }))
-            if (response.payload.status === 200) {
-                setIsVisiblty(!isVisiblty)
-                toast.success(t("SuccessEdited"), {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
+            if (data?.title !== titleRef.current.value && data?.description !== valueRef.current.value) {
+                const response = await dispatch(fetchEditAdminService({
+                    id: id,
+                    title: titleRef.current.value,
+                    description: valueRef.current.value,
+                    link: "string",
+                    lang: TabState,
+                    isActive: true
+                }))
+                if (response.payload.status === 200) {
+                    setIsVisiblty(!isVisiblty)
+                    toast.success(t("SuccessEdited"), {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                } else {
+                    toast.error(t("Problem"), {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
             } else {
-                toast.error(t("Problem"), {
+                toast.warning(t("newValue"), {
                     position: "top-center",
                     autoClose: 3000,
                     hideProgressBar: false,

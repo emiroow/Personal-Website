@@ -140,8 +140,12 @@ const en = {
     AddAnalysis: "Add New",
     DeletAlert: "Are you sure about your deletion?",
     addbtn: "Add New",
-    dateLable: "date"
-
+    dateLable: "date",
+    socialTitle: "social Title",
+    socialLink: "social Link",
+    Add: "add",
+    lang: "Lang",
+    newValue: "pleas Enter the new value"
 
 };
 export default en;

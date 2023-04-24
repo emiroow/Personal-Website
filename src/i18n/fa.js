@@ -138,9 +138,13 @@ const fa = {
     TitleLabel: "عنوان",
     ValueLabel: "مقدار",
     AddAnalysis: "افزودن جدید",
-    DeletAlert: "آیا از حذف خود مطمعن هستید ؟" ,
-    addbtn: "افزودن" ,
-    dateLable: "تاریخ"
-
+    DeletAlert: "آیا از حذف خود مطمعن هستید ؟",
+    addbtn: "افزودن",
+    dateLable: "تاریخ",
+    socialTitle: "نام شبکه مجازی",
+    socialLink: "لینک شبکه مجازی",
+    Add: "افزودن",
+    lang: "زبان",
+    newValue: "لطفا مقدار جدیدی وارد کنید",
 };
 export default fa;
