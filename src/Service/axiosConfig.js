@@ -1,6 +1,5 @@
 import axios from "axios";
 import { toast } from 'react-toastify';
-import { useLocation } from "react-router";
 export const appAxios = axios.create();
 
 appAxios.interceptors.request.use(

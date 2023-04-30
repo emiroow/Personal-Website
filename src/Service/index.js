@@ -58,6 +58,14 @@ export const getAdminSocials = () => {
     const Url = `${Endpoint}/api/admin/Socials `;
     return appAxios["get"](Url);
 }
+export const getAdminSkills = () => {
+    const Url = `${Endpoint}/api/admin/Skills `;
+    return appAxios["get"](Url);
+}
+export const getAdminCircleSkills = () => {
+    const Url = `${Endpoint}/api/admin/CircleSkills `;
+    return appAxios["get"](Url);
+}
 
 
 // Admin Edit
@@ -99,6 +107,14 @@ export const DeleteAdminSocial = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/deleteSocial/${Id}`;
     return appAxios["post"](Url);
 };
+export const DeleteAdminSkill = (Id) => {
+    const Url = `${Endpoint}/api/admin/delete/deleteSkill/${Id}`;
+    return appAxios["post"](Url);
+};
+export const DeleteAdminCircleSkill = (Id) => {
+    const Url = `${Endpoint}/api/admin/delete/deleteCircleSkill/${Id}`;
+    return appAxios["post"](Url);
+};
 
 // Admin Add
 export const SetAbout = (UpdateDate) => {
@@ -123,5 +139,13 @@ export const SetAdminService = (Data) => {
 };
 export const SetAdminSocials = (Data) => {
     const Url = `${Endpoint}/api/admin/add/AddSocial`;
+    return appAxios["post"](Url, Data);
+};
+export const SetAdminSkill = (Data) => {
+    const Url = `${Endpoint}/api/admin/add/AddSkill`;
+    return appAxios["post"](Url, Data);
+};
+export const SetAdminCircleSkill = (Data) => {
+    const Url = `${Endpoint}/api/admin/add/AddCircleSkill`;
     return appAxios["post"](Url, Data);
 };

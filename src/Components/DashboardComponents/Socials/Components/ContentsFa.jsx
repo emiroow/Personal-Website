@@ -43,7 +43,7 @@ export default function ContentsFa() {
             <div className="flex flex-col">
                 <div className=" w-full dark:bg-DarkPurple bg-LightYellow flex flex-wrap justify-center lg:justify-start  items-center rounded-b-xl">
                     <div className="inline-block min-w-full rounded-b-xl">
-                        <div className="overflow-hidden  rounded-b-xl">
+                        <div className="overflow-auto  rounded-b-xl">
                             <table className="min-w-full text-left text-sm font-light  rounded-b-xl">
                                 <thead className="border-b  font-medium border-neutral-500 bg-black ">
                                     <tr>

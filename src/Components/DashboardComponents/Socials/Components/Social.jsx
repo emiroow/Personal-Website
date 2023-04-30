@@ -67,8 +67,8 @@ export default function Social() {
     }
 
     return (
-        <div className='w-full flex justify-center flex-col'>
-            <div className='flex w-[50%] flex-row m-auto'>
+        <div className='w-full flex justify-center max-lg:my-10 flex-col'>
+            <div className='flex w-full lg:w-[50%] flex-row m-auto'>
                 <div className='w-[77%] m-auto'>
                     <label htmlFor="">{t("socialTitle")} :</label>
                     <select ref={socialsApp} defaultValue={"Linkedin"} className='w-full my-3 p-2 rounded-lg dark:border-DarkPurple border-2 text-black text-center font-IranBold' placeholder='test' name="" id="">
@@ -87,7 +87,7 @@ export default function Social() {
                     </select>
                 </div>
             </div>
-            <div className='w-[35%] m-auto mt-3'>
+            <div className='lg:w-[35%] m-auto mt-3'>
                 <label htmlFor="">{t("socialLink")} :</label>
                 <input ref={link} placeholder={t("socialLink")} className='w-full p-2 mt-3 rounded-lg dark:border-DarkPurple border-2 text-black text-center font-IranBold' type="text" />
             </div>

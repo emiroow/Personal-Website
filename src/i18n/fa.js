@@ -146,5 +146,11 @@ const fa = {
     Add: "افزودن",
     lang: "زبان",
     newValue: "لطفا مقدار جدیدی وارد کنید",
+    type: "نوع",
+    darsad: "مقدار بر اساس درصد",
+    circelProgress: "نمودار دایره ای",
+    lineProgres: "نمودار خطی - مهارت های اصلی",
+    noneProgres: "بدون نمودار - مهارت اضافی"
+
 };
 export default fa;

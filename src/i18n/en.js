@@ -145,7 +145,11 @@ const en = {
     socialLink: "social Link",
     Add: "add",
     lang: "Lang",
-    newValue: "pleas Enter the new value"
-
+    newValue: "pleas Enter the new value",
+    type: "type:",
+    darsad: "Amount based on percentage",
+    circelProgress: "Circle Progress",
+    lineProgres: "Line Progress - Main Skills",
+    noneProgres: "whithout Progress - other Skills"
 };
 export default en;
