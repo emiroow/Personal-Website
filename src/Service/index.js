@@ -117,9 +117,9 @@ export const DeleteAdminCircleSkill = (Id) => {
 };
 
 // Admin Add
-export const SetAbout = (UpdateDate) => {
+export const SetAbout = (Data) => {
     const Url = `${Endpoint}/api/admin/add/SetAbout`;
-    return appAxios["post"](Url, UpdateDate)
+    return appAxios["post"](Url, Data)
 };
 export const SetAdminAnalysis = (Data) => {
     const Url = `${Endpoint}/api/admin/add/AddAnalysis`;

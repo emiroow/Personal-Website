@@ -20,10 +20,6 @@ export default function AddSkill() {
 
     const { TabState } = useContext(DashboardContext)
 
-    useEffect(() => {
-        console.log(addType)
-    }, [addType])
-
     const handleAddSkill = () => {
 
     }
