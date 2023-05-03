@@ -6,6 +6,8 @@ import { DashboardContext } from '../../../ContextApi/DashboardContext'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { toast } from 'react-toastify';
+import { fetchSetAdminCircleSkill, fetchSetAdminSkill } from '../../../Reducers/DashboardSlices/SkillsSlice'
 
 export default function AddSkill() {
     const { t } = useTranslation()
@@ -20,8 +22,148 @@ export default function AddSkill() {
 
     const { TabState } = useContext(DashboardContext)
 
-    const handleAddSkill = () => {
-
+    const handleAddSkill = async () => {
+        const langVal = lang.current.value
+        const percentageVal = percentage?.current?.value
+        const typeVal = type.current.value
+        const titleVal = title.current.value
+        if (typeVal === "1") {
+            if (langVal && typeVal && titleVal && percentageVal) {
+                const response = await dispatch(fetchSetAdminCircleSkill({
+                    id: 0,
+                    title: titleVal,
+                    value: parseInt(percentageVal),
+                    lang: parseInt(langVal),
+                    isActive: true
+                }))
+                if (response.payload.status === 200) {
+                    toast.success(t("SuccessToAdd"), {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                } else {
+                    toast.error(t("Problem"), {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+            } else {
+                toast.warning(t("PleaseFill"), {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+        } else {
+            if (typeVal === "0") {
+                if (langVal && typeVal && titleVal && percentageVal) {
+                    const response = await dispatch(fetchSetAdminSkill({
+                        id: 0,
+                        title: titleVal,
+                        value: parseInt(percentageVal),
+                        lang: parseInt(langVal),
+                        progressBar: true,
+                        isActive: true
+                    }))
+                    if (response.payload.status === 200) {
+                        toast.success(t("SuccessToAdd"), {
+                            position: "top-center",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    } else {
+                        toast.error(t("Problem"), {
+                            position: "top-center",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    }
+                } else {
+                    toast.warning(t("PleaseFill"), {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+            } else if (typeVal === "2") {
+                if (langVal && typeVal && titleVal) {
+                    const response = await dispatch(fetchSetAdminSkill({
+                        id: 0,
+                        title: titleVal,
+                        value: parseInt(percentageVal),
+                        lang: parseInt(langVal),
+                        progressBar: false,
+                        isActive: true
+                    }))
+                    if (response.payload.status === 200) {
+                        toast.success(t("SuccessToAdd"), {
+                            position: "top-center",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    } else {
+                        toast.error(t("Problem"), {
+                            position: "top-center",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    }
+                } else {
+                    toast.warning(t("PleaseFill"), {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+            }
+        }
     }
 
     return (
@@ -45,7 +187,7 @@ export default function AddSkill() {
                         <option value="2">{t("noneProgres")}</option>
                     </select>
                 </div>
-                <div className='lg:w-[5%] m-auto'>
+                <div className='lg:w-[7%] m-auto'>
                     <label htmlFor="">{t("lang")} :</label>
                     <select ref={lang} defaultValue={TabState} className='w-full my-3 p-2 rounded-lg dark:border-DarkPurple border-2 text-black text-center font-IranBold' placeholder='test' name="" id="">
                         <option value="0">EN</option>

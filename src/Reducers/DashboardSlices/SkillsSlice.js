@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { DeleteAdminSkill, getAdminCircleSkills, getAdminSkills } from "../../Service";
+import { DeleteAdminSkill, SetAdminCircleSkill, SetAdminSkill, getAdminCircleSkills, getAdminSkills } from "../../Service";
 import { DeleteAdminCircleSkill } from "../../Service";
 
 export const fetchGetAdminSkills = createAsyncThunk("/Skills/fetchGetAdminSkills", async () => {
@@ -20,6 +20,16 @@ export const fetchDeleteAdminCircleSkill = createAsyncThunk("/Skills/fetchDelete
 export const fetchDeleteAdminSkill = createAsyncThunk("/Skills/fetchDeleteAdminSkill", async (id) => {
     const response = await DeleteAdminSkill(id)
     return { data: response.data, status: response.status, id: id }
+})
+
+export const fetchSetAdminSkill = createAsyncThunk("/Skills/fetchSetAdminSkill", async (data) => {
+    const response = await SetAdminSkill(data)
+    return { data: response.data, status: response.status }
+})
+
+export const fetchSetAdminCircleSkill = createAsyncThunk("/Skills/fetchSetAdminCircleSkill", async (data) => {
+    const response = await SetAdminCircleSkill(data)
+    return { data: response.data, status: response.status, id: data.id }
 })
 
 const initialState = {
@@ -75,7 +85,22 @@ const SkillsSlice = createSlice({
                 state.status = "completed"
             })
 
+            .addCase(fetchSetAdminSkill.pending, (state, _) => {
+                state.status = "pending"
+            })
+            .addCase(fetchSetAdminSkill.fulfilled, (state, action) => {
+                console.log(action.payload.data)
+                state.status = "completed"
+            })
 
+            .addCase(fetchSetAdminCircleSkill.pending, (state, _) => {
+                state.status = "pending"
+            })
+            .addCase(fetchSetAdminCircleSkill.fulfilled, (state, action) => {
+                console.log(action.payload.data)
+
+                state.status = "completed"
+            })
     }
 })
 
