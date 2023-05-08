@@ -66,6 +66,10 @@ export const getAdminCircleSkills = () => {
     const Url = `${Endpoint}/api/admin/CircleSkills `;
     return appAxios["get"](Url);
 }
+export const getAdminContactUsMessages = () => {
+    const Url = `${Endpoint}/api/admin/ContactUsMessages `;
+    return appAxios["get"](Url);
+}
 
 
 // Admin Edit

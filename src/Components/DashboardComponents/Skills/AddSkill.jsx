@@ -122,7 +122,7 @@ export default function AddSkill() {
                     const response = await dispatch(fetchSetAdminSkill({
                         id: 0,
                         title: titleVal,
-                        value: parseInt(percentageVal),
+                        value: "0",
                         lang: parseInt(langVal),
                         progressBar: false,
                         isActive: true

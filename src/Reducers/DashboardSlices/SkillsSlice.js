@@ -89,7 +89,11 @@ const SkillsSlice = createSlice({
                 state.status = "pending"
             })
             .addCase(fetchSetAdminSkill.fulfilled, (state, action) => {
-                console.log(action.payload.data)
+                if (action.payload.data.progressBar) {
+                    state.LineSkills.push(action.payload.data)
+                } else {
+                    state.NoneSkills.push(action.payload.data)
+                }
                 state.status = "completed"
             })
 
@@ -97,8 +101,7 @@ const SkillsSlice = createSlice({
                 state.status = "pending"
             })
             .addCase(fetchSetAdminCircleSkill.fulfilled, (state, action) => {
-                console.log(action.payload.data)
-
+                state.CircleSkills.push(action.payload.data)
                 state.status = "completed"
             })
     }

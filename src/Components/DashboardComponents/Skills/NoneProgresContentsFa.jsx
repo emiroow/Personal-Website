@@ -50,7 +50,6 @@ export default function NoneProgresContentsFa() {
                                     <tr>
                                         <th scope="col" className="px-6 py-4">#</th>
                                         <th scope="col" className="px-6 py-4">Title</th>
-                                        <th scope="col" className="px-6 py-4">Progres Value</th>
                                         <th scope="col" className="px-6 py-4">Action</th>
                                     </tr>
                                 </thead>
@@ -61,7 +60,6 @@ export default function NoneProgresContentsFa() {
                                                 <tr key={item.id} className="border-b border-neutral-500 bg-neutral-700">
                                                     <td className="whitespace-nowrap px-6 py-4 font-medium">{index + 1}</td>
                                                     <td className="whitespace-nowrap px-6 py-4">{item.title}</td>
-                                                    <td className="whitespace-nowrap px-6 py-4">% {item.value}</td>
                                                     <td className="whitespace-nowrap px-6 py-4 flex justify-end ">
                                                         <button onClick={() => handleDelete(item.id)}>
                                                             <BsTrashFill className='text-xl text-red-500 cursor-pointer' />
