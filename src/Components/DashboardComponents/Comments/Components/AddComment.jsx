@@ -12,17 +12,19 @@ export default function AddComment({ setNewServerState, TabState }) {
     const fromPosition = useRef()
     const starCount = useRef()
     const fromImgUrl = useRef()
-    const dispatch = useDispatch
 
-    let subjectVal = subject.current.value
-    let dateTimeVal = dateTime.current.value
-    let messageVal = message.current.value
-    let fromNameVal = fromName.current.value
-    let fromPositionVal = fromPosition.current.value
-    let starCountVal = starCount.current.value
-    let fromImgUrlVal = fromImgUrl.current.value
+    const dispatch = useDispatch()
 
     const handleAddNewService = async () => {
+
+        let subjectVal = subject.current.value
+        let dateTimeVal = dateTime.current.value
+        let messageVal = message.current.value
+        let fromNameVal = fromName.current.value
+        let fromPositionVal = fromPosition.current.value
+        let starCountVal = starCount.current.value
+        let fromImgUrlVal = fromImgUrl.current.value
+
         if (subjectVal &&
             dateTimeVal &&
             messageVal &&
@@ -30,7 +32,7 @@ export default function AddComment({ setNewServerState, TabState }) {
             fromPositionVal &&
             starCountVal &&
             fromImgUrlVal) {
-            if (starCountVal < 5 && starCountVal >= 1) {
+            if (starCountVal <= 5 && starCountVal >= 1) {
                 const response = await dispatch(fetchSetAdminAddComment({
                     id: 0,
                     fromName: fromNameVal,

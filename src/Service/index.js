@@ -93,6 +93,10 @@ export const EditAdminService = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/editservice`;
     return appAxios["post"](Url, Data);
 };
+export const EditAdminComment = (Data) => {
+    const Url = `${Endpoint}/api/admin/edit/editcomment`;
+    return appAxios["post"](Url, Data);
+};
 
 // Admin Delete
 export const DeleteAdminAnalysis = (Id) => {
@@ -121,6 +125,10 @@ export const DeleteAdminSkill = (Id) => {
 };
 export const DeleteAdminCircleSkill = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/deleteCircleSkill/${Id}`;
+    return appAxios["post"](Url);
+};
+export const DeleteAdminDeleteComment = (Id) => {
+    const Url = `${Endpoint}/api/admin/delete/deletecomment/${Id}`;
     return appAxios["post"](Url);
 };
 

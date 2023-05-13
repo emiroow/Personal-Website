@@ -25,7 +25,7 @@ export default function ContentsFa({ TabState }) {
                 }
                 {
                     Comments?.map((item) => {
-                        return (<Comment data={item} />)
+                        return (<Comment key={item.id} TabState={TabState} data={item} />)
                     })
                 }
             </div>
