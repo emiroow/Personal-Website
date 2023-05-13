@@ -5,12 +5,14 @@ import { MdHomeRepairService } from "react-icons/md"
 import { MdTextsms } from "react-icons/md"
 import Toggle from '../SideMenuComponents/toggle'
 import Language from '../SideMenuComponents/language'
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 export default function MobileSideMenu({ sidestatus, sidesetstatue }) {
-    const gotop = ()=>{
+
+    const gotop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        
     }
+    const Token = localStorage.getItem("PrjTk")
+
     return (
         <>
             <div className={sidestatus ? "fixed dark:bg-BackColor bg-LightMaincolor border-r-2 dark:border-DarkPurple mt- border-LightYellow shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] w-[23%] h-full z-50 top-0 duration-700 left-0" : "fixed  bg-BackColor shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] w-[23%] h-full z-50 top-0 -left-[100%]"}>
@@ -44,7 +46,7 @@ export default function MobileSideMenu({ sidestatus, sidesetstatue }) {
 
             </div>
             <div onClick={e => sidesetstatue(false)} className={sidestatus ? "w-full  z-10 bg-black/40 h-[100vh] fixed top-0 duration-700 right-0" : "w-full z-10 bg-black/40 h-[100vh] fixed top-0 duration-100 -right-[100%]"}>
-                <span className='top-1 px-2 rounded-md bg-black right-1  absolute text-[12px] font-IranLight'><Link to={"/Admin"} className='text-LightMaincolor dark:text-DarkPurple'>Admin</Link></span>
+                <span className='top-1 px-2 rounded-md bg-black right-1  absolute text-[12px] font-IranLight'><Link to={Token ? "/Admin" : "/login"} className='text-LightMaincolor dark:text-DarkPurple'>Admin</Link></span>
             </div>
         </>
     )

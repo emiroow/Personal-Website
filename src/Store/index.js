@@ -11,6 +11,7 @@ import servicesRedusers from "../Reducers/DashboardSlices/ServiceSlice"
 import socialsRedusers from "../Reducers/DashboardSlices/SocialsSlice"
 import skillsRedusers from "../Reducers/DashboardSlices/SkillsSlice"
 import ContactUsMessagesRedusers from "../Reducers/DashboardSlices/ContactUsMessagesSlice"
+import CommentsRedusers from "../Reducers/DashboardSlices/CommentsSlice"
 export const store = configureStore({
     reducer: {
         client: clientReducer,
@@ -25,6 +26,7 @@ export const store = configureStore({
         services: servicesRedusers,
         socials: socialsRedusers,
         skills: skillsRedusers,
-        ContactUsMessages: ContactUsMessagesRedusers
+        ContactUsMessages: ContactUsMessagesRedusers,
+        comments: CommentsRedusers,
     },
 });

@@ -27,7 +27,7 @@ export default function MobileSidePortfolio({ sidestatus, sidesetstatue }) {
                 </div>
             </div>
             {/* closer */}
-            <span onClick={e => sidesetstatue(false)} className='absolute top-1 left-1 text-[20px] dark:text-DarkPurple text-LightYellow'><ImCancelCircle /></span>
+            <span onClick={e => sidesetstatue(false)} className='absolute top-2 left-2 text-[20px] dark:text-DarkPurple text-LightYellow'><ImCancelCircle /></span>
         </div>
     )
 }

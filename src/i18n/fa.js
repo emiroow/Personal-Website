@@ -150,7 +150,12 @@ const fa = {
     darsad: "مقدار بر اساس درصد",
     circelProgress: "نمودار دایره ای",
     lineProgres: "نمودار خطی - مهارت های اصلی",
-    noneProgres: "بدون نمودار - مهارت اضافی"
+    noneProgres: "بدون نمودار - مهارت اضافی",
+    fromName: "نام نویسنده",
+    starCount: "تعداد ستاره",
+    fromPosition: "موقعیت کاری نویسنده",
+    fromImgUrl: "عکس نویسنده",
+    subject: "عنوان"
 
 };
 export default fa;

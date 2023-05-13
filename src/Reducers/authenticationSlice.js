@@ -3,7 +3,7 @@ import { AuthLogin } from "../Service"
 import { toast } from 'react-toastify';
 
 const initialState = {
-    isToken: !!localStorage.getItem("Token"),
+    isToken: !!localStorage.getItem("PrjTk"),
     token: "",
     status: "",
     loader: false,
@@ -19,7 +19,7 @@ const authenticationSlice = createSlice({
     initialState,
     reducers: {
         logOutUser: (state, _) => {
-            localStorage.removeItem("Token");
+            localStorage.removeItem("PrjTk");
             state.isToken = false
         }
     },
@@ -42,7 +42,7 @@ const authenticationSlice = createSlice({
                         theme: "light",
                     });
                 } else if (action.payload.token) {
-                    localStorage.setItem("Token", action.payload.token)
+                    localStorage.setItem("PrjTk", action.payload.token)
                     state.token = action.payload.token
                     state.isToken = true
                 } else {

@@ -70,6 +70,10 @@ export const getAdminContactUsMessages = () => {
     const Url = `${Endpoint}/api/admin/ContactUsMessages `;
     return appAxios["get"](Url);
 }
+export const getAdminComments = () => {
+    const Url = `${Endpoint}/api/admin/comments `;
+    return appAxios["get"](Url);
+}
 
 
 // Admin Edit

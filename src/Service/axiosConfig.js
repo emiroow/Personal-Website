@@ -5,7 +5,7 @@ export const appAxios = axios.create();
 appAxios.interceptors.request.use(
     async config => {
         config.headers = {
-            'authorization': !!localStorage.getItem("Token") ? "Bearer " + localStorage.getItem("Token") : "",
+            'authorization': !!localStorage.getItem("PrjTk") ? "Bearer " + localStorage.getItem("PrjTk") : "",
             'accept': 'application/json',
         }
         return config;

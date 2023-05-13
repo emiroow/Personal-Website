@@ -31,7 +31,7 @@ export default function Login() {
 
   useEffect(() => {
     if (store.isToken) {
-      Navgate(`/Admin`)
+      Navgate(`/`)
     }
   }, [store])
 

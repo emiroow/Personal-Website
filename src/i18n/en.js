@@ -150,6 +150,11 @@ const en = {
     darsad: "Amount based on percentage",
     circelProgress: "Circle Progress",
     lineProgres: "Line Progress - Main Skills",
-    noneProgres: "whithout Progress - other Skills"
+    noneProgres: "whithout Progress - other Skills",
+    fromName: "From Name",
+    starCount: "Star Count",
+    fromPosition: "From Position",
+    fromImgUrl: "From Image Url",
+    subject: "subject"
 };
 export default en;
