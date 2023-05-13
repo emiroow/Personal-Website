@@ -155,7 +155,8 @@ const fa = {
     starCount: "تعداد ستاره",
     fromPosition: "موقعیت کاری نویسنده",
     fromImgUrl: "عکس نویسنده",
-    subject: "عنوان"
+    subject: "عنوان",
+    warningStartCount: "تعداد ستاره ها استاندارد نمیباشد"
 
 };
 export default fa;

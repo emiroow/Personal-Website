@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAdminComments, } from "../../Service";
+import { SetAdminAddComment, getAdminComments, } from "../../Service";
 
 const initialState = {
     comments: [],
@@ -8,6 +8,11 @@ const initialState = {
 
 export const fetchgetAdminComments = createAsyncThunk("/Comments/fetchgetAdminComments", async () => {
     const response = await getAdminComments()
+    return { status: response.status, data: response.data }
+})
+
+export const fetchSetAdminAddComment = createAsyncThunk("/Comments/fetchSetAdminAddComment", async () => {
+    const response = await SetAdminAddComment()
     return { status: response.status, data: response.data }
 })
 
@@ -21,6 +26,14 @@ const CommentsSlice = createSlice({
             })
             .addCase(fetchgetAdminComments.fulfilled, (state, action) => {
                 state.comments = action.payload.data
+                state.status = "completed"
+            })
+
+            .addCase(fetchSetAdminAddComment.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(fetchSetAdminAddComment.fulfilled, (state, action) => {
+                state.comments.push(action.payload.data)
                 state.status = "completed"
             })
     }

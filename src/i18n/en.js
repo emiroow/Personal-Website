@@ -155,6 +155,7 @@ const en = {
     starCount: "Star Count",
     fromPosition: "From Position",
     fromImgUrl: "From Image Url",
-    subject: "subject"
+    subject: "subject",
+    warningStartCount: "Star as 1 to 5"
 };
 export default en;

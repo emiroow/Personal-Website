@@ -157,3 +157,7 @@ export const SetAdminCircleSkill = (Data) => {
     const Url = `${Endpoint}/api/admin/add/AddCircleSkill`;
     return appAxios["post"](Url, Data);
 };
+export const SetAdminAddComment = (Data) => {
+    const Url = `${Endpoint}/api/admin/add/addcomment`;
+    return appAxios["post"](Url, Data);
+};

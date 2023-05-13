@@ -21,7 +21,7 @@ export default function ContentsFa({ TabState }) {
             </div>
             <div className="w-full flex justify-between flex-row flex-wrap">
                 {
-                    newServerState ? <AddComment newServerState={newServerState} setNewServerState={setNewServerState} /> : null
+                    newServerState ? <AddComment TabState={TabState} newServerState={newServerState} setNewServerState={setNewServerState} /> : null
                 }
                 {
                     Comments?.map((item) => {

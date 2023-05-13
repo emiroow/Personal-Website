@@ -1,8 +1,10 @@
 import { t } from 'i18next'
 import React from 'react'
 import { useRef } from 'react'
-
-export default function AddComment({ setNewServerState }) {
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { fetchSetAdminAddComment } from '../../../../Reducers/DashboardSlices/CommentsSlice';
+export default function AddComment({ setNewServerState, TabState }) {
     const subject = useRef()
     const dateTime = useRef()
     const message = useRef()
@@ -10,9 +12,86 @@ export default function AddComment({ setNewServerState }) {
     const fromPosition = useRef()
     const starCount = useRef()
     const fromImgUrl = useRef()
+    const dispatch = useDispatch
 
-    const handleAddNewService = () => {
+    let subjectVal = subject.current.value
+    let dateTimeVal = dateTime.current.value
+    let messageVal = message.current.value
+    let fromNameVal = fromName.current.value
+    let fromPositionVal = fromPosition.current.value
+    let starCountVal = starCount.current.value
+    let fromImgUrlVal = fromImgUrl.current.value
 
+    const handleAddNewService = async () => {
+        if (subjectVal &&
+            dateTimeVal &&
+            messageVal &&
+            fromNameVal &&
+            fromPositionVal &&
+            starCountVal &&
+            fromImgUrlVal) {
+            if (starCountVal < 5 && starCountVal >= 1) {
+                const response = await dispatch(fetchSetAdminAddComment({
+                    id: 0,
+                    fromName: fromNameVal,
+                    fromPosition: fromPositionVal,
+                    fromImgUrl: fromImgUrlVal,
+                    subject: subjectVal,
+                    message: messageVal,
+                    starCount: starCountVal,
+                    dateTime: dateTimeVal,
+                    lang: TabState,
+                    isActive: true
+                }))
+                if (response.payload.status === 200) {
+                    toast.success(t("SuccessToAdd"), {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    setNewServerState(false)
+                } else {
+                    toast.error(t("Problem"), {
+                        position: "top-center",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    setNewServerState(false)
+                }
+            } else {
+                toast.warning(t("warningStartCount"), {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+        } else {
+            toast.warning(t("PleaseFill"), {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
     }
 
     return (
