@@ -32,6 +32,10 @@ export const AuthLogin = (data) => {
 };
 
 // Admin Setting
+export const GetAdminSetting = () => {
+    const Url = `${Endpoint}/api/admin/setting`;
+    return appAxios["get"](Url);
+};
 
 // Admin Get
 export const GetAdminAbout = () => {
@@ -74,6 +78,10 @@ export const getAdminComments = () => {
     const Url = `${Endpoint}/api/admin/comments `;
     return appAxios["get"](Url);
 }
+export const getAdminCertificate = () => {
+    const Url = `${Endpoint}/api/admin/Certificates `;
+    return appAxios["get"](Url);
+}
 
 
 // Admin Edit
@@ -95,6 +103,10 @@ export const EditAdminService = (Data) => {
 };
 export const EditAdminComment = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/editcomment`;
+    return appAxios["post"](Url, Data);
+};
+export const EditAdminCertificate = (Data) => {
+    const Url = `${Endpoint}/api/admin/edit/editCertificate`;
     return appAxios["post"](Url, Data);
 };
 
@@ -129,6 +141,10 @@ export const DeleteAdminCircleSkill = (Id) => {
 };
 export const DeleteAdminDeleteComment = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/deletecomment/${Id}`;
+    return appAxios["post"](Url);
+};
+export const DeleteAdminCertificate = (Id) => {
+    const Url = `${Endpoint}/api/admin/delete/deleteCertificate/${Id}`;
     return appAxios["post"](Url);
 };
 
@@ -167,5 +183,9 @@ export const SetAdminCircleSkill = (Data) => {
 };
 export const SetAdminAddComment = (Data) => {
     const Url = `${Endpoint}/api/admin/add/addcomment`;
+    return appAxios["post"](Url, Data);
+};
+export const SetAdminAddCertificate = (Data) => {
+    const Url = `${Endpoint}/api/admin/add/addCertificate`;
     return appAxios["post"](Url, Data);
 };

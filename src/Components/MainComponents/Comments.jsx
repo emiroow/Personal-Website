@@ -6,6 +6,7 @@ import i18n from '../../i18n';
 import Comment from './ChildComponents/Comment';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+
 export default function Comments() {
   const currentLanguageCode = i18n.language
   const poss = () => {
@@ -22,7 +23,7 @@ export default function Comments() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 4000,
     pauseOnHover: true,
     focusOnSelect: true,

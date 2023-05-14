@@ -43,14 +43,6 @@ export default function Comment({ data, TabState }) {
         let starCountVal = starCount.current.value
         let fromImgUrlVal = fromImgUrl.current.value
 
-        console.log(subjectVal,
-            dateTimeVal,
-            messageVal,
-            fromNameVal,
-            fromPositionVal,
-            starCountVal,
-            fromImgUrlVal)
-
         if (subjectVal &&
             dateTimeVal &&
             messageVal &&
@@ -150,32 +142,32 @@ export default function Comment({ data, TabState }) {
             <Modal SetModalState={SetModalState} modalState={modalState} target={data?.subject} />
             <div className="flex md:contents">
                 <div className=" border-y-2 pb-8 dark:border-DarkPurple w-full  p-4 rounded-xl  mr-auto ">
-                    <div className='flex justify-between'>
-                        <div className='flex flex-col w-[49%] mb-4'>
+                    <div className='flex justify-between  max-lg:flex-col'>
+                        <div className='flex flex-col lg:w-[49%] mb-4'>
                             <label>{t("fromName")} :</label>
                             <input defaultValue={data?.fromName} ref={fromName} disabled={editeing ? false : true} type="text" className={` text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]`} />
                         </div>
-                        <div className='flex flex-col w-[49%] mb-4'>
+                        <div className='flex flex-col lg:w-[49%] mb-4'>
                             <label>{t("subject")} :</label>
                             <input defaultValue={data?.subject} ref={subject} disabled={editeing ? false : true} type="text" className={` text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]`} />
                         </div>
                     </div>
-                    <div className='flex justify-between'>
-                        <div className='flex flex-col w-[49%] mb-4'>
+                    <div className='flex justify-between  max-lg:flex-col'>
+                        <div className='flex flex-col lg:w-[49%] mb-4'>
                             <label>{t("fromPosition")} :</label>
                             <input defaultValue={data?.fromPosition} ref={fromPosition} disabled={editeing ? false : true} type="text" className={` text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]`} />
                         </div>
-                        <div className='flex flex-col w-[49%] mb-4'>
+                        <div className='flex flex-col lg:w-[49%] mb-4'>
                             <label>{t("starCount")} :</label>
                             <input defaultValue={data?.starCount} ref={starCount} disabled={editeing ? false : true} type="number" className={` text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]`} />
                         </div>
                     </div>
-                    <div className='flex justify-between'>
-                        <div className='flex flex-col w-[49%] mb-4'>
+                    <div className='flex justify-between  max-lg:flex-col'>
+                        <div className='flex flex-col lg:w-[49%] mb-4'>
                             <label>{t("fromImgUrl")} :</label>
                             <input defaultValue={data?.fromImgUrl} ref={fromImgUrl} disabled={editeing ? false : true} type="text" className={` text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]`} />
                         </div>
-                        <div className='flex flex-col w-[49%] mb-4'>
+                        <div className='flex flex-col lg:w-[49%] mb-4'>
                             <label>{t("dateLable")} :</label>
                             <input disabled={editeing ? false : true} type="date" ref={dateTime} className=' text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]' name="" id="" />
                             <p className='font-IranLight'>{data?.dateTime}</p>
