@@ -70,8 +70,8 @@ export const getAdminCircleSkills = () => {
     const Url = `${Endpoint}/api/admin/CircleSkills `;
     return appAxios["get"](Url);
 }
-export const getAdminContactUsMessages = () => {
-    const Url = `${Endpoint}/api/admin/ContactUsMessages `;
+export const getAdminContactUsMessages = (page, countOfPage = 15) => {
+    const Url = `${Endpoint}/api/admin/ContactUsMessages?page=${page}&countOfPage=${countOfPage}`;
     return appAxios["get"](Url);
 }
 export const getAdminComments = () => {
@@ -82,7 +82,6 @@ export const getAdminCertificate = () => {
     const Url = `${Endpoint}/api/admin/Certificates `;
     return appAxios["get"](Url);
 }
-
 
 // Admin Edit
 export const EditAdminAnalysis = (Data) => {

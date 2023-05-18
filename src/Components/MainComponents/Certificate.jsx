@@ -17,12 +17,14 @@ export default function Certificate() {
                 <div className='w-full flex-wrap justify-around md:justify-center px-5 p-5 flex'>
                     {
                         getData?.map((item, index) => {
-                            return <div data-src={item.link} key={index} data-fancybox="gallery2" className="relative shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] mb-4 md:mb-5 group md:mx-4 2xl:mx-5 ">
-                                <div className='flex flex-col absolute transition-all opacity-0 duration-700 md:group-hover:opacity-100 group-active:opacity-100 left-0 bottom-0 h-max w-full z-20 dark:bg-DarkPurple/60 p-2 border-t-[2.5px] dark:border-DarkPurple border-LightMaincolor bg-LightMaincolor/60 rounded-b-lg'>
-                                    <span className='font-IranBold'>test</span>
-                                    <span className='font-IranLight'>test</span>
+                            return <div className='group flex flex-col items-center border-[2.5px] mb-4 md:mb-5 md:mx-4 2xl:mx-5 h-max dark:border-DarkPurple border-LightMaincolor drop-shadow-xl rounded-t-lg rounded-b-lg'>
+                                <div data-src={item.link} key={index} data-fancybox="Certificate" className='shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)]'>
+                                    <img className='w-[300px] md:w-[250px] 2xl:w-[350px] cursor-pointer object-fill bg-cover bg-no-repeat  rounded-t-lg ' src={item.link} alt="" />
                                 </div>
-                                <img className='w-[300px] md:w-[250px] 2xl:w-[350px] cursor-pointer object-fill rounded-lg dark:border-DarkPurple border-LightMaincolor drop-shadow-xl border-[2.5px] bg-cover bg-no-repeat' src={item.link} alt="" />
+                                <div className='flex flex-col w-[300px] md:w-[250px] 2xl:w-[350px] h-[64px] overflow-hidden transition-all duration-700 hover:h-max md:group-hover:h-max z-20 dark:bg-DarkPurple/60 p-2 dark:border-DarkPurple border-LightMaincolor bg-LightMaincolor/60 rounded-b-lg'>
+                                    <span className='font-IranBold'>{item.title}</span>
+                                    <span className='font-IranLight'>{item.description}</span>
+                                </div>
                             </div>
                         })
                     }

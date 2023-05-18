@@ -1,17 +1,29 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import Layout from '../TabLayout/Layout'
 import { DashboardContext } from "../../../ContextApi/DashboardContext"
 import ContentFa from "./Components/ContentFa"
 import ContentEn from "./Components/ContentEn"
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { fetchgetAdminCertificate } from '../../../Reducers/DashboardSlices/CertificateSlice'
+import Preloader from '../../Preloader'
 export default function Certificates() {
-  const [TabState, SetTabState] = useState(1)
-  const { TabsInfo } = useContext(DashboardContext)
+  const { TabsInfo, TabState, SetTabState } = useContext(DashboardContext)
+  const dispatch = useDispatch()
+  const loader = useSelector((state) => state.certificate.status)
+
+  useEffect(() => {
+    dispatch(fetchgetAdminCertificate())
+  }, [])
 
   return (
     <>
       <Layout TabsInfo={TabsInfo} SetTabState={SetTabState} TabState={TabState}>
         {
-          TabState === 1 ? <ContentFa /> : <ContentEn />
+          loader === "pending" ? <Preloader /> : null
+        }
+        {
+          TabState === 1 ? <ContentFa TabState={TabState} /> : <ContentEn TabState={TabState} />
         }
       </Layout>
     </>

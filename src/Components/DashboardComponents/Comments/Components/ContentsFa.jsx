@@ -8,7 +8,6 @@ import AddComment from "../Components/AddComment"
 export default function ContentsFa({ TabState }) {
     const Comments = useSelector((state) => state.comments.comments.filter((item) => item.lang === TabState))
     const [newServerState, setNewServerState] = useState(false)
-
     return (
         <div className='rounded-b-xl dark:bg-DarkPurple bg-LightYellow justify-between lg:p-5 p-3 flex flex-row flex-wrap'>
             <div className='w-full'>

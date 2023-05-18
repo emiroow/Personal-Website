@@ -6,8 +6,8 @@ const initialState = {
     status: "idel"
 }
 
-export const fetchgetAdminContactUsMessages = createAsyncThunk("/ContactUsMessages/fetchgetAdminContactUsMessages", async () => {
-    const response = await getAdminContactUsMessages()
+export const fetchgetAdminContactUsMessages = createAsyncThunk("/ContactUsMessages/fetchgetAdminContactUsMessages", async (Page) => {
+    const response = await getAdminContactUsMessages(Page)
     return { status: response.status, data: response.data }
 })
 

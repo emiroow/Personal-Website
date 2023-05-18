@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import clientReducer from "../Reducers/clientSlice"
 import contactReduser from "../Reducers/contactSlice"
 import settingReduser from "../Reducers/settingSlice"
@@ -12,6 +13,7 @@ import socialsRedusers from "../Reducers/DashboardSlices/SocialsSlice"
 import skillsRedusers from "../Reducers/DashboardSlices/SkillsSlice"
 import ContactUsMessagesRedusers from "../Reducers/DashboardSlices/ContactUsMessagesSlice"
 import CommentsRedusers from "../Reducers/DashboardSlices/CommentsSlice"
+import CertificateRedusers from "../Reducers/DashboardSlices/CertificateSlice"
 export const store = configureStore({
     reducer: {
         client: clientReducer,
@@ -28,5 +30,6 @@ export const store = configureStore({
         skills: skillsRedusers,
         ContactUsMessages: ContactUsMessagesRedusers,
         comments: CommentsRedusers,
+        certificate: CertificateRedusers,
     },
 });
