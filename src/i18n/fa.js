@@ -157,7 +157,9 @@ const fa = {
     fromImgUrl: "عکس نویسنده",
     subject: "عنوان",
     warningStartCount: "تعداد ستاره ها استاندارد نمیباشد",
-    ImageUrl: "لینک عکس"
+    ImageUrl: "لینک عکس",
+    Empty: "خالی",
+    Category: "دسته بندی نمونه کارها"
 
 };
 export default fa;

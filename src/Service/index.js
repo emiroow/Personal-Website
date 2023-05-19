@@ -70,8 +70,8 @@ export const getAdminCircleSkills = () => {
     const Url = `${Endpoint}/api/admin/CircleSkills `;
     return appAxios["get"](Url);
 }
-export const getAdminContactUsMessages = (page, countOfPage = 15) => {
-    const Url = `${Endpoint}/api/admin/ContactUsMessages?page=${page}&countOfPage=${countOfPage}`;
+export const getAdminContactUsMessages = (data) => {
+    const Url = `${Endpoint}/api/admin/ContactUsMessages?page=${data.page}&countOfPage=${data.countOfPage}&lang=${data.lang}`;
     return appAxios["get"](Url);
 }
 export const getAdminComments = () => {
@@ -80,6 +80,14 @@ export const getAdminComments = () => {
 }
 export const getAdminCertificate = () => {
     const Url = `${Endpoint}/api/admin/Certificates `;
+    return appAxios["get"](Url);
+}
+export const getAdminPortfolios = () => {
+    const Url = `${Endpoint}/api/admin/portfolios `;
+    return appAxios["get"](Url);
+}
+export const getAdminPortfoliosCatagories = () => {
+    const Url = `${Endpoint}/api/admin/portfolioCatagories `;
     return appAxios["get"](Url);
 }
 
@@ -186,5 +194,9 @@ export const SetAdminAddComment = (Data) => {
 };
 export const SetAdminAddCertificate = (Data) => {
     const Url = `${Endpoint}/api/admin/add/addCertificate`;
+    return appAxios["post"](Url, Data);
+};
+export const SetAdminPortfoliosCatagories = (Data) => {
+    const Url = `${Endpoint}/api/admin/add/addPortfolioCatagory`;
     return appAxios["post"](Url, Data);
 };

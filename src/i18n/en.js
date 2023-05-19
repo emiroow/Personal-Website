@@ -157,6 +157,8 @@ const en = {
     fromImgUrl: "From Image Url",
     subject: "subject",
     warningStartCount: "Star as 1 to 5",
-    ImageUrl: "Image Url"
+    ImageUrl: "Image Url",
+    Empty: "Empty",
+    Category: "Portfolio Category"
 };
 export default en;

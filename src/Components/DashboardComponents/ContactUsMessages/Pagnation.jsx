@@ -7,12 +7,10 @@ import { TbArrowBarToLeft, TbArrowBarToRight } from 'react-icons/tb'
 function Pagnation({ curentPage, setCurentPage, maxPage }) {
 
     const handleClickPage = (Page) => {
-        console.log(Page)
         setCurentPage(Page)
     }
 
     const NumberItem = () => {
-        console.log(maxPage)
         let items = []
         if (maxPage <= 10) {
             for (let i = 1; i <= maxPage; i++) {

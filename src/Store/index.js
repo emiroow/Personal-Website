@@ -14,6 +14,7 @@ import skillsRedusers from "../Reducers/DashboardSlices/SkillsSlice"
 import ContactUsMessagesRedusers from "../Reducers/DashboardSlices/ContactUsMessagesSlice"
 import CommentsRedusers from "../Reducers/DashboardSlices/CommentsSlice"
 import CertificateRedusers from "../Reducers/DashboardSlices/CertificateSlice"
+import PortfolioRedusers from "../Reducers/DashboardSlices/PortfolioSlice"
 export const store = configureStore({
     reducer: {
         client: clientReducer,
@@ -31,5 +32,6 @@ export const store = configureStore({
         ContactUsMessages: ContactUsMessagesRedusers,
         comments: CommentsRedusers,
         certificate: CertificateRedusers,
+        portfolio: PortfolioRedusers
     },
 });
