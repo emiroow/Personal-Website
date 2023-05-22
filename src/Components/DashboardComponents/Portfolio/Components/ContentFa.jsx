@@ -8,7 +8,7 @@ export default function ContentFa() {
         <div className='rounded-b-xl dark:bg-DarkPurple bg-LightYellow justify-between lg:p-5 p-3 flex flex-row flex-wrap'>
             <AddCategory />
             <CategoryTable />
-            {/* <Portfolio /> */}
+            <Portfolio />
         </div>
     )
 }
