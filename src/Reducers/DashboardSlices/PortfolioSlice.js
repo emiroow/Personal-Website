@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { SetAdminPortfoliosCatagories, getAdminPortfolios, getAdminPortfoliosCatagories } from "../../Service";
+import { DeleteAdminCatagory, SetAdminPortfoliosCatagories, getAdminPortfolios, getAdminPortfoliosCatagories } from "../../Service";
 
 export const fetchgetAdminPortfolios = createAsyncThunk('/portfolio/fetchgetAdminPortfolios', async () => {
     const response = await getAdminPortfolios()
@@ -14,6 +14,12 @@ export const fetchgetAdminPortfoliosCatagories = createAsyncThunk('/portfolio/fe
 export const fetchSetAdminPortfoliosCatagories = createAsyncThunk('/portfolio/fetchSetAdminPortfoliosCatagories', async (data) => {
     const response = await SetAdminPortfoliosCatagories(data)
     return { data: response.data, status: response.status }
+})
+
+export const fetchDeleteAdminCatagory = createAsyncThunk('/portfolio/fetchDeleteAdminCatagory', async (id) => {
+    const response = await DeleteAdminCatagory(id)
+    console.log(response)
+    return { data: response.data, status: response.status, id: id }
 })
 
 const initialState = {
@@ -52,6 +58,16 @@ const PortfolioSlice = createSlice({
             .addCase(fetchSetAdminPortfoliosCatagories.fulfilled, (state, action) => {
                 state.status = "completed"
                 state.portfoliosCatagories.push(action.payload.data)
+            })
+
+            // fetchDeleteAdminCatagory
+            .addCase(fetchDeleteAdminCatagory.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(fetchDeleteAdminCatagory.fulfilled, (state, action) => {
+                state.status = "completed"
+                let filteredCatagory = state.portfoliosCatagories.filter((item) => item.catagoryId !== action.payload.id)
+                state.portfoliosCatagories = filteredCatagory
             })
     }
 })

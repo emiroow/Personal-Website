@@ -22,7 +22,6 @@ export const fetchDeleteAdminCertificate = createAsyncThunk("/certificate/fetchD
 })
 
 export const fetchEditAdminCertificate = createAsyncThunk("/certificate/fetchEditAdminCertificate", async (data) => {
-    console.log(data)
     const response = await EditAdminCertificate(data)
     return { status: response.status, data: response.data }
 })

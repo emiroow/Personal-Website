@@ -15,7 +15,6 @@ export default function AddCategory() {
                 title: titleVal,
                 lang: 0
             }))
-            console.log(response.payload)
             if (response.payload.status === 200) {
                 toast.success(t("SuccessToAdd"), {
                     position: "top-center",

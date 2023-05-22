@@ -154,6 +154,10 @@ export const DeleteAdminCertificate = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/deleteCertificate/${Id}`;
     return appAxios["post"](Url);
 };
+export const DeleteAdminCatagory = (Id) => {
+    const Url = `${Endpoint}/api/admin/delete/DeletePortfolioCatagory/${Id}`;
+    return appAxios["post"](Url);
+};
 
 // Admin Add
 export const SetAbout = (Data) => {
