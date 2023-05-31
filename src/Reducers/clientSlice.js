@@ -15,9 +15,6 @@ export const fetchClientData = createAsyncThunk("/client/fetchClientData", async
 const clientSlice = createSlice({
     name: "client",
     initialState,
-    reducers: {
-
-    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchClientData.pending, (state, action) => {

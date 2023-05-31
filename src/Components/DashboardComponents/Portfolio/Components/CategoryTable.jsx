@@ -2,18 +2,45 @@ import React, { useEffect } from 'react'
 import { BsTrashFill } from "react-icons/bs"
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchDeleteAdminCatagory, fetchgetAdminPortfoliosCatagories } from '../../../../Reducers/DashboardSlices/PortfolioSlice'
+import { toast } from 'react-toastify';
+import { t } from 'i18next';
+import { DashboardContext } from '../../../../ContextApi/DashboardContext';
+import { useContext } from 'react';
 
 export default function CategoryTable() {
     const dispatch = useDispatch()
-
-    const Categories = useSelector((state) => state.portfolio.portfoliosCatagories)
+    const { TabState } = useContext(DashboardContext)
+    const Categories = useSelector((state) => state.portfolio.portfoliosCatagories.filter((item) => item.lang === TabState))
 
     useEffect(() => {
         dispatch(fetchgetAdminPortfoliosCatagories())
     }, [])
 
-    const handleDelete = (id) => {
-        dispatch(fetchDeleteAdminCatagory(id))
+    const handleDelete = async (id) => {
+        const response = await dispatch(fetchDeleteAdminCatagory(id))
+        if (response.payload.status === 200) {
+            toast.success(t("SuccessTopdelete"), {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        } else {
+            toast.warning(t("usedCategory"), {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        }
     }
 
     return (

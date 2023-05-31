@@ -159,7 +159,8 @@ const fa = {
     warningStartCount: "تعداد ستاره ها استاندارد نمیباشد",
     ImageUrl: "لینک عکس",
     Empty: "خالی",
-    Category: "دسته بندی نمونه کارها"
-
+    Category: "دسته بندی نمونه کارها",
+    link: "لینک",
+    usedCategory: "این دسته بندی استفاده شده !"
 };
 export default fa;

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import Analyze from './MainComponents/Analyze'
 import Banner from './MainComponents/Banner'
 import MyService from './MainComponents/MyService'
@@ -16,30 +16,32 @@ export default function Main() {
 
     return (
         <div className="w-[100%] lg:w-[69%] relative h-max mb-[15px]">
-            <Banner />
             {
-                getSetting.analysis ? <Analyze /> : null
+                getSetting?.banner ? <Banner /> : null
             }
             {
-                getSetting.services ? <MyService /> : null
+                getSetting?.analysis && getData?.analyses?.length !== 0 ? <Analyze /> : null
             }
             {
-                getSetting.comments ? <Comments /> : null
+                getSetting?.services && getData?.services?.length !== 0 ? <MyService /> : null
             }
             {
-                getSetting.portfolios && getData?.portfolioCatagories ? <PortfolioGallery /> : null
+                getSetting?.comments && getData?.comments?.length !== 0 ? <Comments /> : null
             }
             {
-                getSetting.certificates ? <Certificate /> : null
+                getSetting?.portfolios && getData?.portfolios?.length !== 0 ? <PortfolioGallery /> : null
             }
             {
-                getSetting.histories ? <History /> : null
+                getSetting?.certificates && getData?.certificates?.length !== 0 ? <Certificate /> : null
+            }
+            {
+                <History /> //Setting Config in History Component
             }
             {
                 getSetting?.contactUsBox ? <ContactMe /> : null
             }
             {
-                getSetting?.map ? <Map /> : null
+                getSetting?.map && getData?.about?.locationAddress ? <Map /> : null
             }
             <Footer />
         </div>

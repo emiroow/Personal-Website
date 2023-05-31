@@ -14,16 +14,14 @@ export default function Certificate() {
                 </div>
             </div>
             <Fancybox options={{ infinite: true }}>
-                <div className='w-full flex-wrap justify-around md:justify-center px-5 p-5 flex'>
+                <div className='w-full flex-wrap justify-center md:justify-center px-5 md:p-5 flex'>
                     {
-                        getData?.map((item, index) => {
-                            return <div className='group flex flex-col items-center border-[2.5px] mb-4 md:mb-5 md:mx-4 2xl:mx-5 h-max dark:border-DarkPurple border-LightMaincolor drop-shadow-xl rounded-t-lg rounded-b-lg'>
-                                <div data-src={item.link} key={index} data-fancybox="Certificate" className='shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)]'>
-                                    <img className='w-[300px] md:w-[250px] 2xl:w-[350px] cursor-pointer object-fill bg-cover bg-no-repeat  rounded-t-lg ' src={item.link} alt="" />
-                                </div>
-                                <div className='flex flex-col w-[300px] md:w-[250px] 2xl:w-[350px] h-[64px] overflow-hidden transition-all duration-700 hover:h-max md:group-hover:h-max z-20 dark:bg-DarkPurple/60 p-2 dark:border-DarkPurple border-LightMaincolor bg-LightMaincolor/60 rounded-b-lg'>
-                                    <span className='font-IranBold'>{item.title}</span>
-                                    <span className='font-IranLight'>{item.description}</span>
+                        getData?.map((item) => {
+                            return <div key={item.id} className=" shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] h-max mb-4 rounded-lg dark:border-DarkPurple border-LightMaincolor border-[2.5px] md:mx-4 2xl:mx-5 ">
+                                <img data-src={item.link} data-fancybox="gallery1" className='w-[300px] md:w-[250px] 2xl:w-[350px] cursor-pointer rounded-t-lg  drop-shadow-xl  bg-cover bg-no-repeat' src={item.link} alt="portfolioImage" />
+                                <div className='w-[300px] md:w-[250px] 2xl:w-[350px] break-words flex flex-col flex-wrap transition-all duration-700 h-max z-20 dark:bg-DarkPurple/60 p-2 bg-LightMaincolor/60 rounded-b-lg'>
+                                    <span className='font-IranBold text-sm mt-1'>{item.title}</span>
+                                    <span className='font-IranLight text-sm mt-1'>{item.description}</span>
                                 </div>
                             </div>
                         })

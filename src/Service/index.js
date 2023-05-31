@@ -116,6 +116,10 @@ export const EditAdminCertificate = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/editCertificate`;
     return appAxios["post"](Url, Data);
 };
+export const EditAdminPortfolio = (Data) => {
+    const Url = `${Endpoint}/api/admin/edit/editportfolio`;
+    return appAxios["post"](Url, Data);
+};
 
 // Admin Delete
 export const DeleteAdminAnalysis = (Id) => {
@@ -156,6 +160,10 @@ export const DeleteAdminCertificate = (Id) => {
 };
 export const DeleteAdminCatagory = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/DeletePortfolioCatagory/${Id}`;
+    return appAxios["post"](Url);
+};
+export const DeleteAdminPortfolio = (Id) => {
+    const Url = `${Endpoint}/api/admin/delete/DeletePortfolio/${Id}`;
     return appAxios["post"](Url);
 };
 
@@ -202,5 +210,9 @@ export const SetAdminAddCertificate = (Data) => {
 };
 export const SetAdminPortfoliosCatagories = (Data) => {
     const Url = `${Endpoint}/api/admin/add/addPortfolioCatagory`;
+    return appAxios["post"](Url, Data);
+};
+export const SetAdminPortfolio = (Data) => {
+    const Url = `${Endpoint}/api/admin/add/addPortfolio`;
     return appAxios["post"](Url, Data);
 };

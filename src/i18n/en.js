@@ -159,6 +159,8 @@ const en = {
     warningStartCount: "Star as 1 to 5",
     ImageUrl: "Image Url",
     Empty: "Empty",
-    Category: "Portfolio Category"
+    Category: "Portfolio Category",
+    link: "link",
+    usedCategory: "this categoru is used !"
 };
 export default en;

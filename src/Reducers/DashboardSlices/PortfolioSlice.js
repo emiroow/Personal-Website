@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { DeleteAdminCatagory, SetAdminPortfoliosCatagories, getAdminPortfolios, getAdminPortfoliosCatagories } from "../../Service";
+import { DeleteAdminCatagory, DeleteAdminPortfolio, EditAdminPortfolio, SetAdminPortfolio, SetAdminPortfoliosCatagories, getAdminPortfolios, getAdminPortfoliosCatagories } from "../../Service";
 
 export const fetchgetAdminPortfolios = createAsyncThunk('/portfolio/fetchgetAdminPortfolios', async () => {
     const response = await getAdminPortfolios()
@@ -18,8 +18,22 @@ export const fetchSetAdminPortfoliosCatagories = createAsyncThunk('/portfolio/fe
 
 export const fetchDeleteAdminCatagory = createAsyncThunk('/portfolio/fetchDeleteAdminCatagory', async (id) => {
     const response = await DeleteAdminCatagory(id)
-    console.log(response)
     return { data: response.data, status: response.status, id: id }
+})
+
+export const fetchEditAdminPortfolio = createAsyncThunk('/portfolio/fetchEditAdminPortfolio', async (data) => {
+    const response = await EditAdminPortfolio(data)
+    return { data: data, status: response.status }
+})
+
+export const fetchDeleteAdminPortfolio = createAsyncThunk('/portfolio/fetchDeleteAdminPortfolio', async (id) => {
+    const response = await DeleteAdminPortfolio(id)
+    return { data: response.data, status: response.status, id: id }
+})
+
+export const fetchSetAdminPortfolio = createAsyncThunk('/portfolio/fetchSetAdminPortfolio', async (data) => {
+    const response = await SetAdminPortfolio(data)
+    return { data: data, status: response.status }
 })
 
 const initialState = {
@@ -65,9 +79,42 @@ const PortfolioSlice = createSlice({
                 state.status = "pending"
             })
             .addCase(fetchDeleteAdminCatagory.fulfilled, (state, action) => {
+                if (action.payload.status === 200) {
+                    let filteredCatagory = state.portfoliosCatagories.filter((item) => item.catagoryId !== action.payload.id)
+                    state.portfoliosCatagories = filteredCatagory
+                }
                 state.status = "completed"
-                let filteredCatagory = state.portfoliosCatagories.filter((item) => item.catagoryId !== action.payload.id)
-                state.portfoliosCatagories = filteredCatagory
+            })
+
+            // fetchEditAdminPortfolio
+            .addCase(fetchEditAdminPortfolio.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(fetchEditAdminPortfolio.fulfilled, (state, action) => {
+                state.status = "completed"
+                if (action.payload.status === 200) {
+                    const findedIndex = state.portfolios.findIndex((item) => item.portfolioId === action.payload.data.portfolioId)
+                    state.portfolios[findedIndex] = action.payload.data
+                }
+                state.status = "completed"
+            })
+
+            // fetchDeleteAdminPortfolio
+            .addCase(fetchDeleteAdminPortfolio.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(fetchDeleteAdminPortfolio.fulfilled, (state, action) => {
+                state.portfolios = state.portfolios.filter((item) => item.portfolioId !== action.payload.id)
+                state.status = "completed"
+            })
+
+            // fetchSetAdminPortfolio
+            .addCase(fetchSetAdminPortfolio.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(fetchSetAdminPortfolio.fulfilled, (state, action) => {
+                state.portfolios.push(action.payload.data)
+                state.status = "completed"
             })
     }
 })

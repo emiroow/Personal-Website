@@ -1,42 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Fancybox from './ChildComponents/Fancybox';
-
+import { useSelector } from 'react-redux';
+import i18n from '../../i18n';
+import { BinerConvert } from '../../Helpers/LangConvertToBiner';
+import Portfolio from './ChildComponents/Portfolio';
 export default function PortfolioGallery() {
-    const [GetGalleryState, SetGalleryState] = useState("All")
-    const cat = [
-        { tag: "All", titleFa: "همه دسته بندی ها", id: "5da5s4d" },
-        { tag: "Web", titleFa: "طراحی سایت", id: "5sd4f54" },
-        { tag: "Ui/Ux", titleFa: "Ui/Ux", id: "521asdd" },
-    ]
-    const [GetCats, SetCats] = useState(cat)
-
-    const imgs = [{ author: "The Lazy Artist Gallery", tag: "Web", src: "https://github.com/OlgaKoplik/CodePen/blob/master/filterGallery/1.jpg?raw=true", dis: "lorem lorem lorem lorem lorem lorem lorem lorem lorem", title: "Title" },
-    { author: "Dominika Roseclay", tag: "Web", src: "https://github.com/OlgaKoplik/CodePen/blob/master/filterGallery/4.jpg?raw=true", dis: "lorem lorem lorem lorem lorem lorem lorem lorem lorem", title: "Title" },
-    { author: "Jeffrey Czum", tag: "Ui/Ux", src: "https://github.com/OlgaKoplik/CodePen/blob/master/filterGallery/6.jpg?raw=true", dis: "lorem lorem lorem lorem lorem lorem lorem lorem lorem", title: "Title" },
-    ];
-    const [GetImgs, SetImgs] = useState(imgs)
+    const [GetGalleryState, SetGalleryState] = useState("all")
+    const PortfolioCategories = useSelector((state) => state.client.clientState.portfolioCatagories?.filter((item) => item.lang === BinerConvert(i18n.language)))
+    const Portfolios = useSelector((state) => state.client.clientState.portfolios)
+    const [portfoliosState, SetPortfoliosState] = useState(Portfolios)
+    const { t } = useTranslation()
 
     const HandelClickCat = (e) => {
-        SetGalleryState(e.target.dataset.tag)
+        SetGalleryState(e.target.id)
     }
+
     const handleGangeSelect = (e) => {
         SetGalleryState(e.target.value)
     }
 
     useEffect(() => {
-        SetImgs(imgs)
-        if (GetGalleryState === "All") {
-            SetImgs(imgs)
+        if (GetGalleryState === "all") {
+            SetPortfoliosState(Portfolios)
         } else {
-            let filteredPortfolio = imgs.filter((item) => {
-                return item.tag.toLowerCase().includes(GetGalleryState.toLowerCase())
-            })
-            SetImgs(filteredPortfolio)
+            SetPortfoliosState(Portfolios?.filter((item) => item.categoriesId.includes(parseInt(GetGalleryState))))
         }
-    }, [GetGalleryState])
-
-    const { t } = useTranslation()
+    }, [GetGalleryState, Portfolios])
 
     return (
         <div id='Portfolio' className='mt-16 md:mt-20 duration-700 justify-center flex flex-col items-center transition-all'>
@@ -45,18 +35,38 @@ export default function PortfolioGallery() {
                     <h1 className='text-shadow-dark mb-0 md:mb-3 font-IranBold text-xl md:text-2xl 2xl:text-3xl md:mx-5'>{t("MyPortfoliosGalleryTitle")}</h1>
                 </div>
                 <div>
-                    <select id="small" onChange={handleGangeSelect} className=" md:hidden font-IranBold text-[11px]  mt-5 block w-full p-1 mb-6 text-center text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select onChange={handleGangeSelect} className=" md:hidden font-IranBold text-[11px]  mt-5 block w-full p-1 mb-6 text-center text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         {
-                            GetCats.map((item, i) => {
-                                return (<option key={i} value={item.tag} className="text-center">{item.titleFa}</option>)
+                            BinerConvert(i18n.language) === 0 ?
+                                <option value='all' className="text-center">
+                                    All
+                                </option> : null
+                        }
+                        {
+                            BinerConvert(i18n.language) === 1 ?
+                                <option value='all' className="text-center">
+                                    همه
+                                </option> : null
+                        }
+                        {
+                            PortfolioCategories?.map((item, i) => {
+                                return (<option key={i} value={String(item.catagoryId)} className="text-center">{item.title}</option>)
                             })
                         }
                     </select>
                     <ul className='hidden md:flex font-IranBold'>
                         {
-                            GetCats.map((item, i) => {
-                                return <li key={i} onClick={HandelClickCat} data-tag={item.tag} className={GetGalleryState === item.tag ? "md:text-sm 2xl:text-[17px] mx-5 cursor-pointer dark:text-DarkPurple text-LightYellow" : " md:text-sm 2xl:text-[17px] mx-5 cursor-pointer"}>{item.titleFa}</li>
+                            BinerConvert(i18n.language) === 0 ?
+                                <li id='all' onClick={HandelClickCat} className={GetGalleryState === "all" ? "md:text-sm 2xl:text-[17px] mx-5 cursor-pointer dark:text-DarkPurple text-LightYellow" : " md:text-sm 2xl:text-[17px] mx-5 cursor-pointer"}>All</li> : null
+                        }
+                        {
+                            PortfolioCategories?.map((item) => {
+                                return <li id={String(item.catagoryId)} key={item.catagoryId} onClick={HandelClickCat} className={GetGalleryState === String(item.catagoryId) ? "md:text-sm 2xl:text-[17px] mx-5 cursor-pointer dark:text-DarkPurple text-LightYellow" : " md:text-sm 2xl:text-[17px] mx-5 cursor-pointer"}>{item.title}</li>
                             })
+                        }
+                        {
+                            BinerConvert(i18n.language) === 1 ?
+                                <li id='all' onClick={HandelClickCat} className={GetGalleryState === "all" ? "md:text-sm 2xl:text-[17px] mx-5 cursor-pointer dark:text-DarkPurple text-LightYellow" : " md:text-sm 2xl:text-[17px] mx-5 cursor-pointer"}>همه</li> : null
                         }
                     </ul>
                 </div>
@@ -64,15 +74,9 @@ export default function PortfolioGallery() {
             <div className='w-full flex-wrap justify-center md:justify-center px-5 md:p-5 flex'>
                 <Fancybox options={{ infinite: true }}>
                     {
-                        GetImgs.map((item, i) => {
+                        portfoliosState?.map((item) => {
                             return (
-                                <div key={i} data-src={item.src} data-fancybox="gallery1" className="relative shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] mb-4 group md:mx-4 2xl:mx-5 ">
-                                    <div className='flex flex-col absolute transition-all opacity-0 duration-700 md:group-hover:opacity-100 group-active:opacity-100 left-0 bottom-0 h-max w-full z-20 dark:bg-DarkPurple/60 p-2 border-t-[2.5px] dark:border-DarkPurple border-LightMaincolor bg-LightMaincolor/60 rounded-b-lg'>
-                                        <span className='font-IranBold'>{item.title}</span>
-                                        <span className='font-IranLight'>{item.dis}</span>
-                                    </div>
-                                    <img className='w-[300px] md:w-[250px] 2xl:w-[350px] cursor-pointer rounded-lg dark:border-DarkPurple border-LightMaincolor drop-shadow-xl border-[2.5px] bg-cover bg-no-repeat' src={item.src} alt="" />
-                                </div>
+                                <Portfolio key={item.portfolioId} data={item} />
                             )
                         })
                     }

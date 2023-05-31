@@ -6,23 +6,38 @@ import SkilsLineProgress from "../Components/SidePortfoiliComponents/SkilsLinePr
 import AdditionalSkills from './SidePortfoiliComponents/AdditionalSkills'
 import DownloadCv from './SidePortfoiliComponents/DownloadCv'
 import Socials from './SidePortfoiliComponents/Socials'
+import { useSelector } from 'react-redux'
 export default function SidePortfolio() {
+  const getData = useSelector((store) => store.client.clientState)
+  const getSetting = useSelector((store) => store.setting.setting)
   return (
     <div className="lg:w-[25%] lg:block hidden relative h-[96vh] ">
       <div className="w-[24.4%] h-[97vh] fixed  dark:bg-BackColor bg-LightMaincolor shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)] rounded-md border-b-2 dark:border-DarkPurple border-LightYellow">
         <Header />
         <div className='w-full lg:hidden text-2xl h-[5vh] dark:text-DarkPurple border-b-2 dark:border-DarkPurple border-LightYellow text-LightYellow flex items-center dark:bg-BackColor bg-LightMaincolor shadow-[-1px_-12px_10px_-9px_rgba(0,0,0,0.25)] justify-evenly '>
-          <Socials />
+          {
+            getSetting?.social && getData?.socials !== 0 ? <Socials /> : null
+          }
         </div>
         <div className=' h-[56vh] pb-5 overflow-auto RemoveScroll cursor-pointer' >
           <Info />
-          <CircleProgressBarss />
-          <SkilsLineProgress />
-          <AdditionalSkills />
-          <DownloadCv />
+          {
+            getSetting?.circleSkills && getData?.circleSkills !== 0 ? <CircleProgressBarss /> : null
+          }
+          {
+            getSetting?.skills && getData?.skills !== 0 ? <SkilsLineProgress /> : null
+          }
+          {
+            getSetting?.otherSkills && getData?.skills?.filter((item) => item.progressBar === false).length !== 0 ? <AdditionalSkills /> : null
+          }
+          {
+            getSetting?.downloadCv && getData?.about?.cvUrl ? <DownloadCv /> : null
+          }
         </div>
         <div className='w-full max-lg:hidden text-2xl h-[5vh] dark:text-DarkPurple text-LightYellow flex items-center dark:bg-BackColor bg-LightMaincolor shadow-[-1px_-12px_10px_-9px_rgba(0,0,0,0.25)] justify-evenly '>
-          <Socials />
+          {
+            getSetting?.social && getData?.socials !== 0 ? <Socials /> : null
+          }
         </div>
       </div>
     </div>

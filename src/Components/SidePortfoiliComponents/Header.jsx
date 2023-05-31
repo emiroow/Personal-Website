@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RiLoginCircleFill } from "react-icons/ri"
 import { Link } from 'react-router-dom'
+
 export default function Header() {
     const aboutData = useSelector((store) => store.client.clientState.about)
     const [profileimg, Setprofileimg] = useState(require("../../assets/images/ProfileImg.png"))
     const Token = localStorage.getItem("PrjTk")
+
     useEffect(() => {
         if (aboutData !== undefined) {
             Setprofileimg(aboutData.avatarUrl)

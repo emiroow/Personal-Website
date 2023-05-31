@@ -3,17 +3,21 @@ import { t } from 'i18next'
 import { useDispatch } from 'react-redux'
 import { fetchSetAdminPortfoliosCatagories } from '../../../../Reducers/DashboardSlices/PortfolioSlice'
 import { toast } from 'react-toastify';
+import { useContext } from 'react';
+import { DashboardContext } from '../../../../ContextApi/DashboardContext';
 
 export default function AddCategory() {
+    const { TabState } = useContext(DashboardContext)
     const Title = useRef()
     const dispatch = useDispatch()
     const handleAddCatefory = async () => {
+
         const titleVal = Title.current.value
         if (titleVal) {
             const response = await dispatch(fetchSetAdminPortfoliosCatagories({
                 id: "0",
                 title: titleVal,
-                lang: 0
+                lang: TabState
             }))
             if (response.payload.status === 200) {
                 toast.success(t("SuccessToAdd"), {
@@ -59,10 +63,10 @@ export default function AddCategory() {
                 <div className='flex w-full lg:w-[40%] justify-between flex-wrap flex-row m-auto items-center'>
                     <div className=' lg:w-[80%] m-auto'>
                         <label htmlFor="">{t("TitleLabel")} :</label>
-                        <input type="text" ref={Title} placeholder={t("TitleLabel")} className='w-full my-3 p-2 rounded-lg dark:border-DarkPurple border-2 text-black text-center font-IranBold' />
+                        <input type="text" ref={Title} placeholder={t("TitleLabel")} className='w-full my-3 p-2 rounded-lg border-DarkPurple border-2 outline-DarkPurple text-black text-center font-IranBold' />
                     </div>
                     <div className='lg:w-[10%] m-auto'>
-                        <button onClick={() => handleAddCatefory()} className='px-5 py-3 mt-6  dark:bg-green-500 bg-LightYellow w-max rounded-xl'>{t("Add")}</button>
+                        <button onClick={() => handleAddCatefory()} className='px-5 py-3 mt-6  dark:bg-green-500  w-max rounded-xl'>{t("Add")}</button>
                     </div>
                 </div>
             </div>

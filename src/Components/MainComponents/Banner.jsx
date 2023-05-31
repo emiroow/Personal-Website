@@ -6,7 +6,6 @@ import i18n from '../../i18n';
 export default function Banner() {
     const { t } = useTranslation()
     const GetAbout = useSelector((store) => store.client.clientState.about)
-    console.log(GetAbout)
     return (
         <div id='home' className='dark:bg-BackColor max-lg:mt-[65px] pt-3 bg-LightMaincolor flex-col md:flex-row w-full flex shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] rounded-md border-b-[3px] border-LightYellow dark:border-DarkPurple'>
             <div className=' md:w-[60%] md:my-10 my-3 mx-3 md:mx-10' >
