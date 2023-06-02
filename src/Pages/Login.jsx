@@ -19,10 +19,23 @@ export default function Login() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const store = useSelector((store) => store.authentication)
+  const Name = useSelector((store) => store?.client?.clientState?.about?.name)
 
   useEffect(() => {
     const GetFromServer = async () => {
-      dispatch(fetchAuthLogin({ userName: LoginInfo.user, password: LoginInfo.password }))
+      const response = await dispatch(fetchAuthLogin({ userName: LoginInfo.user, password: LoginInfo.password }))
+      if (response.payload.success) {
+        toast.success(t("wellcom") + " " + Name, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        });
+      }
     }
     if (LoginInfo) {
       GetFromServer()

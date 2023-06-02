@@ -22,7 +22,7 @@ export default function ContentsEn() {
         dispatch(fetchgetAdminContactUsMessages(data))
     }, [curentPage])
 
-    const TableItems = useSelector((state) => state.ContactUsMessages?.Messages?.data?.result)
+    const TableItems = useSelector((state) => state.ContactUsMessages?.Messages?.data)
 
     function convertToJalali(gregorianDate) {
         const jalaliDate = moment(gregorianDate, 'YYYY-MM-DDTHH:mm:ss.SSSSSSS');

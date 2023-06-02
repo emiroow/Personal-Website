@@ -26,15 +26,19 @@ export const GetIp = () => {
 };
 
 // Auth
-export const AuthLogin = (data) => {
+export const AuthLogin = (Data) => {
     const Url = `${Endpoint}/api/Auth`;
-    return appAxios["post"](Url, data);
+    return appAxios["post"](Url, Data);
 };
 
 // Admin Setting
 export const GetAdminSetting = () => {
     const Url = `${Endpoint}/api/admin/setting`;
     return appAxios["get"](Url);
+};
+export const SetAdminSetting = (Data) => {
+    const Url = `${Endpoint}/api/admin/setting/Setsetting`;
+    return appAxios["post"](Url, Data);
 };
 
 // Admin Get
@@ -71,8 +75,13 @@ export const getAdminCircleSkills = () => {
     return appAxios["get"](Url);
 }
 export const getAdminContactUsMessages = (data) => {
-    const Url = `${Endpoint}/api/admin/ContactUsMessages?page=${data.page}&countOfPage=${data.countOfPage}&lang=${data.lang}`;
-    return appAxios["get"](Url);
+    if (data.page && data.lang) {
+        const Url = `${Endpoint}/api/admin/ContactUsMessages?page=${data.page}&countOfPage=${data.countOfPage}&lang=${data.lang}`;
+        return appAxios["get"](Url);
+    } else {
+        const Url = `${Endpoint}/api/admin/ContactUsMessages?countOfPage=${data.countOfPage}`;
+        return appAxios["get"](Url);
+    }
 }
 export const getAdminComments = () => {
     const Url = `${Endpoint}/api/admin/comments `;

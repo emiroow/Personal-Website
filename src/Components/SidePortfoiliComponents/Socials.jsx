@@ -9,7 +9,7 @@ export default function Socials() {
     const aboutData = useSelector((store) => store.client.clientState.socials)
 
     return (
-        <>
+        <div className='w-full max-lg:hidden text-2xl h-[5vh] dark:text-DarkPurple text-LightYellow flex items-center dark:bg-BackColor bg-LightMaincolor shadow-[-1px_-12px_10px_-9px_rgba(0,0,0,0.25)] justify-evenly '>
             {
                 aboutData?.map((item, index) => {
                     return (
@@ -20,6 +20,6 @@ export default function Socials() {
                                         <a key={index} href={item.link}><BsWhatsapp /></a>)
                 })
             }
-        </>
+        </div>
     )
 }

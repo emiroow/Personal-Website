@@ -25,7 +25,7 @@ export default function Map() {
     }, [getData])
 
     return (
-        <div className='text-center m-auto w-[98%] mt-8 md:w-[95%] 2xl:w-[93%] rounded-md border-b-4 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] dark:border-DarkPurple border-LightMaincolor ' >
+        <div className='text-center my-5 md:my-16 m-auto w-[98%] md:w-[95%] 2xl:w-[93%] rounded-md border-b-4 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.40)] dark:border-DarkPurple border-LightMaincolor ' >
             {
                 GetPosition?.lat || GetPosition?.lng ?
                     <MapContainer

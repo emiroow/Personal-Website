@@ -1,37 +1,33 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-
+import SettingTableItem from './SettingTableItem'
+import Preloader from "../../../Preloader"
+import { t } from 'i18next'
 export default function Settings() {
     const getSetting = useSelector((store) => store.setting.setting)
-    console.log(getSetting)
+    const Loader = useSelector((store) => store.setting.loader)
     return (
-        <div className='lg:w-[50%] overflow-auto'>
-            <h1 className='font-IranBold'>تنظیمات نمایش هر بخش :</h1>
-            <div className="inline-block min-w-full mt-3 rounded-b-xl">
+        <div className='lg:w-[49.5%] overflow-auto'>
+            {
+                Loader ? <Preloader /> : null
+            }
+            <h1 className='font-IranBold text-xl'>{t("partSetting")}:</h1>
+            <div className="inline-block min-w-full mt-5 rounded-b-xl">
                 <div className="overflow-auto rounded-sm">
-                    <table className="min-w-full text-left text-sm font-light  rounded-b-xl">
+                    <table className="min-w-full text-center text-sm font-light  rounded-b-xl">
                         <thead className="border-b  font-medium border-neutral-500 bg-black ">
                             <tr>
-                                <th scope="col" className="px-6 py-4">#</th>
-                                <th scope="col" className="px-6 py-4">Title</th>
-                                <th scope="col" className="px-6 py-4">مقدار فعلی</th>
-                                <th scope="col" className="px-6 py-4">Action</th>
+                                <th scope="col" className="px-6 py-4 max-sm:hidden">#</th>
+                                <th scope="col" className="px-6 py-4">{t("TitleLabel")}</th>
+                                <th scope="col" className="px-6 py-4">{t("nowValue")}</th>
+                                <th scope="col" className="px-6 py-4">{t("Action")}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                getSetting?.map((item, index) => {
+                                Object.entries(getSetting).map(([name, value], index) => {
                                     return (
-                                        <tr className="border-b border-neutral-500 bg-neutral-700">
-                                            <td className="whitespace-nowrap px-6 py-4 font-medium">{index + 1}</td>
-                                            <td className="whitespace-nowrap px-6 py-4">{item.name}</td>
-                                            <td className="whitespace-nowrap px-6 py-4"></td>
-                                            <td className="whitespace-nowrap px-6 py-4 flex justify-end ">
-                                                <button>
-                                                    asdas
-                                                </button>
-                                            </td>
-                                        </tr>
+                                        <SettingTableItem key={name + String(value)} name={name} index={index} value={value} />
                                     )
                                 })
                             }

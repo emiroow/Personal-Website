@@ -15,7 +15,7 @@ export default function Main() {
     const getSetting = useSelector((store) => store.setting.setting)
 
     return (
-        <div className="w-[100%] lg:w-[69%] relative h-max mb-[15px]">
+        <div className="w-[100%] lg:w-[69%] relative h-max">
             {
                 getSetting?.banner ? <Banner /> : null
             }
@@ -43,7 +43,9 @@ export default function Main() {
             {
                 getSetting?.map && getData?.about?.locationAddress ? <Map /> : null
             }
-            <Footer />
+            {
+                getSetting?.footer ? <Footer /> : null
+            }
         </div>
     )
 }

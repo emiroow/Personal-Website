@@ -49,8 +49,8 @@ export default function NoneProgresContentsEn() {
                                 <thead className="border-b  font-medium border-neutral-500 bg-black ">
                                     <tr>
                                         <th scope="col" className="px-6 py-4">#</th>
-                                        <th scope="col" className="px-6 py-4">Title</th>
-                                        <th scope="col" className="px-6 py-4">Action</th>
+                                        <th scope="col" className="px-6 py-4">{t("TitleLabel")}</th>
+                                        <th scope="col" className="px-6 py-4">{t("Action")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -47,11 +47,11 @@ export default function Comments() {
 
 
   return (
-    <>
-      <div className='w-[98%] md:w-[94%] 2xl:w-[93%] m-auto mt-20'>
-        <h1 className='text-shadow-dark mb-3 max-md:mt-10 font-IranBold text-xl md:text-2xl 2xl:text-3xl'>{t("ComentsTitle")}</h1>
+    <div className='my-5 md:my-16'>
+      <div className='w-[98%] md:w-[94%] 2xl:w-[93%] m-auto'>
+        <h1 className='text-shadow-dark font-IranBold text-xl md:text-2xl 2xl:text-3xl'>{t("ComentsTitle")}</h1>
       </div>
-      <div className=' w-[85%] md:w-[95%] 2xl:w-[94%] m-auto'>
+      <div className=' w-[85%] md:w-[95%] 2xl:w-[94%] mt-5 m-auto'>
         <Slider {...settings}>
           {
             getData?.map((item, index) => {
@@ -60,6 +60,6 @@ export default function Comments() {
           }
         </Slider>
       </div>
-    </>
+    </div>
   )
 }

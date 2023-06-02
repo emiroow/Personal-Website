@@ -19,8 +19,10 @@ export default function SidePortfolio() {
             getSetting?.social && getData?.socials !== 0 ? <Socials /> : null
           }
         </div>
-        <div className=' h-[56vh] pb-5 overflow-auto RemoveScroll cursor-pointer' >
-          <Info />
+        <div className={`${getSetting?.social && getData?.socials ? "h-[56vh]" : "h-[62vh]"} pb-5 overflow-auto RemoveScroll cursor-pointer`} >
+          {
+            getSetting?.info ? <Info /> : null
+          }
           {
             getSetting?.circleSkills && getData?.circleSkills !== 0 ? <CircleProgressBarss /> : null
           }
@@ -34,11 +36,9 @@ export default function SidePortfolio() {
             getSetting?.downloadCv && getData?.about?.cvUrl ? <DownloadCv /> : null
           }
         </div>
-        <div className='w-full max-lg:hidden text-2xl h-[5vh] dark:text-DarkPurple text-LightYellow flex items-center dark:bg-BackColor bg-LightMaincolor shadow-[-1px_-12px_10px_-9px_rgba(0,0,0,0.25)] justify-evenly '>
-          {
-            getSetting?.social && getData?.socials !== 0 ? <Socials /> : null
-          }
-        </div>
+        {
+          getSetting?.social && getData?.socials !== 0 ? <Socials /> : null
+        }
       </div>
     </div>
   )

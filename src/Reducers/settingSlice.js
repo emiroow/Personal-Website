@@ -1,5 +1,5 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import { GetSetting } from "../Service"
+import { GetSetting, SetAdminSetting } from "../Service"
 
 const initialState = {
     setting: {},
@@ -11,6 +11,10 @@ const initialState = {
 export const fetchGetSetting = createAsyncThunk("/setting/fetchGetSetting", async (Language) => {
     const response = await GetSetting(Language)
     return response.data
+})
+export const fetchSetAdminSetting = createAsyncThunk("/setting/fetchSetAdminSetting", async (data) => {
+    const response = await SetAdminSetting(data)
+    return { status: response.status, name: data.key, value: data.val }
 })
 
 const settingSlice = createSlice({
@@ -29,6 +33,21 @@ const settingSlice = createSlice({
             .addCase(fetchGetSetting.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.payload
+            })
+
+            // fetchSetAdminSetting
+            .addCase(fetchSetAdminSetting.pending, (state, action) => {
+                state.loader = true;
+            })
+            .addCase(fetchSetAdminSetting.fulfilled, (state, action) => {
+                state.loader = false;
+                state.status = "done";
+                const { name, value } = action.payload;
+                console.log({ name, value })
+                state.setting = {
+                    ...state.setting,
+                    [name]: value,
+                };
             })
     }
 })

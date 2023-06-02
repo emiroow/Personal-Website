@@ -75,10 +75,10 @@ export default function ContactMe() {
     });
 
     return (
-        <div id='contact'>
+        <div id='contact' className='my-5 md:my-16'>
             <ToastContainer />
-            <div className=' m-auto w-[98%] md:w-[95%] 2xl:w-[93%] mt-20'>
-                <h1 className='text-shadow-dark mb-3 max-md:mt-10 font-IranBold text-xl md:text-2xl  2xl:text-3xl'>{t("Cuntact")}</h1>
+            <div className=' m-auto w-[98%] md:w-[95%] 2xl:w-[93%]'>
+                <h1 className='text-shadow-dark mb-5 max-md:mt-10 font-IranBold text-xl md:text-2xl  2xl:text-3xl'>{t("Cuntact")}</h1>
             </div>
             <div className=' w-[98%] md:w-[95%] 2xl:w-[93%] m-auto flex justify-between flex-row flex-wrap'>
                 <div className='w-full lg:w-[69.5%] dark:bg-BackColorWhiter rounded-md p-5 border-y-2 dark:border-DarkPurple border-LightYellow bg-LightMaincolor h-max'>
@@ -159,7 +159,7 @@ export default function ContactMe() {
                         <div className='w-full text-sm md:text-md 2xl:text-lg '>
                             <div className='flex justify-between mt-5'>
                                 <span className='font-IranBold text-[14px] md:text-[18px] lg:text-[14px]'>{t("ContactShowEmail")} :</span>
-                                <span className='font-IranLight text-[13px] md:text-[18px] xl:text-[11px] 2xl:text-[15px]'>{getAboutData?.email}</span>
+                                <span className='font-IranLight text-[13px] xl:text-[11px] 2xl:text-[15px] break-all'>{getAboutData?.email}</span>
                             </div>
                             <div className='flex justify-between mt-5'>
                                 <span className='font-IranBold text-[14px] md:text-[18px] lg:text-[14px]'>{t("ContactShowPhoneNumber")} :</span>

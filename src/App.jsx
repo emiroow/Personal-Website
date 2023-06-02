@@ -19,7 +19,8 @@ import Skills from "./Components/DashboardComponents/Skills/Skills"
 import Socials from "./Components/DashboardComponents/Socials/Socials"
 import Portfolios from "./Components/DashboardComponents/Portfolio/Portfolios"
 import DashboardIndex from "./Components/DashboardComponents/DashboardIndex/DashboardIndex"
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux'
 import { fetchClientData } from './Reducers/clientSlice';
 import { fetchGetSetting } from './Reducers/settingSlice';
@@ -53,6 +54,7 @@ function App() {
     <>
       <div className="dark:bg-MainColorDark duration-100 bg-LightBackcolor">
         <div className=" w-[98%] mt-[15px] max-md:flex-col justify-between m-auto flex  relative text-white ">
+          <ToastContainer />
           <Routes>
             <Route path="/" element={<Client />} />
             <Route path="/Login" element={<Login />} />
