@@ -2,14 +2,13 @@ import { t } from 'i18next'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { getAdminContactUsMessages } from '../../../../Service'
+import { GetAdminStatistics, getAdminContactUsMessages } from '../../../../Service'
 import { BsEye } from 'react-icons/bs'
 import moment from 'jalali-moment'
 import Modal from '../../ContactUsMessages/Modal'
 
 export default function Report() {
-    const getData = useSelector((store) => store.client.clientState)
-    const [commentsState, setCommentsState] = useState()
+    const [reportState, setReportState] = useState()
     const [commentsArr, setCommentsArr] = useState([])
     const [modalState, SetModalState] = useState({ active: false, id: null })
 
@@ -18,8 +17,9 @@ export default function Report() {
             const data = { countOfPage: 16 }
             try {
                 const response = await getAdminContactUsMessages(data)
-                console.log(response)
-                setCommentsState(response.data?.data.length)
+                const responseReport = await GetAdminStatistics()
+                console.log(responseReport)
+                setReportState(responseReport.data)
                 setCommentsArr(response.data?.data)
             } catch (error) {
                 console.log(error)
@@ -46,19 +46,19 @@ export default function Report() {
             <h1 className='font-IranBold text-xl'>{t("Report")}:</h1>
             <div className="w-full bg-LightYellow/50 dark:bg-DarkPurple/40 rounded-md flex flex-row flex-wrap shadow-md mt-5 border-2">
                 <div className='w-[50%] lg:w-[25%] space-y-3  justify-center items-center flex flex-col p-5'>
-                    <div className='font-IranBold text-3xl dark:text-green-500'>{getData?.comments?.length}</div>
+                    <div className='font-IranBold text-3xl dark:text-green-500'>{reportState?.comments / 2}</div>
                     <div className='text-xl'>{t("comments")}</div>
                 </div>
                 <div className='w-[50%] lg:w-[25%] space-y-3 border-x justify-center items-center flex flex-col p-5'>
-                    <div className='font-IranBold text-3xl dark:text-green-500'>{getData?.portfolios?.length}</div>
+                    <div className='font-IranBold text-3xl dark:text-green-500'>{reportState?.portfolios / 2}</div>
                     <div className='text-xl'>{t("PortfoliosMenu")}</div>
                 </div>
                 <div className='w-[50%] lg:w-[25%] space-y-3 max-md:border-t border-x justify-center items-center flex flex-col p-5'>
-                    <div className='font-IranBold text-3xl dark:text-green-500'>{getData?.skills?.length}</div>
+                    <div className='font-IranBold text-3xl dark:text-green-500'>{reportState?.skills / 2}</div>
                     <div className='text-xl'>{t("skills")}</div>
                 </div>
                 <div className='w-[50%] lg:w-[25%] space-y-3 max-md:border-t justify-center items-center flex flex-col p-5'>
-                    <div className='font-IranBold text-3xl dark:text-green-500'>{commentsState}</div>
+                    <div className='font-IranBold text-3xl dark:text-green-500'>{reportState?.contactUsMessages}</div>
                     <div className='text-xl'>{t("ContactUsMessagesMenu").split("ی مخاطبین")}</div>
                 </div>
             </div>

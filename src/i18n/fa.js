@@ -190,6 +190,7 @@ const fa = {
     partSetting: "تنظیمات هر بخش",
     footer: "قوتر سایت",
     Report: "گزارش کلی",
-    newMassege: "جدیدترین پیام ها"
+    newMassege: "جدیدترین پیام ها",
+    webSiteUrl: "آدرس وبسایت"
 };
 export default fa;

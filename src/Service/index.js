@@ -41,6 +41,12 @@ export const SetAdminSetting = (Data) => {
     return appAxios["post"](Url, Data);
 };
 
+// Admin Counters
+export const GetAdminStatistics = () => {
+    const Url = `${Endpoint}/api/admin/Statistics`;
+    return appAxios["get"](Url);
+};
+
 // Admin Get
 export const GetAdminAbout = () => {
     const Url = `${Endpoint}/api/admin/Abouts`;

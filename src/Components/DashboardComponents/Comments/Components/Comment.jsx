@@ -10,7 +10,7 @@ export default function Comment({ data, TabState }) {
     const [modalState, SetModalState] = useState({ Active: false, Access: false, id: null })
     const { t } = useTranslation()
     const dispatch = useDispatch()
-
+    console.log(data)
     const subject = useRef()
     const dateTime = useRef()
     const message = useRef()
@@ -18,6 +18,7 @@ export default function Comment({ data, TabState }) {
     const fromPosition = useRef()
     const starCount = useRef()
     const fromImgUrl = useRef()
+    const websiteUrl = useRef()
 
     const HandleEditing = () => {
         if (!editeing) {
@@ -42,6 +43,7 @@ export default function Comment({ data, TabState }) {
         let fromPositionVal = fromPosition.current.value
         let starCountVal = starCount.current.value
         let fromImgUrlVal = fromImgUrl.current.value
+        let websiteUrlVal = websiteUrl.current.value
 
         if (subjectVal &&
             dateTimeVal &&
@@ -49,7 +51,8 @@ export default function Comment({ data, TabState }) {
             fromNameVal &&
             fromPositionVal &&
             starCountVal &&
-            fromImgUrlVal) {
+            fromImgUrlVal &&
+            websiteUrlVal) {
             const response = await dispatch(fetchEditAdminComment({
                 id: data.id,
                 fromName: fromNameVal,
@@ -60,7 +63,8 @@ export default function Comment({ data, TabState }) {
                 starCount: parseInt(starCountVal),
                 dateTime: dateTimeVal,
                 lang: TabState,
-                isActive: true
+                isActive: true,
+                websiteUrl: websiteUrlVal
             }))
             if (response.payload.status === 200) {
                 setEditing(false)
@@ -171,6 +175,12 @@ export default function Comment({ data, TabState }) {
                             <label>{t("dateLable")} :</label>
                             <input disabled={editeing ? false : true} type="date" ref={dateTime} className=' text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]' name="" id="" />
                             <p className='font-IranLight'>{data?.dateTime}</p>
+                        </div>
+                    </div>
+                    <div className='flex justify-between  max-lg:flex-col'>
+                        <div className='flex flex-col lg:w-[100%] mb-4'>
+                            <label>{t("webSiteUrl")} :</label>
+                            <input defaultValue={data?.websiteUrl} ref={websiteUrl} disabled={editeing ? false : true} type="text" className={` text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]`} />
                         </div>
                     </div>
                     <div className='flex flex-col  mb-5'>

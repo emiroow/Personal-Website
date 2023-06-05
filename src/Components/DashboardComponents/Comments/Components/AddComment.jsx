@@ -12,6 +12,7 @@ export default function AddComment({ setNewServerState, TabState }) {
     const fromPosition = useRef()
     const starCount = useRef()
     const fromImgUrl = useRef()
+    const websiteUrl = useRef()
 
     const dispatch = useDispatch()
 
@@ -24,6 +25,7 @@ export default function AddComment({ setNewServerState, TabState }) {
         let fromPositionVal = fromPosition.current.value
         let starCountVal = starCount.current.value
         let fromImgUrlVal = fromImgUrl.current.value
+        let websiteUrlVal = websiteUrl.current.value
 
         if (subjectVal &&
             dateTimeVal &&
@@ -31,7 +33,8 @@ export default function AddComment({ setNewServerState, TabState }) {
             fromNameVal &&
             fromPositionVal &&
             starCountVal &&
-            fromImgUrlVal) {
+            fromImgUrlVal &&
+            websiteUrlVal) {
             if (starCountVal <= 5 && starCountVal >= 1) {
                 const response = await dispatch(fetchSetAdminAddComment({
                     id: 0,
@@ -43,7 +46,8 @@ export default function AddComment({ setNewServerState, TabState }) {
                     starCount: starCountVal,
                     dateTime: dateTimeVal,
                     lang: TabState,
-                    isActive: true
+                    isActive: true,
+                    websiteUrl: websiteUrlVal
                 }))
                 if (response.payload.status === 200) {
                     toast.success(t("SuccessToAdd"), {
@@ -128,6 +132,12 @@ export default function AddComment({ setNewServerState, TabState }) {
                         <div className='flex flex-col w-[49%] mb-4'>
                             <label>{t("dateLable")} :</label>
                             <input type="date" ref={dateTime} className=' text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]' name="" id="" />
+                        </div>
+                    </div>
+                    <div className='flex justify-between  max-lg:flex-col'>
+                        <div className='flex flex-col lg:w-[100%] mb-4'>
+                            <label>{t("webSiteUrl")} :</label>
+                            <input ref={websiteUrl} type="text" className={` text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]`} />
                         </div>
                     </div>
                     <div className='flex flex-col  mb-5'>

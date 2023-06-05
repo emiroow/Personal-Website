@@ -23,10 +23,10 @@ export default function Comments() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
-    focusOnSelect: true,
+    focusOnSelect: false,
     nextArrow: false,
     prevArrow: false,
     rtl: poss(),
@@ -55,7 +55,7 @@ export default function Comments() {
         <Slider {...settings}>
           {
             getData?.map((item, index) => {
-              return (<Comment fromName={item.fromName} starCount={item.starCount} fromImgUrl={item.fromImgUrl} fromPosition={item.fromPosition} message={item.message} subject={item.subject} key={index} />)
+              return (<Comment websiteUrl={item.websiteUrl} fromName={item.fromName} starCount={item.starCount} fromImgUrl={item.fromImgUrl} fromPosition={item.fromPosition} message={item.message} subject={item.subject} key={index} />)
             })
           }
         </Slider>

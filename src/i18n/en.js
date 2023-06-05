@@ -190,6 +190,7 @@ const en = {
     partSetting: "Display settings of each section",
     footer: "Footer",
     Report: "Reports",
-    newMassege: "New Massege"
+    newMassege: "New Massege",
+    webSiteUrl: "Website Url",
 };
 export default en;
