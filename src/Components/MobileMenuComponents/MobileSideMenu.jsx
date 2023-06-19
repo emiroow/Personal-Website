@@ -5,13 +5,11 @@ import { MdHomeRepairService } from "react-icons/md"
 import { MdTextsms } from "react-icons/md"
 import Toggle from '../SideMenuComponents/toggle'
 import Language from '../SideMenuComponents/language'
-import { Link } from "react-router-dom"
 export default function MobileSideMenu({ sidestatus, sidesetstatue }) {
 
     const gotop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    const Token = localStorage.getItem("PrjTk")
 
     return (
         <>
@@ -28,9 +26,9 @@ export default function MobileSideMenu({ sidestatus, sidesetstatue }) {
                     </div>
 
                     <div className='space-y-20 text-[27px] lg:text-[20px] xl:text-[28px] 2xl:text-[32px]'>
-                        <a onClick={gotop} className='rounded-full cursor-pointer dark:bg-DarkPurple bg-LightYellow p-2 flex items-center shadow-[0px_2px_4px_0px_rgba(0,0,0,0.50)]'>
+                        <span onClick={gotop} className='rounded-full cursor-pointer dark:bg-DarkPurple bg-LightYellow p-2 flex items-center shadow-[0px_2px_4px_0px_rgba(0,0,0,0.50)]'>
                             <HiOutlineHome className='text-white ' />
-                        </a>
+                        </span>
                         <a href='#Portfolio' className='rounded-full cursor-pointer dark:bg-DarkPurple bg-LightYellow p-2 flex items-center shadow-[0px_2px_4px_0px_rgba(0,0,0,0.50)]'>
                             <MdOutlineCategory className='text-white ' />
                         </a>
@@ -46,7 +44,6 @@ export default function MobileSideMenu({ sidestatus, sidesetstatue }) {
 
             </div>
             <div onClick={e => sidesetstatue(false)} className={sidestatus ? "w-full  z-10 bg-black/40 h-[100vh] fixed top-0 duration-700 right-0" : "w-full z-10 bg-black/40 h-[100vh] fixed top-0 duration-100 -right-[100%]"}>
-                <span className='top-1 px-2 rounded-md bg-black right-1  absolute text-[12px] font-IranLight'><Link to={Token ? "/Admin" : "/login"} className='text-LightMaincolor dark:text-DarkPurple'>Admin</Link></span>
             </div>
         </>
     )
