@@ -26,7 +26,7 @@ export default function Header() {
                 <RiLoginCircleFill className='absolute top-2 right-2 lg:left-2 text-2xl text-white dark:text-DarkPurple cursor-pointer' />
             </Link>
             <div className=' space-y-2 w-[80%] flex-col flex justify-center items-center'>
-                <img className=' mb-2  md:max-w-[45%] lg:max-w-[60%] max-w-[60%] rounded-full border-4 dark:border-DarkPurple border-LightBackcolor' src={profileimg} alt="" />
+                <img className=' mb-2  md:max-w-[30%] lg:max-w-[60%] max-w-[60%] rounded-full border-4 dark:border-DarkPurple border-LightBackcolor' src={profileimg} alt="" />
                 <p className='text-center text-lg md:text-lg 2xl:text-xl  font-IranBold'>{aboutData?.name}</p>
                 <span className='text-center text-sm font-IranLight'>{aboutData?.position}</span>
             </div>

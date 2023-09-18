@@ -9,11 +9,11 @@ module.exports = {
       screens: {
         '2xl': '1600px',
         // => @media (min-width: 1536px) { ... }
-      } ,
+      },
       fontFamily: {
         IranBold: ['IranBold'],
         IranExtraLight: ['IranExtraLight'],
-        IranLight: ['IranLight'] ,
+        IranLight: ['IranLight'],
         Yekan: ['Yekan']
       },
       colors: {
