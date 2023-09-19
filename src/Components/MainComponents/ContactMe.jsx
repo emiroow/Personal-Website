@@ -4,11 +4,7 @@ import { AiOutlineMessage } from "react-icons/ai"
 import { useTranslation } from 'react-i18next'
 import { Formik } from "formik";
 import * as Yup from "yup";
-import i18n from '../../i18n';
-import { useState } from 'react';
 import { useEffect } from 'react';
-import { BinerConvert } from "../../Helpers/LangConvertToBiner";
-import { GetIp } from '../../Service';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,19 +14,11 @@ export default function ContactMe() {
     const getAboutData = useSelector((store) => store.client.clientState.about)
     const getContactMssgStatus = useSelector((store) => store.contact.status)
     const dispatch = useDispatch();
-    const [ContactInfo, SetContactInfo] = useState({
-        fullName: null,
-        email: null,
-        subject: null,
-        message: null,
-        ip: null,
-        lang: null
-    })
 
-    useEffect(() => {
-        if (ContactInfo.fullName !== null) {
-            dispatch(fetchContactMessage(ContactInfo))
-            toast.success(t("AddContactSuccess"), {
+    const handleSendContact = async (values, resetForm) => {
+        await dispatch(fetchContactMessage(values))
+        if (getContactMssgStatus === "done") {
+            resetForm(); toast.success(t("AddContactSuccess"), {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -41,37 +29,13 @@ export default function ContactMe() {
                 theme: "light",
             });
         }
-    }, [ContactInfo])
-
-    const handleSendContact = (values, resetForm) => {
-        let Values = {
-            fullName: null,
-            email: null,
-            subject: null,
-            message: null,
-            ip: null,
-            lang: null
-        }
-        let Merged = { ...Values, ...values }
-        const FetchData = async () => {
-            try {
-                const { data } = await GetIp()
-                let ipMerging = { ...Merged, "ip": data?.ip }
-                let BinerLangMerge = { ...ipMerging, "lang": BinerConvert() }
-                SetContactInfo({ ...ContactInfo, ...BinerLangMerge })
-                resetForm()
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        FetchData()
     }
 
     const schema = Yup.object().shape({
         fullName: Yup.string().required(t("ContactUsername")),
         email: Yup.string().email().required(t("ContactEmail")),
         subject: Yup.string().required(t("ContactSubject")),
-        message: Yup.string().min(10).required(t("ContactMessage")),
+        message: Yup.string().min(10, t("minCharacter")).required(t("ContactMessage")),
     });
 
     return (

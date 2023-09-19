@@ -29,48 +29,15 @@ const authenticationSlice = createSlice({
                 state.loader = true
             })
             .addCase(fetchAuthLogin.fulfilled, (state, action) => {
-                if (action.payload.status === 401) {
-                    state.status = action.payload.status
-                    toast.warning("cheack User & Password", {
-                        position: "top-center",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
-                } else if (action.payload.token) {
+                if (action.payload.token) {
                     localStorage.setItem("PrjTk", action.payload.token)
                     state.token = action.payload.token
                     state.isToken = true
-                } else {
-                    toast.warning((action.payload.title), {
-                        position: "top-center",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
                 }
                 state.loader = false
             })
             .addCase(fetchAuthLogin.rejected, (state, action) => {
                 state.loader = false
-                toast.warning("cheack User & Password", {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
             })
     }
 })

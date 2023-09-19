@@ -1,5 +1,7 @@
 import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import { AddContactMessage } from "../Service"
+import { AddContactMessage, GetIp } from "../Service"
+import { BinerConvert } from "../Helpers/LangConvertToBiner";
+import { toast } from "react-toastify";
 
 const initialState = {
     status: "idle",
@@ -7,8 +9,11 @@ const initialState = {
     error: null
 }
 
-export const fetchContactMessage = createAsyncThunk("/contact/fetchContactMessage", async (Language) => {
-    const response = await AddContactMessage(Language)
+export const fetchContactMessage = createAsyncThunk("/contact/fetchContactMessage", async (data) => {
+    const { data: ip } = await GetIp()
+    let ipMerging = { ...data, "ip": ip?.ip }
+    let BinerLangMerge = { ...ipMerging, "lang": BinerConvert() }
+    const response = await AddContactMessage({ ...data, ...BinerLangMerge })
     return response.data
 })
 

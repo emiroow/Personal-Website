@@ -97,7 +97,7 @@ export default function Login() {
                 <p className="text-center text-sm text-DarkPurple dark:text-red-600 font-IranLight mb-2">
                   {errors.password && touched.password && errors.password}
                 </p>
-                <input type="submit" value="Login" className='mt-2 cursor-pointer bg-LightYellow dark:bg-DarkPurple shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)] rounded-md py-2 w-max m-auto px-8' />
+                <input type="submit" value={t("login")} className='mt-2 cursor-pointer bg-LightYellow dark:bg-DarkPurple shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)] rounded-md py-2 w-max m-auto px-8' />
               </form>
             )}
           </Formik>

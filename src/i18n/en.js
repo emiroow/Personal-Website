@@ -53,7 +53,9 @@ const en = {
     UserRequired: "User is a required field",
     Passwordrequired: "Password is a required field",
     min: "Password must be at least 8 characters",
+    minCharacter: "Message must be at least 10 characters",
     // login
+    login: "login",
     Title: "Dashboard",
     Username: "User",
     password: "Password",

@@ -20,39 +20,28 @@ appAxios.interceptors.response.use(
     },
     (err) => {
         if (err.response.status === 401) {
-            toast.error('problm !!!', {
-                position: "top-right",
-                autoClose: 1000,
-                hideProgressBar: true,
+            toast.error('', {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
                 closeOnClick: true,
-                pauseOnHover: false,
+                pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "colored",
+                theme: "light",
             });
             localStorage.clear()
-            window.location.reload()
-        } else if (err) {
-            toast.error('Problem var, yenidən cəhd edin !', {
-                position: "top-right",
-                autoClose: 1000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            // window.location.reload()
         } else {
-            toast.error('Problem var, yenidən cəhd edin !', {
-                position: "top-right",
-                autoClose: 1000,
-                hideProgressBar: true,
+            toast.error(err.response.data.title, {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
                 closeOnClick: true,
-                pauseOnHover: false,
+                pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "colored",
+                theme: "light",
             });
         }
         return err.response
