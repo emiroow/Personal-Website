@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAdminAnalysis } from '../../../Reducers/DashboardSlices/AnalysisSlice';
 import PreLoader from "../../Preloader"
 export default function Analysis() {
-  const { TabsInfo , SetTabState , TabState  } = useContext(DashboardContext)
+  const { TabsInfo, SetTabState, TabState } = useContext(DashboardContext)
   const dispatch = useDispatch()
   const LoaderStatus = useSelector((state) => state.analysis.status)
 

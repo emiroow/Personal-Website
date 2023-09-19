@@ -8,7 +8,6 @@ export default function History() {
     const getEducationsData = useSelector((store) => store.client.clientState.educations)
     const getData = useSelector((store) => store.client.clientState)
     const getSetting = useSelector((store) => store.setting.setting)
-
     return (
         <>
             {
@@ -23,7 +22,7 @@ export default function History() {
                                     <div className="py-4 mt-5">
                                         {
                                             getEducationsData?.map((item, index) => {
-                                                return (<Date key={index} dateTime={item.dateTime} title={item.title} description={item.description} />)
+                                                return (<Date key={index} endDateTime={item.endDateTime} dateTime={item.dateTime} title={item.title} description={item.description} />)
                                             })
                                         }
                                     </div>
@@ -38,7 +37,7 @@ export default function History() {
                                     <div className="py-4 mt-5">
                                         {
                                             getHistoriesData?.map((item, index) => {
-                                                return (<Date key={index} dateTime={item.dateTime} title={item.title} description={item.description} />)
+                                                return (<Date key={index} endDateTime={item.endDateTime} dateTime={item.dateTime} title={item.title} description={item.description} />)
                                             })
                                         }
                                     </div>

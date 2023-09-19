@@ -1,16 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import SettingTableItem from './SettingTableItem'
-import Preloader from "../../../Preloader"
 import { t } from 'i18next'
 export default function Settings() {
     const getSetting = useSelector((store) => store.setting.setting)
-    const Loader = useSelector((store) => store.setting.loader)
     return (
         <div className='lg:w-[49.5%] overflow-auto'>
-            {
-                Loader ? <Preloader /> : null
-            }
+
             <h1 className='font-IranBold text-xl'>{t("partSetting")}:</h1>
             <div className="inline-block min-w-full mt-5 rounded-b-xl">
                 <div className="overflow-auto rounded-sm">

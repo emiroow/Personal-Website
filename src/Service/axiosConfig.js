@@ -31,7 +31,7 @@ appAxios.interceptors.response.use(
                 theme: "light",
             });
             localStorage.clear()
-            // window.location.reload()
+            window.location.href = "/Login"
         } else {
             toast.error(err.response.data.title, {
                 position: "top-center",

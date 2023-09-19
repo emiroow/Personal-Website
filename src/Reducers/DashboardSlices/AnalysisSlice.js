@@ -40,6 +40,10 @@ const analysisSlice = createSlice({
                 state.allAnalysis = action.payload
                 state.status = "conmpleted"
             })
+            .addCase(fetchAdminAnalysis.rejected, (state, action) => {
+                state.allAnalysis = action.payload
+                state.status = "rejected"
+            })
             // fetchAddAdminAnalysis
             .addCase(fetchAddAdminAnalysis.pending, (state, action) => {
                 state.status = "pending"
@@ -71,7 +75,6 @@ const analysisSlice = createSlice({
                     state.allAnalysis[findedIndex] = action.payload.data
                 }
             })
-
     },
 });
 

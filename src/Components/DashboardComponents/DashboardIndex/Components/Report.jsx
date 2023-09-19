@@ -1,32 +1,12 @@
 import { t } from 'i18next'
 import React, { useState } from 'react'
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { GetAdminStatistics, getAdminContactUsMessages } from '../../../../Service'
 import { BsEye } from 'react-icons/bs'
 import moment from 'jalali-moment'
 import Modal from '../../ContactUsMessages/Modal'
 
-export default function Report() {
-    const [reportState, setReportState] = useState()
-    const [commentsArr, setCommentsArr] = useState([])
+export default function Report({ reportState, commentsArr }) {
+    console.log(reportState, commentsArr)
     const [modalState, SetModalState] = useState({ active: false, id: null })
-
-    useEffect(() => {
-        const getFromServer = async () => {
-            const data = { countOfPage: 16 }
-            try {
-                const response = await getAdminContactUsMessages(data)
-                const responseReport = await GetAdminStatistics()
-                console.log(responseReport)
-                setReportState(responseReport.data)
-                setCommentsArr(response.data?.data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        getFromServer()
-    }, [])
 
     const handleClick = (id) => {
         SetModalState({ active: true, id: id })
@@ -36,7 +16,6 @@ export default function Report() {
         const jalaliDate = moment(gregorianDate, 'YYYY-MM-DDTHH:mm:ss.SSSSSSS');
         return jalaliDate.format('HH:mm | jYYYY-jMM-jDD');
     }
-
 
     return (
         <div className='lg:w-[49.5%]  max-md:mb-8'>
