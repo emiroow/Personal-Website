@@ -5,14 +5,19 @@ import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { fetchDeleteAdminDeleteComment, fetchEditAdminComment } from '../../../../Reducers/DashboardSlices/CommentsSlice';
+import DatePicker from 'react-multi-date-picker';
+import TimePicker from 'react-multi-date-picker/plugins/time_picker';
+import i18n from '../../../../i18n';
+import persian from "react-date-object/calendars/persian"
+import persian_fa from "react-date-object/locales/persian_fa"
+import moment from 'jalali-moment';
 export default function Comment({ data, TabState }) {
+    const [dateTime, setDateTime] = useState(data.dateTime)
     const [editeing, setEditing] = useState(false)
     const [modalState, SetModalState] = useState({ Active: false, Access: false, id: null })
     const { t } = useTranslation()
     const dispatch = useDispatch()
-    console.log(data)
     const subject = useRef()
-    const dateTime = useRef()
     const message = useRef()
     const fromName = useRef()
     const fromPosition = useRef()
@@ -37,14 +42,13 @@ export default function Comment({ data, TabState }) {
 
     const HandleSaveEditing = async () => {
         let subjectVal = subject.current.value
-        let dateTimeVal = dateTime.current.value
+        let dateTimeVal = dateTime
         let messageVal = message.current.value
         let fromNameVal = fromName.current.value
         let fromPositionVal = fromPosition.current.value
         let starCountVal = starCount.current.value
         let fromImgUrlVal = fromImgUrl.current.value
         let websiteUrlVal = websiteUrl.current.value
-
         if (subjectVal &&
             dateTimeVal &&
             messageVal &&
@@ -141,6 +145,16 @@ export default function Comment({ data, TabState }) {
         setServer()
     }, [modalState.Access])
 
+    const convertToGregorian = (date) => {
+        function convertPersianDigitsToEnglish(input) {
+            var persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+            return input.replace(/[۰-۹]/g, function (match) {
+                return persianDigits.indexOf(match);
+            });
+        }
+        return moment.from(i18n.language === "fa" ? convertPersianDigitsToEnglish(date) : date, 'fa', 'YYYY-MM-DD HH:mm').locale('fa').format('YYYY-MM-DDTHH:mm')
+    };
+
     return (
         <div className=" bg-BackColorWhiter shadow-[0px_0px_10px_0px_rgba(0,0,0,0.30)] rounded-xl w-[100%] lg:w-[48%] text-gray-50 p-1 mb-8">
             <Modal SetModalState={SetModalState} modalState={modalState} target={data?.subject} />
@@ -173,8 +187,23 @@ export default function Comment({ data, TabState }) {
                         </div>
                         <div className='flex flex-col lg:w-[49%] mb-4'>
                             <label>{t("dateLable")} :</label>
-                            <input disabled={editeing ? false : true} type="date" ref={dateTime} className=' text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]' name="" id="" />
-                            <p className='font-IranLight'>{data?.dateTime}</p>
+                            <DatePicker
+                                onChange={(value) => {
+                                    setDateTime(convertToGregorian(value.format()))
+                                }}
+                                format="YYYY-MM-DD HH:mm"
+                                value={data.dateTime.split("T").join(" ")}
+                                calendar={i18n.language === "fa" && persian}
+                                locale={i18n.language === "fa" && persian_fa}
+                                arrow={true}
+                                disabled={editeing ? false : true}
+                                editable={false}
+                                inputClass=' text-center w-full shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]'
+                                calendarPosition={i18n.language === "fa" ? "bottom-right" : "bottom-left"}
+                                plugins={[
+                                    <TimePicker style={{ color: "black" }} hideSeconds position="bottom" />
+                                ]}
+                            />
                         </div>
                     </div>
                     <div className='flex justify-between  max-lg:flex-col'>

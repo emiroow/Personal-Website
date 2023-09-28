@@ -69,7 +69,6 @@ const SkillsSlice = createSlice({
             })
             .addCase(fetchDeleteAdminCircleSkill.fulfilled, (state, action) => {
                 let filteredDelete = state.CircleSkills.filter((item) => item.id !== action.payload.id)
-                console.log(filteredDelete)
                 state.CircleSkills = filteredDelete
                 state.status = "completed"
             })

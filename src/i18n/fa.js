@@ -193,6 +193,8 @@ const fa = {
     footer: "قوتر سایت",
     Report: "گزارش کلی",
     newMassege: "جدیدترین پیام ها",
-    webSiteUrl: "آدرس وبسایت"
+    webSiteUrl: "آدرس وبسایت",
+    endDateTime: "تا تاریخ",
+    startDateTime: "از تاریخ"
 };
 export default fa;

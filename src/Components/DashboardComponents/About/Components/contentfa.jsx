@@ -7,26 +7,15 @@ import i18n from '../../../../i18n';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSetGeneralData, SetGeneraltDataFa } from '../../../../Reducers/DashboardSlices/GeneralSlice';
+import DatePicker from 'react-multi-date-picker';
+import TimePicker from 'react-multi-date-picker/plugins/time_picker';
+import persian from "react-date-object/calendars/persian"
+import persian_fa from "react-date-object/locales/persian_fa"
+import moment from 'jalali-moment';
 export default function Contentfa() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const AdminAboutFa = useSelector((state) => state.general.generalFa)
-  
-  const [AllContentInfo, SetAllContentInfo] = useState({
-    avatarUrl: "",
-    birthday: "",
-    city: "",
-    country: "",
-    cvUrl: "",
-    description: "",
-    email: "",
-    locationAddress: "",
-    name: "",
-    phoneNumber: "",
-    position: "",
-    secondAvatarUrl: "",
-    lang: "fa"
-  })
 
   const schema = Yup.object().shape({
     avatarUrl: Yup.string().required(t("avatarUrl")),
@@ -41,33 +30,12 @@ export default function Contentfa() {
     phoneNumber: Yup.number().required(t("phoneNumber")).min(11, t("min")),
     position: Yup.string().required(t("position")),
     secondAvatarUrl: Yup.string().required(t("secondAvatarUrl")),
-  });
+  })
 
-  useEffect(() => {
-    if (AdminAboutFa) {
-      const {
-        avatarUrl,
-        birthday,
-        city,
-        country,
-        cvUrl,
-        description,
-        email,
-        locationAddress,
-        name,
-        phoneNumber,
-        position,
-        secondAvatarUrl,
-      } = AdminAboutFa
-      SetAllContentInfo({ avatarUrl, birthday, city, country, cvUrl, description, email, locationAddress, name, phoneNumber, position, secondAvatarUrl, secondAvatarUrl, lang: "fa" })
-    }
-  }, [AdminAboutFa])
-
-  const HandleUpdateFaChanges = async () => {
-    const hasEmptyField = Object.values(AllContentInfo).some(value => value === "");
-    if (!hasEmptyField) {
-      dispatch(SetGeneraltDataFa(AllContentInfo))
-      const respons = await dispatch(fetchSetGeneralData(AllContentInfo))
+  const HandleUpdateFaChanges = async (data) => {
+    if (data) {
+      dispatch(SetGeneraltDataFa(data))
+      const respons = await dispatch(fetchSetGeneralData(data))
       if (respons.payload.status === 200) {
         toast.success(t("SuccessEdited"), {
           position: "top-center",
@@ -105,11 +73,24 @@ export default function Contentfa() {
     }
   }
 
+  const convertToGregorian = (date) => {
+    function convertPersianDigitsToEnglish(input) {
+      var persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+      return input.replace(/[۰-۹]/g, function (match) {
+        return persianDigits.indexOf(match);
+      });
+    }
+    return moment.from(i18n.language === "fa" ? convertPersianDigitsToEnglish(date) : date, 'fa', 'YYYY-MM-DD HH:mm').locale('fa').format('YYYY-MM-DDTHH:mm')
+  };
+
   return (
     <div className='dark:bg-DarkPurple bg-LightYellow rounded-b-xl '>
       {
-        AllContentInfo.avatarUrl !== undefined ?
+        AdminAboutFa !== undefined ?
           <Formik validationSchema={schema}
+            onSubmit={(value) => {
+              HandleUpdateFaChanges(value)
+            }}
             initialValues={{
               avatarUrl: AdminAboutFa.avatarUrl,
               birthday: AdminAboutFa.birthday,
@@ -132,9 +113,12 @@ export default function Contentfa() {
               touched,
               handleChange,
               handleBlur,
+              setFieldValue,
+              handleSubmit,
+              dirty,
             }) => (
-              <form onSubmit={e => e.preventDefault()} onChange={e => SetAllContentInfo({ ...AllContentInfo, [e.target.name]: e.target.value })} className=' w-full flex flex-wrap justify-around flex-row'>
-                {/* First Container */}
+              <form onSubmit={(e) => e.preventDefault()} className=' w-full flex flex-wrap justify-around flex-row'>
+                {console.log(values)}
                 <div className=' w-full lg:w-[47%] p-2'>
                   <div className='my-4'>
                     <label htmlFor="" className=' dark:text-white text-LightMaincolor'>{t("avatarUrlLable")}</label>
@@ -146,10 +130,26 @@ export default function Contentfa() {
                   <hr className='border-black border-[1px] rounded-full' />
                   <div className='my-4 flex flex-col'>
                     <label className=' dark:text-white mb-1 text-LightMaincolor'>{t("birthdayLable")}</label>
-                    <div className='flex items-center justify-between'>
-                      <input type="date" onChange={handleChange} value={values.birthday} id="birthday" name='birthday' className={` text-center text-black w-[70%] text-sm lg:text-lg h-10 mt-1 rounded-md outline-none shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] bg-white/90 dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]`} />
-                      <p className={`${i18n.language === "fa" ? "text-left pr-2" : "text-right pl-2"}text-sm`}>{AllContentInfo.birthday}</p>
-                    </div>
+                    <DatePicker
+                      onChange={(value) => {
+                        console.log(value)
+                        if (value)
+                          setFieldValue("birthday", convertToGregorian(value.format()))
+                        else
+                          setFieldValue("birthday", "")
+                      }}
+                      format="YYYY-MM-DD HH:mm"
+                      value={values.birthday?.split("T").join(" ")}
+                      calendar={i18n.language === "fa" && persian}
+                      locale={i18n.language === "fa" && persian_fa}
+                      arrow={true}
+                      editable={true}
+                      inputClass='shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black w-[100%] text-center h-10 mt-1 mb-2 rounded-md outline-none  bg-white/90 dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]'
+                      calendarPosition={i18n.language === "fa" ? "bottom-right" : "bottom-left"}
+                      plugins={[
+                        <TimePicker style={{ color: "black" }} hideSeconds position="bottom" />
+                      ]}
+                    />
                     <p className={`${i18n.language === "fa" ? "text-right" : "text-left"} text-sm text-DarkPurple dark:text-red-600 font-IranLight mb-2`}>
                       {errors.birthday && touched.birthday && errors.birthday + "*"}
                     </p>
@@ -201,7 +201,7 @@ export default function Contentfa() {
                     <label className=' dark:text-white text-LightMaincolor'>{t("locationAddressLable")}</label>
                     <div className='flex items-center justify-between'>
                       <input type="text" value={values.locationAddress} disabled onChange={handleChange} onBlur={handleBlur} name='locationAddress' id='locationAddress' className={`text-black text-xs text-center w-[70%] h-10 mt-1 rounded-md mb-1 outline-none shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] bg-white/90 dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]`} />
-                      <AddLocation locationAddress={AllContentInfo.locationAddress} AllContentInfo={AllContentInfo} SetAllContentInfo={SetAllContentInfo} />
+                      <AddLocation locationAddress={values.locationAddress} setFieldValue={setFieldValue} />
                     </div>
                     <p className={` ${i18n.language === "fa" ? "text-right" : "text-left"} text-sm text-DarkPurple dark:text-red-600 font-IranLight mb-2`}>
                       {errors.locationAddress && touched.locationAddress && errors.locationAddress + " *"}
@@ -242,7 +242,9 @@ export default function Contentfa() {
                 </div>
                 <br />
                 <div className='w-full lg:px-8'>
-                  <input onClick={e => HandleUpdateFaChanges(values)} type="button" value={t("SaveChanges")} className='cursor-pointer p-3 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] max-lg:text-sm  bg-green-500 mx-2 mb-10 rounded-lg' />
+                  <button disabled={!dirty} onClick={() => handleSubmit()} value={t("SaveChanges")} className={`${dirty ? "bg-green-500" : "bg-red-700"} cursor-pointer p-3 shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] max-lg:text-sm   mx-2 mb-10 rounded-lg`} >
+                    {!dirty ? "جهت ذخیره تغیرات باید تغیری ایجاد کنید" : "ذخیره تغییرات"}
+                  </button>
                 </div>
               </form>
             )}

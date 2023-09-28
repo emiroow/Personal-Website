@@ -6,7 +6,7 @@ import { useMap, useMapEvent, useMapEvents } from "react-leaflet/hooks";
 import 'leaflet/dist/leaflet.css';
 import { t } from 'i18next';
 
-export default function AddLocation({ locationAddress, SetAllContentInfo, AllContentInfo }) {
+export default function AddLocation({ locationAddress, setFieldValue }) {
     const [ShowLocationContainer, SetShowLocationContainer] = useState(false)
     delete L.Icon.Default.prototype._getIconUrl;
     L.Icon.Default.mergeOptions({
@@ -20,7 +20,7 @@ export default function AddLocation({ locationAddress, SetAllContentInfo, AllCon
     }
 
     const handleSubmitselectedMap = () => {
-        SetAllContentInfo({ ...AllContentInfo, locationAddress: JSON.stringify(GetPosition) });
+        setFieldValue(locationAddress, JSON.stringify(GetPosition));
         SetShowLocationContainer(false)
     }
 
@@ -56,7 +56,6 @@ export default function AddLocation({ locationAddress, SetAllContentInfo, AllCon
         const map = useMapEvents({
             click(e) {
                 SetPosition(e.latlng);
-                // console.log(GetPosition);
                 map.flyTo(e.latlng, map.getZoom());
             },
         });

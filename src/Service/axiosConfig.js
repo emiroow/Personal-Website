@@ -20,7 +20,7 @@ appAxios.interceptors.response.use(
     },
     (err) => {
         if (err.response.status === 401) {
-            toast.error('', {
+            toast.error(err.response.data.message, {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -31,9 +31,10 @@ appAxios.interceptors.response.use(
                 theme: "light",
             });
             localStorage.clear()
-            window.location.href = "/Login"
+            if (window.location.pathname !== "/Login")
+                window.location.href = "/Login"
         } else {
-            toast.error(err.response.data.title, {
+            toast.error(err.response.data.Message, {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,

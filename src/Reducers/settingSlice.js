@@ -43,7 +43,6 @@ const settingSlice = createSlice({
                 state.loader = false;
                 state.status = "done";
                 const { name, value } = action.payload;
-                console.log({ name, value })
                 state.setting = {
                     ...state.setting,
                     [name]: value,

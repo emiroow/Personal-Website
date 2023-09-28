@@ -72,7 +72,6 @@ const EducationsSlice = createSlice({
                     state.allEducations[findedIndex] = action.payload.data
                 }
                 state.status = "completed"
-                console.log(action.payload)
             })
     },
 });

@@ -21,7 +21,6 @@ export const fetchDeleteAdminDeleteComment = createAsyncThunk("/Comments/fetchDe
     return { status: response.status, data: response.data, id: id }
 })
 export const fetchEditAdminComment = createAsyncThunk("/Comments/fetchEditAdminComment", async (data) => {
-    console.log(data)
     const response = await EditAdminComment(data)
     return { status: response.status, data: response.data }
 })

@@ -4,14 +4,24 @@ import Modal from '../../Modal';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
+import DatePicker from "react-multi-date-picker"
+import persian from "react-date-object/calendars/persian"
+import persian_fa from "react-date-object/locales/persian_fa"
+import i18n from '../../../../i18n';
+import TimePicker from 'react-multi-date-picker/plugins/time_picker';
+import moment from 'jalali-moment'
 import { fetchDeleteAdminEducation, fetchEditAdminEducation } from '../../../../Reducers/DashboardSlices/EducationsSlice';
+
+
 export default function Date({ data, TabState }) {
     const [editeing, setEditing] = useState(false)
     const [modalState, SetModalState] = useState({ Active: false, Access: false, id: null })
+    const [dateTime, setDateTime] = useState(data.dateTime)
+    const [endDateTime, setEndDateTime] = useState(data.endDateTime)
     const { t } = useTranslation()
     const dispatch = useDispatch()
+
     const title = useRef()
-    const dateTime = useRef()
     const description = useRef()
 
     const HandleEditing = () => {
@@ -30,11 +40,12 @@ export default function Date({ data, TabState }) {
     }
 
     const HandleSaveEditing = async () => {
-        if (title.current.value && dateTime.current.value && description.current.value) {
+        if (title.current.value && dateTime && endDateTime && description.current.value) {
             const response = await dispatch(fetchEditAdminEducation({
                 id: data.id,
                 title: title.current.value,
-                dateTime: dateTime.current.value,
+                dateTime: dateTime,
+                endDateTime: endDateTime,
                 description: description.current.value,
                 lang: TabState,
                 isActive: true
@@ -129,6 +140,18 @@ export default function Date({ data, TabState }) {
 
     }, [modalState.Access])
 
+    const convertToGregorian = (date) => {
+        function convertPersianDigitsToEnglish(input) {
+            var persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+            return input.replace(/[۰-۹]/g, function (match) {
+                return persianDigits.indexOf(match);
+            });
+        }
+        // console.log(moment.from(i18n.language === "fa" ? convertPersianDigitsToEnglish(date) : date, 'fa', 'YYYY-MM-DD HH:mm').locale('fa').format('YYYY-MM-DDTHH:mm'))
+        return moment.from(i18n.language === "fa" ? convertPersianDigitsToEnglish(date) : date, 'fa', 'YYYY-MM-DD HH:mm').locale('fa').format('YYYY-MM-DDTHH:mm')
+    };
+
+
     return (
         <div className=" bg-BackColorWhiter shadow-[0px_0px_10px_0px_rgba(0,0,0,0.30)] rounded-xl w-[100%] lg:w-[48%] text-gray-50 p-1 mb-8">
             <Modal SetModalState={SetModalState} modalState={modalState} target={data?.title} />
@@ -139,9 +162,43 @@ export default function Date({ data, TabState }) {
                         <input defaultValue={data?.title} ref={title} disabled={editeing ? false : true} type="text" className={` text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black lg:w-[60%] h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]`} />
                     </div>
                     <div className='flex flex-col mb-4'>
-                        <label>{t("dateLable")} :</label>
-                        <input disabled={editeing ? false : true} type="date" ref={dateTime} className=' text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black lg:w-[60%] h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]' name="" id="" />
-                        <p className='font-IranLight'>{data?.dateTime}</p>
+                        <label>{t("startDateTime")} :</label>
+                        <DatePicker
+                            onChange={(value) => {
+                                setDateTime(convertToGregorian(value.format()))
+                            }}
+                            disabled={editeing ? false : true}
+                            value={data?.dateTime.split("T").join(" ")}
+                            format="YYYY-MM-DD HH:mm"
+                            calendar={i18n.language === "fa" && persian}
+                            locale={i18n.language === "fa" && persian_fa}
+                            arrow={true}
+                            inputClass="text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black lg:w-[60%] h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]"
+                            calendarPosition={i18n.language === "fa" ? "bottom-right" : "bottom-left"}
+                            plugins={[
+                                <TimePicker style={{ color: "black" }} hideSeconds position="bottom" />
+                            ]}
+                        />
+                    </div>
+                    <div className='flex flex-col mb-4'>
+                        <label>{t("endDateTime")} :</label>
+                        <DatePicker
+                            onChange={(value) => {
+                                setEndDateTime(convertToGregorian(value.format()))
+                            }}
+                            disabled={editeing ? false : true}
+                            value={data?.endDateTime.split("T").join(" ")}
+                            format="YYYY-MM-DD HH:mm"
+                            calendar={i18n.language === "fa" && persian}
+                            locale={i18n.language === "fa" && persian_fa}
+                            arrow={true}
+                            editable={false}
+                            inputClass="text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black lg:w-[60%] h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]"
+                            calendarPosition={i18n.language === "fa" ? "bottom-right" : "bottom-left"}
+                            plugins={[
+                                <TimePicker style={{ color: "black" }} hideSeconds position="bottom" />
+                            ]}
+                        />
                     </div>
                     <div className='flex flex-col  mb-5'>
                         <label>{t("descriptionLable")} :</label>

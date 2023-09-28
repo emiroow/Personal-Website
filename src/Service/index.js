@@ -109,77 +109,77 @@ export const getAdminPortfoliosCatagories = () => {
 // Admin Edit
 export const EditAdminAnalysis = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/EditAnalysis`;
-    return appAxios["post"](Url, Data);
+    return appAxios["put"](Url, Data);
 };
 export const EditAdminEducation = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/EditEducation`;
-    return appAxios["post"](Url, Data);
+    return appAxios["put"](Url, Data);
 };
 export const EditAdminHistory = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/EditHistory`;
-    return appAxios["post"](Url, Data);
+    return appAxios["put"](Url, Data);
 };
 export const EditAdminService = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/editservice`;
-    return appAxios["post"](Url, Data);
+    return appAxios["put"](Url, Data);
 };
 export const EditAdminComment = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/editcomment`;
-    return appAxios["post"](Url, Data);
+    return appAxios["put"](Url, Data);
 };
 export const EditAdminCertificate = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/editCertificate`;
-    return appAxios["post"](Url, Data);
+    return appAxios["put"](Url, Data);
 };
 export const EditAdminPortfolio = (Data) => {
     const Url = `${Endpoint}/api/admin/edit/editportfolio`;
-    return appAxios["post"](Url, Data);
+    return appAxios["put"](Url, Data);
 };
 
 // Admin Delete
 export const DeleteAdminAnalysis = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/DeleteAnalysis/${Id}`;
-    return appAxios["post"](Url);
+    return appAxios["delete"](Url);
 };
 export const DeleteAdminEducation = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/DeleteEducation/${Id}`;
-    return appAxios["post"](Url);
+    return appAxios["delete"](Url);
 };
 export const DeleteAdminHistory = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/DeleteHistory/${Id}`;
-    return appAxios["post"](Url);
+    return appAxios["delete"](Url);
 };
 export const DeleteAdminService = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/deleteService/${Id}`;
-    return appAxios["post"](Url);
+    return appAxios["delete"](Url);
 };
 export const DeleteAdminSocial = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/deleteSocial/${Id}`;
-    return appAxios["post"](Url);
+    return appAxios["delete"](Url);
 };
 export const DeleteAdminSkill = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/deleteSkill/${Id}`;
-    return appAxios["post"](Url);
+    return appAxios["delete"](Url);
 };
 export const DeleteAdminCircleSkill = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/deleteCircleSkill/${Id}`;
-    return appAxios["post"](Url);
+    return appAxios["delete"](Url);
 };
 export const DeleteAdminDeleteComment = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/deletecomment/${Id}`;
-    return appAxios["post"](Url);
+    return appAxios["delete"](Url);
 };
 export const DeleteAdminCertificate = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/deleteCertificate/${Id}`;
-    return appAxios["post"](Url);
+    return appAxios["delete"](Url);
 };
 export const DeleteAdminCatagory = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/DeletePortfolioCatagory/${Id}`;
-    return appAxios["post"](Url);
+    return appAxios["delete"](Url);
 };
 export const DeleteAdminPortfolio = (Id) => {
     const Url = `${Endpoint}/api/admin/delete/DeletePortfolio/${Id}`;
-    return appAxios["post"](Url);
+    return appAxios["delete"](Url);
 };
 
 // Admin Add

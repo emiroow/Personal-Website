@@ -29,14 +29,11 @@ const authenticationSlice = createSlice({
                 state.loader = true
             })
             .addCase(fetchAuthLogin.fulfilled, (state, action) => {
-                if (action.payload.token) {
-                    localStorage.setItem("PrjTk", action.payload.token)
-                    state.token = action.payload.token
+                if (action.payload.success) {
+                    localStorage.setItem("PrjTk", action.payload.data.token)
+                    state.token = action.payload.data.token
                     state.isToken = true
                 }
-                state.loader = false
-            })
-            .addCase(fetchAuthLogin.rejected, (state, action) => {
                 state.loader = false
             })
     }

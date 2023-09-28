@@ -5,7 +5,6 @@ import moment from 'jalali-moment'
 import Modal from '../../ContactUsMessages/Modal'
 
 export default function Report({ reportState, commentsArr }) {
-    console.log(reportState, commentsArr)
     const [modalState, SetModalState] = useState({ active: false, id: null })
 
     const handleClick = (id) => {
@@ -25,19 +24,19 @@ export default function Report({ reportState, commentsArr }) {
             <h1 className='font-IranBold text-xl'>{t("Report")}:</h1>
             <div className="w-full bg-LightYellow/50 dark:bg-DarkPurple/40 rounded-md flex flex-row flex-wrap shadow-md mt-5 border-2">
                 <div className='w-[50%] lg:w-[25%] space-y-3  justify-center items-center flex flex-col p-5'>
-                    <div className='font-IranBold text-3xl dark:text-green-500'>{reportState?.comments / 2}</div>
+                    <div className='font-IranBold text-3xl dark:text-green-500'>{reportState && reportState?.comments / 2}</div>
                     <div className='text-xl'>{t("comments")}</div>
                 </div>
                 <div className='w-[50%] lg:w-[25%] space-y-3 border-x justify-center items-center flex flex-col p-5'>
-                    <div className='font-IranBold text-3xl dark:text-green-500'>{reportState?.portfolios / 2}</div>
+                    <div className='font-IranBold text-3xl dark:text-green-500'>{reportState && reportState?.portfolios / 2}</div>
                     <div className='text-xl'>{t("PortfoliosMenu")}</div>
                 </div>
                 <div className='w-[50%] lg:w-[25%] space-y-3 max-md:border-t border-x justify-center items-center flex flex-col p-5'>
-                    <div className='font-IranBold text-3xl dark:text-green-500'>{reportState?.skills / 2}</div>
+                    <div className='font-IranBold text-3xl dark:text-green-500'>{reportState && reportState?.skills / 2}</div>
                     <div className='text-xl'>{t("skills")}</div>
                 </div>
                 <div className='w-[50%] lg:w-[25%] space-y-3 max-md:border-t justify-center items-center flex flex-col p-5'>
-                    <div className='font-IranBold text-3xl dark:text-green-500'>{reportState?.contactUsMessages}</div>
+                    <div className='font-IranBold text-3xl dark:text-green-500'>{reportState && reportState?.contactUsMessages}</div>
                     <div className='text-xl'>{t("ContactUsMessagesMenu").split("ی مخاطبین")}</div>
                 </div>
             </div>

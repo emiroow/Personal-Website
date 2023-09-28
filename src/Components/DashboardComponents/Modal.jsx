@@ -14,7 +14,7 @@ export default function Modal({ target, modalState, SetModalState }) {
     return (
         <>
             {modalState.Active ?
-                <div className='w-full bg-black/20 fixed top-0 left-0 justify-center flex items-center h-[100vh]'>
+                <div className='w-full bg-black/50 fixed top-0 left-0 justify-center flex items-center h-[100vh]'>
                     <div className='w-[95%] lg:w-[40%] bg-BackColorWhiter text-white p-10 rounded-xl'>
                         <div className='w-full text-center flex mb-4 justify-center items-center flex-col space-y-3'>
                             <span className='text-center'>{t("DeletAlert")}</span>

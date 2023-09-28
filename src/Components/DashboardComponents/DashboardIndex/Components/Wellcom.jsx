@@ -22,7 +22,7 @@ export default function Wellcom() {
                 {
                     quickAccessMenu.map((item) => {
                         return (
-                            <Link className='text-sm hover:text-blue-600 mx-3 md:underline underline-offset-8 transition-all' to={item.Route}>
+                            <Link key={item.id} className='text-sm hover:text-blue-600 mx-3 md:underline underline-offset-8 transition-all' to={item.Route}>
                                 <span className='mt-5'> {t(item.LocalizLang)} </span>
                             </Link>
                         )

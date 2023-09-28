@@ -2,9 +2,10 @@ import React from 'react'
 import { SlCalender } from "react-icons/sl"
 import i18n from '../../../i18n'
 import * as shamsi from 'shamsi-date-converter';
+import { useTranslation } from 'react-i18next';
 
 export default function Date({ dateTime, title, description, endDateTime }) {
-
+    const { t } = useTranslation()
     const Date = (date) => {
         const Split = date.split("T")[0]
         if (i18n.language === "en") {
@@ -28,17 +29,15 @@ export default function Date({ dateTime, title, description, endDateTime }) {
                     </div>
                     <div className=" col-start-2 col-end-12 p-4 rounded-xl  mr-auto w-full">
                         <h3 className="font-semibold text-md 2xl:text-lg mb-1 font-IranBold text-shadow-dark ">{title}</h3>
-                        <p className="leading-tight text-[12px] text-justify mt-2 mb-1 space-y-1 border-r-2 pr-2  dark:border-DarkPurple border-LightBackcolor w-full text-sm 2xl:text-md font-IranBold dark:text-DarkPurple text-LightBackcolor">
+                        <p className={`${i18n.language === "en" ? "border-l-2  pl-2" : "border-r-2  pr-2"} leading-tight text-[12px] text-justify mt-2 mb-1 space-y-1  dark:border-DarkPurple border-LightBackcolor w-full text-sm 2xl:text-md font-IranBold dark:text-DarkPurple text-LightBackcolor`}>
                             <p>
-                                <span className='text-white font-IranLight'>شروع  همکاری : </span>
+                                <span className='text-white font-IranLight'>{t("startDateTime")} :</span>
                                 <span> {Date(dateTime)}</span>
                             </p>
                             <p>
-                                <span className='text-white font-IranLight'>پایان  همکاری : </span>
+                                <span className='text-white font-IranLight'>{t("endDateTime")} :</span>
                                 <span> {Date(endDateTime)}</span>
                             </p>
-
-                            {/* <span> {Date(endDateTime)} </span> */}
                         </p>
                         <span className='font-IranLight text-sm 2xl:text-md'>
                             {description}

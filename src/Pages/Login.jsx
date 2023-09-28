@@ -14,33 +14,11 @@ import Preloader from "../Components/Preloader"
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAuthLogin } from '../Reducers/authenticationSlice'
 export default function Login() {
-  const [LoginInfo, SetLoginInfo] = useState()
   const Navgate = useNavigate()
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const store = useSelector((store) => store.authentication)
   const Name = useSelector((store) => store?.client?.clientState?.about?.name)
-
-  useEffect(() => {
-    const GetFromServer = async () => {
-      const response = await dispatch(fetchAuthLogin({ userName: LoginInfo.user, password: LoginInfo.password }))
-      if (response.payload.success) {
-        toast.success(t("wellcom") + " " + Name, {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: false,
-          progress: undefined,
-          theme: "light",
-        });
-      }
-    }
-    if (LoginInfo) {
-      GetFromServer()
-    }
-  }, [LoginInfo])
 
   useEffect(() => {
     if (store.isToken) {
@@ -75,9 +53,22 @@ export default function Login() {
           {t("Title")}
         </h1>
         <div className='w-[98%] flex-col 2xl:w-[20%] xl:w-[25%] dark:bg-BackColorWhiter shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)] p-5 flex justify-center  bg-LightMaincolor rounded-md'>
-          <Formik validationSchema={schema} initialValues={{ user: "", password: "" }} onSubmit={(values) => {
-            SetLoginInfo(values)
-          }}>
+          <Formik validationSchema={schema} initialValues={{ user: "", password: "" }} onSubmit={async (values) => {
+            const response = await dispatch(fetchAuthLogin({ userName: values.user, password: values.password }))
+            if (response.payload.success) {
+              toast.success(t("wellcom") + " " + Name, {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                progress: undefined,
+                theme: "light",
+              });
+            }
+          }
+          }>
             {({
               values,
               errors,

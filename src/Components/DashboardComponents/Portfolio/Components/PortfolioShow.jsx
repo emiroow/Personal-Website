@@ -154,10 +154,6 @@ export default function PortfolioShow({ data }) {
         }
     }
 
-    useEffect(() => {
-        console.log(editeState)
-    }, [editeState])
-
     return (
         <div className='w-[95%] mt-5 lg:w-[40%] bg-BackColorWhiter text-white p-7 border-2 dark:border-DarkPurple rounded-xl'>
             <Modal SetModalState={SetModalState} modalState={modalState} target={data?.title} />

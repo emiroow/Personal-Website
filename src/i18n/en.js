@@ -194,5 +194,7 @@ const en = {
     Report: "Reports",
     newMassege: "New Massege",
     webSiteUrl: "Website Url",
+    endDateTime: "Start",
+    startDateTime: "End"
 };
 export default en;

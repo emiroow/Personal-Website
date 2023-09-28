@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fancyapps/ui": "^4.0.31",
+    "@formkit/auto-animate": "^0.8.0",
     "@ramonak/react-progress-bar": "^5.0.3",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",

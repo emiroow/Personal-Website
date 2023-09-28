@@ -125,10 +125,7 @@ export default function Contentfa() {
                             secondAvatarUrl: AdminAboutEn.secondAvatarUrl,
                             lang: "en"
                         }}
-                        enableReinitialize
-                        onSubmit={(values) => {
-                            console.log("first")
-                        }}>
+                        enableReinitialize>
                         {({
                             values,
                             errors,
