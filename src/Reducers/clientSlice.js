@@ -1,4 +1,4 @@
-import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { GetPerspnalData } from "../Service"
 
 const initialState = {
@@ -17,14 +17,14 @@ const clientSlice = createSlice({
     initialState,
     extraReducers: (builder) => {
         builder
-            .addCase(fetchClientData.pending, (state, action) => {
+            .addCase(fetchClientData.pending, (state, _) => {
                 state.status = "Loading";
             })
             .addCase(fetchClientData.fulfilled, (state, action) => {
                 state.status = "conmpleted";
                 state.clientState = action.payload
             })
-            .addCase(fetchClientData.rejected, (state, action) => {
+            .addCase(fetchClientData.rejected, (state, _) => {
                 state.status = "failed";
             })
     }

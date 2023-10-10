@@ -1,6 +1,5 @@
-import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
-import { AuthLogin } from "../Service"
-import { toast } from 'react-toastify';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { AuthLogin } from "../Service";
 
 const initialState = {
     isToken: !!localStorage.getItem("PrjTk"),

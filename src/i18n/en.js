@@ -195,6 +195,14 @@ const en = {
     newMassege: "New Massege",
     webSiteUrl: "Website Url",
     endDateTime: "Start",
-    startDateTime: "End"
+    startDateTime: "End" ,
+    logout : "logOut",
+    noData : "No Data",
+    iconName : "Icon name" ,
+    Telegram: "Telegram",
+    Linkedin: "LinkedIn",
+    WhatsApp: "WhatsApp",
+    Github: "GitHub",
+    Instagram: "Instagram"
 };
 export default en;

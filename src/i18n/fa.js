@@ -195,6 +195,14 @@ const fa = {
     newMassege: "جدیدترین پیام ها",
     webSiteUrl: "آدرس وبسایت",
     endDateTime: "تا تاریخ",
-    startDateTime: "از تاریخ"
+    startDateTime: "از تاریخ" ,
+    logout : "خروج" ,
+    noData : "دیتایی وجود ندارد",
+    iconName:"نام ایکون" ,
+    Telegram: "تلگرام",
+    Linkedin: "لینکدین",
+    WhatsApp: "واتس‌اپ",
+    Github: "گیت‌هاب",
+    Instagram: "اینستاگرام"
 };
 export default fa;

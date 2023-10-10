@@ -1,20 +1,18 @@
-import React from 'react'
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Link } from "react-router-dom"
 import { Formik } from "formik";
+import React, { useEffect } from 'react';
 import { useTranslation } from "react-i18next";
-import Language from "../Components/SideMenuComponents/language"
-import * as Yup from "yup";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { MdOutlineArrowForwardIos } from "react-icons/md"
-import Toggle from "../Components/SideMenuComponents/toggle"
-import Preloader from "../Components/Preloader"
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchAuthLogin } from '../Reducers/authenticationSlice'
+import * as Yup from "yup";
+import Preloader from "../Components/Preloader";
+import Language from "../Components/SideMenuComponents/language";
+import Toggle from "../Components/SideMenuComponents/toggle";
+import { fetchAuthLogin } from '../Reducers/authenticationSlice';
 export default function Login() {
-  const Navgate = useNavigate()
+  const Navigate = useNavigate()
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const store = useSelector((store) => store.authentication)
@@ -22,7 +20,7 @@ export default function Login() {
 
   useEffect(() => {
     if (store.isToken) {
-      Navgate(`/admin`)
+      Navigate(`/admin`)
     }
   }, [store])
 

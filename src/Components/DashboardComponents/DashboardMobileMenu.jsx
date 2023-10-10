@@ -76,9 +76,9 @@ export default function DashboardMobileMenu({ sidestatus, sidesetstatue }) {
                             }
                         }} onClick={() => LogOut()} to="/" className='rounded-full w-max m-auto cursor-pointer dark:bg-DarkPurple bg-LightYellow p-2 flex items-center shadow-[0px_2px_4px_0px_rgba(0,0,0,0.50)]'>
                             <MdOutlineLogout className='text-white ' />
-                            <ReactTooltip className='flex justify-center items-center text-center font-IranBold custom-color-no-arrow' place={i18n.language === "fa" ? "right" : "left"} type="warning" arrowColor='red' backgroundColor='#E69A8DFF' effect="solid" anchorId="LogOut">
+                            <ReactTooltip className='flex justify-center items-center text-center font-IranBold custom-color-no-arrow' place={i18n.language === "fa" ? "right" : "left"} type="warning" arrowColor='red' backgroundColor='#E69A8DFF' effect="solid" anchorId="LogOutMobile">
                                 <span className='text-lg dark:text-DarkPurple text-LightMaincolor'>
-                                    LogOut
+                                      {t("logout")}
                                 </span>
                             </ReactTooltip>
                         </NavLink>

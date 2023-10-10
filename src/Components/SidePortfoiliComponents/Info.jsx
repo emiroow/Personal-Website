@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useTranslation } from "react-i18next";
 import { useSelector } from 'react-redux';
 export default function Info() {
@@ -8,7 +8,7 @@ export default function Info() {
 
     const GetAge = (Age) => {
         let SplitedAge = Age?.split("T")[0].split("-")[0]
-        var today = new Date().getFullYear().toString()
+        var today = new Date().toLocaleDateString('fa-IR-u-nu-latn').toString().split("/")[0]
         if (SplitedAge && today !== undefined) {
             if (SplitedAge >= today) {
                 return (t("AgeFrontError"))

@@ -78,7 +78,7 @@ export default function DashboardMenu() {
                                 <MdOutlineLogout className='text-white ' />
                                 <ReactTooltip className='flex justify-center items-center text-center font-IranBold custom-color-no-arrow' place={i18n.language === "fa" ? "right" : "left"} type="warning" arrowColor='red' backgroundColor='#E69A8DFF' effect="solid" anchorId="LogOut">
                                     <span className='text-lg dark:text-DarkPurple text-LightMaincolor'>
-                                        LogOut
+                                        {t("logout")}
                                     </span>
                                 </ReactTooltip>
                             </NavLink>
