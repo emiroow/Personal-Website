@@ -25,12 +25,6 @@ export default function AddEducationBox({
     const description = useRef();
 
     const handelAddNewHistories = async () => {
-      console.log(
-        title.current.value,
-        dateTime,
-        description.current.value,
-        endDateTime
-      );
       if (
         title.current.value &&
         dateTime &&

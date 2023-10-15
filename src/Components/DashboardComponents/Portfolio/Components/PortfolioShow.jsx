@@ -102,7 +102,6 @@ export default function PortfolioShow({ data }) {
             id: null,
           });
         } catch (error) {
-          console.log(error);
           toast.error(t("Problem"), {
             position: "top-center",
             autoClose: 3000,
@@ -174,10 +173,6 @@ export default function PortfolioShow({ data }) {
         theme: "light",
       });
     }
-  };
-
-  const HandleSelectedCategory = (id) => {
-    return data?.categoriesId?.includes(id);
   };
 
   const handleChangeCategory = (id) => {

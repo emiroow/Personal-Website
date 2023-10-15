@@ -1,10 +1,11 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-export default function Modal({ target, modalState, SetModalState }) {
+export default function Modal({ target, modalState, SetModalState, func }) {
   const { t } = useTranslation();
 
   const handleAccess = () => {
     SetModalState({ ...modalState, Active: false, Access: true });
+    func && func();
   };
 
   const handleClose = () => {
@@ -15,7 +16,11 @@ export default function Modal({ target, modalState, SetModalState }) {
     <>
       {modalState.Active ? (
         <div className="w-full bg-black/50 fixed top-0 left-0 justify-center flex items-center h-[100vh]">
-          <div className="w-[95%] lg:w-[40%] bg-BackColorWhiter text-white p-10 rounded-xl">
+          <div
+            className="w-full h-full absolute top-0 left-0 z-10"
+            onClick={() => SetModalState({ ...modalState, Active: false })}
+          ></div>
+          <div className="w-[95%] lg:w-[40%] bg-BackColorWhiter text-white p-10 rounded-xl z-50">
             <div className="w-full text-center flex mb-4 justify-center items-center flex-col space-y-3">
               <span className="text-center">{t("DeletAlert")}</span>
               {target ? <span className="mb-5">"{target}" </span> : null}
