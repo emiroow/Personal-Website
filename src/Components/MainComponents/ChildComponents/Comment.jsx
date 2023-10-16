@@ -62,13 +62,18 @@ export default function Comment({
             {message}
           </span>
         </div>
-        <div className="w-full flex flex-row items-center mt-3">
+        <div
+          className={`w-full flex items-center mt-3 ${
+            i18n.language === "fa" &&
+            "justify-start flex-row-reverse  md:flex-row"
+          }`}
+        >
           <img
             className="w-[18%] md:w-[15%] 2xl:w-[18%] border-2 dark:border-DarkPurple border-LightYellowDark rounded-full"
             src={GetfromImgUrl}
             alt="Comment img"
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col ">
             <a
               href={websiteUrl}
               className="font-IranBold text-[11px] 2xl:text-[13px] mb-1 mx-1 underline underline-offset-4"
