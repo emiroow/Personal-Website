@@ -3,10 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { DashboardContext } from "../../../../ContextApi/DashboardContext";
-import {
-  fetchDeleteAdminPortfolio,
-  fetchEditAdminPortfolio,
-} from "../../../../Reducers/DashboardSlices/PortfolioSlice";
+import { fetchDeleteAdminPortfolio, fetchEditAdminPortfolio } from "../../../../Reducers/DashboardSlices/PortfolioSlice";
 import Modal from "../../Modal";
 
 export default function PortfolioShow({ data }) {
@@ -17,6 +14,7 @@ export default function PortfolioShow({ data }) {
       (item) => item.lang === TabState
     )
   );
+
   const dispatch = useDispatch();
   const title = useRef();
   const description = useRef();
@@ -256,7 +254,7 @@ export default function PortfolioShow({ data }) {
                   Categories.map((item, index) => {
                     return (
                       <tr
-                        key={item.portfolioId}
+                        key={index}
                         className="border-b border-neutral-500 bg-neutral-700"
                       >
                         <td className="whitespace-nowrap px-6 py-4 font-medium">
@@ -268,6 +266,9 @@ export default function PortfolioShow({ data }) {
                         <td className="whitespace-nowrap px-6 py-4 flex text-center justify-center ">
                           <input
                             type="checkbox"
+                            defaultChecked={data.categoriesId.includes(
+                              item.catagoryId
+                            )}
                             onChange={() =>
                               handleChangeCategory(item.catagoryId)
                             }

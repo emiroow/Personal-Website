@@ -19,29 +19,16 @@ export default function AddEducationBox({
   const dispatch = useDispatch();
   const NewAnalys = () => {
     const [dateTime, setDateTime] = useState();
-    const [endDateTime, setEndDateTime] = useState();
     const title = useRef();
     const description = useRef();
 
     const handelAddNewHistories = async () => {
-      console.log(
-        title.current.value,
-        dateTime,
-        description.current.value,
-        endDateTime
-      );
-      if (
-        title.current.value &&
-        dateTime &&
-        description.current.value &&
-        endDateTime
-      ) {
+      if (title.current.value && dateTime && description.current.value) {
         const response = await dispatch(
           fetchSetAdminEducation({
             id: 0,
             title: title.current.value,
             dateTime: dateTime,
-            endDateTime: endDateTime,
             description: description.current.value,
             lang: TabState,
             isActive: true,
@@ -129,30 +116,6 @@ export default function AddEducationBox({
                   calendar={i18n.language === "fa" && persian}
                   locale={i18n.language === "fa" && persian_fa}
                   arrow={true}
-                  inputClass="text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black lg:w-[60%] h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]"
-                  calendarPosition={
-                    i18n.language === "fa" ? "bottom-right" : "bottom-left"
-                  }
-                  plugins={[
-                    <TimePicker
-                      style={{ color: "black" }}
-                      hideSeconds
-                      position="bottom"
-                    />,
-                  ]}
-                />
-              </div>
-              <div className="flex flex-col mb-4">
-                <label>{t("endDateTime")} :</label>
-                <DatePicker
-                  onChange={(value) => {
-                    setEndDateTime(convertToGregorian(value.format()));
-                  }}
-                  format="YYYY-MM-DD HH:mm"
-                  calendar={i18n.language === "fa" && persian}
-                  locale={i18n.language === "fa" && persian_fa}
-                  arrow={true}
-                  editable={false}
                   inputClass="text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black lg:w-[60%] h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]"
                   calendarPosition={
                     i18n.language === "fa" ? "bottom-right" : "bottom-left"

@@ -215,7 +215,7 @@ export default function Date({ data, TabState }) {
             />
           </div>
           <div className="flex flex-col mb-4">
-            <label>{t("startDateTime")} :</label>
+            <label>{t("historyDate")} :</label>
             <DatePicker
               onChange={(value) => {
                 setDateTime(convertToGregorian(value.format()));
@@ -234,40 +234,6 @@ export default function Date({ data, TabState }) {
               calendar={i18n.language === "fa" && persian}
               locale={i18n.language === "fa" && persian_fa}
               arrow={true}
-              inputClass="text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black lg:w-[60%] h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]"
-              calendarPosition={
-                i18n.language === "fa" ? "bottom-right" : "bottom-left"
-              }
-              plugins={[
-                <TimePicker
-                  style={{ color: "black" }}
-                  hideSeconds
-                  position="bottom"
-                />,
-              ]}
-            />
-          </div>
-          <div className="flex flex-col mb-4">
-            <label>{t("endDateTime")} :</label>
-            <DatePicker
-              onChange={(value) => {
-                setEndDateTime(convertToGregorian(value.format()));
-              }}
-              disabled={editeing ? false : true}
-              value={
-                i18n.language === "fa"
-                  ? data?.endDateTime &&
-                    moment
-                      .from(data?.endDateTime, "en", "YYYY-MM-DDTHH:mm")
-                      .locale("fa")
-                      .format("YYYY-MM-DD HH:mm")
-                  : data?.endDateTime?.split("T").join(" ")
-              }
-              format="YYYY-MM-DD HH:mm"
-              calendar={i18n.language === "fa" && persian}
-              locale={i18n.language === "fa" && persian_fa}
-              arrow={true}
-              editable={false}
               inputClass="text-center shadow-[0px_0px_10px_0px_rgba(0,0,0,0.35)] text-black lg:w-[60%] h-10 mt-1 rounded-md mb-2 outline-none  dark:shadow-[0px_0px_10px_0px_rgba(0,0,0,0.25)]"
               calendarPosition={
                 i18n.language === "fa" ? "bottom-right" : "bottom-left"

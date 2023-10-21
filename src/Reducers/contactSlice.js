@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { AddContactMessage, GetIp } from "../Service"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BinerConvert } from "../Helpers/LangConvertToBiner";
+import { AddContactMessage, GetIp } from "../Service";
 
 const initialState = {
     status: "idle",
@@ -13,7 +13,7 @@ export const fetchContactMessage = createAsyncThunk("/contact/fetchContactMessag
     let ipMerging = { ...data, "ip": ip?.ip }
     let BinerLangMerge = { ...ipMerging, "lang": BinerConvert() }
     const response = await AddContactMessage({ ...data, ...BinerLangMerge })
-    return response.data
+    return response.status
 })
 
 
@@ -26,12 +26,19 @@ const ContactMessageSlice = createSlice({
                 state.loader = true;
             })
             .addCase(fetchContactMessage.fulfilled, (state, action) => {
-                state.loader = false;
+                if(action.payload === 200){
                 state.status = "done";
+                state.loader = false;
+                }else {
+                state.status = "failed";
+                state.error = action.payload
+                state.loader = false;
+                }
             })
             .addCase(fetchContactMessage.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.payload
+                state.loader = false;
             })
     }
 })

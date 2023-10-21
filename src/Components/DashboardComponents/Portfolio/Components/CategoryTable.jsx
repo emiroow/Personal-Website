@@ -72,7 +72,7 @@ export default function CategoryTable() {
               Categories.map((item, index) => {
                 return (
                   <tr
-                    key={item.id}
+                    key={index}
                     className="border-b border-neutral-500 bg-neutral-700"
                   >
                     <td className="whitespace-nowrap px-6 py-4 font-medium">

@@ -8,7 +8,7 @@ function Portfolio({ data }) {
     >
       <img
         data-src={data.imageUrl}
-        data-fancybox="gallery1"
+        data-fancybox={`PortfolioGallery`}
         className="w-[300px] md:w-[250px] 2xl:w-[350px] cursor-pointer rounded-t-lg  drop-shadow-xl  bg-cover bg-no-repeat"
         src={data.imageUrl}
         alt="portfolioImage"

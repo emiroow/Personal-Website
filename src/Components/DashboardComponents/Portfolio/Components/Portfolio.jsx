@@ -31,8 +31,8 @@ export default function Portfolio() {
         {newServerState ? (
           <AddPortfolio setNewServerState={setNewServerState} />
         ) : null}
-        {Portfolios.map((item) => {
-          return <PortfolioShow data={item} />;
+        {Portfolios.map((item, index) => {
+          return <PortfolioShow key={index} data={item} />;
         })}
       </div>
     </div>

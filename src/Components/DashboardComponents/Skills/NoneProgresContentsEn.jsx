@@ -11,14 +11,17 @@ export default function NoneProgresContentsEn() {
   const loader = useSelector((state) =>
     state.socials.status === "pending" ? true : false
   );
+
   const CircleSkills = useSelector((state) =>
     state.skills.NoneSkills.filter((item) => item.lang === 0)
   );
+
   const [modalState, SetModalState] = useState({
     Active: false,
     Access: false,
     id: null,
   });
+
   const dispatch = useDispatch();
   const { t } = useTranslation();
 

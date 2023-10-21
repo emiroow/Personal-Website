@@ -20,7 +20,7 @@ export default function Certificate() {
       </div>
       <Fancybox options={{ infinite: true }}>
         <div className="w-full flex-wrap justify-center md:justify-center px-5 mt-5 flex">
-          {getData?.map((item) => {
+          {getData?.map((item, index) => {
             return (
               <div
                 key={item.id}
@@ -28,7 +28,7 @@ export default function Certificate() {
               >
                 <img
                   data-src={item.link}
-                  data-fancybox="gallery1"
+                  data-fancybox={`CertificateGallery`}
                   className="w-[300px] md:w-[250px] 2xl:w-[350px] cursor-pointer rounded-t-lg  drop-shadow-xl  bg-cover bg-no-repeat"
                   src={item.link}
                   alt="portfolioImage"

@@ -114,7 +114,7 @@ export default function LineSkillContentsFa() {
                     })
                   ) : (
                     <tr className="border-b border-neutral-500 bg-neutral-700 m-auto">
-                      <td colSpan={3} className="text-center p-5">
+                      <td colSpan={4} className="text-center p-5">
                         {t("noData")}
                       </td>
                     </tr>
