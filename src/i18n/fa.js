@@ -203,6 +203,11 @@ const fa = {
     Linkedin: "لینکدین",
     WhatsApp: "واتس‌اپ",
     Github: "گیت‌هاب",
-    Instagram: "اینستاگرام"
+    Instagram: "اینستاگرام", 
+    UploadTitle : "آپلود تصاویر" ,
+    AttachDocument : "افزودن فایل" ,
+    FileType : "نوع فایل : انواع عکس ها",
+    Upload : "آپلود" ,
+    Cancel : "انصراف"
 };
 export default fa;

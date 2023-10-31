@@ -203,6 +203,11 @@ const en = {
     Linkedin: "LinkedIn",
     WhatsApp: "WhatsApp",
     Github: "GitHub",
-    Instagram: "Instagram"
+    Instagram: "Instagram" , 
+    UploadTitle : "Upload Images" ,
+    AttachDocument : "Attach Document",
+    FileType : "File type: types of images",
+    Upload : "Upload",
+    Cancel : "Cancel"
 };
 export default en;

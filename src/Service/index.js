@@ -1,6 +1,7 @@
 import axios from "axios";
 import { appAxios } from "./axiosConfig";
 const Endpoint = process.env.REACT_APP_BASE_URL
+const FileBaseEndpoint = process.env.REACT_APP_FILE_BASE_URL
 
 // Home
 export const GetPerspnalData = (Lang) => {
@@ -103,6 +104,10 @@ export const getAdminPortfolios = () => {
 }
 export const getAdminPortfoliosCatagories = () => {
     const Url = `${Endpoint}/api/admin/portfolioCatagories `;
+    return appAxios["get"](Url);
+}
+export const getAdminUploads = () => {
+    const Url = `${FileBaseEndpoint}/api/File/GetLink`;
     return appAxios["get"](Url);
 }
 
