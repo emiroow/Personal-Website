@@ -1,28 +1,56 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAdminUploads } from "../../Service";
+import { SetAdminUpload, getAdminUploads } from "../../Service";
 
-export const fetchGetUploads = createAsyncThunk("/uploads/fetchGetUploads", async (data) => {
-    const response = await getAdminUploads()
-    return { data: response.data, status: response.status }
-})
+export const fetchGetUploads = createAsyncThunk(
+  "/uploads/fetchGetUploads",
+  async (data) => {
+    const response = await getAdminUploads();
+    return { data: response.data, status: response.status };
+  }
+);
+
+export const fetchUploadImage = createAsyncThunk(
+  "/uploads/fetchUploadImage",
+  async (data) => {
+    const response = await SetAdminUpload(data);
+    return { data: response.data, status: response.status };
+  }
+);
+
 const UploadsSlice = createSlice({
-    name : "uploads" ,
-    initialState : {
-        uploadFiles : [],
-        loader : false
+  name: "uploads",
+  initialState: {
+    uploadFiles: [],
+    loader: false,
+    modal: false,
+  },
+  reducers: {
+    changeModalState: (state, action) => {
+      state.modal = action.payload;
     },
-    extraReducers : (builder)=>{
-        builder.addCase(fetchGetUploads.pending , (state , action )=>{
-            state.loader = true
-        })
-        builder.addCase(fetchGetUploads.fulfilled , (state , action )=>{
-            console.log(action.payload)
-            state.loader = false
-        })
-        builder.addCase(fetchGetUploads.rejected , (state , action )=>{
-            state.loader = false
-        })
-    }
-})
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchGetUploads.pending, (state, action) => {
+      state.loader = true;
+    });
+    builder.addCase(fetchGetUploads.fulfilled, (state, action) => {
+      state.uploadFiles = action.payload.data;
+      state.loader = false;
+    });
+    builder.addCase(fetchGetUploads.rejected, (state, action) => {
+      state.loader = false;
+    });
 
-export default UploadsSlice.reducer
+    // Upload Image
+    builder.addCase(fetchUploadImage.pending, (state, action) => {
+      state.loader = true;
+    });
+    builder.addCase(fetchUploadImage.fulfilled, (state, action) => {
+      state.loader = false;
+    });
+  },
+});
+
+export const { changeModalState } = UploadsSlice.actions;
+
+export default UploadsSlice.reducer;

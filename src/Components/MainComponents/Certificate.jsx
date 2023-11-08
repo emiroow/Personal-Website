@@ -34,7 +34,7 @@ export default function Certificate() {
                   alt="portfolioImage"
                 />
                 <div className="w-[300px] md:w-[250px] 2xl:w-[350px] break-words flex flex-col flex-wrap transition-all duration-700 h-max z-20 dark:bg-DarkPurple/60 p-2 bg-LightMaincolor/60 rounded-b-lg">
-                  <span className="font-IranBold text-sm mt-1 break-all">
+                  <span className="font-IranBold text-sm mt-1 break-words">
                     {item.title}
                   </span>
                   <span className="font-IranBold text-[11px] mt-1">

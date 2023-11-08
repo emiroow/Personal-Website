@@ -17,7 +17,7 @@ function Portfolio({ data }) {
         <span className="font-IranBold text-sm mt-1 break-all">
           {data.title}
         </span>
-        <span className="font-IranLight text-sm mt-1 break-all">
+        <span className="font-IranLight text-sm mt-1 break-words">
           {data.description}
         </span>
       </div>
