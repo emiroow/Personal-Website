@@ -59,8 +59,7 @@ export default function UploadModal() {
                   </label>
                   <div className="flex relative items-center justify-center w-full flex-col">
                     {UploadFormik.values.imageUrl &&
-                      UploadFormik.values.fileType.split("/")[0] ===
-                        "image" && (
+                      UploadFormik.values.fileType !== "idle" && (
                         <span
                           onClick={() => {
                             UploadFormik.setFieldValue("imageUrl", "");
@@ -72,7 +71,6 @@ export default function UploadModal() {
                           <BsFillTrashFill className="drop-shadow shadow-black" />
                         </span>
                       )}
-
                     <label
                       className={`flex flex-col rounded-lg border-4 w-full border-dashed  ${
                         UploadFormik.values.fileType.split("/")[0] ===
@@ -88,9 +86,8 @@ export default function UploadModal() {
                           src={UploadFormik.values.imageUrl}
                           alt={UploadFormik.values.imageUrl}
                         />
-                      ) : UploadFormik.values.fileType.split("/")[0] ===
-                        "application" ? (
-                        <div className="h-full w-full text-center flex flex-col items-center justify-center ">
+                      ) : UploadFormik.values.fileType !== "idle" ? (
+                        <div className="h-full w-full text-center my-5 flex flex-col items-center justify-center ">
                           <div className="flex flex-auto m-auto text-center">
                             <FcDocument className="text-[200px]" />
                           </div>

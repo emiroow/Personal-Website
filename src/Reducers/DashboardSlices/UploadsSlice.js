@@ -23,6 +23,7 @@ const UploadsSlice = createSlice({
     uploadFiles: [],
     loader: false,
     modal: false,
+    detailModal: false,
   },
   reducers: {
     changeModalState: (state, action) => {

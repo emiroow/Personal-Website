@@ -221,5 +221,7 @@ const en = {
   DocUploadTitle: "Document / File / zip / PDF",
   Requirement: "Required field",
   SubjectForUpload: "select a file from your computer",
+  UploadsMenu: "Upload",
+  copied: "copied !",
 };
 export default en;

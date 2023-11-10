@@ -221,5 +221,7 @@ const fa = {
   DocUploadTitle: "فایل / سند / زیپ / PDF",
   Requirement: "این فیلد اجباری میباشد",
   SubjectForUpload: "یک فایل را از رایانه خود انتخاب کنید",
+  UploadsMenu: "آپلود",
+  copied: "کپی شد !",
 };
 export default fa;

@@ -8,6 +8,7 @@ import {
 } from "../../../Reducers/DashboardSlices/UploadsSlice";
 import Preloader from "../../Preloader";
 import UploadModal from "./components/UploadModal";
+import UploadsTable from "./components/UploadsTable";
 import { useUploads } from "./hooks/useUploads";
 
 const Uploads = () => {
@@ -31,6 +32,7 @@ const Uploads = () => {
         <span>{t("UploadTitle")}</span>
         <BsPlusCircleDotted className="mr-2 text-xl" />
       </button>
+      <UploadsTable />
       <UploadModal />
     </div>
   );
