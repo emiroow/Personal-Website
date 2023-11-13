@@ -62,7 +62,7 @@ const UploadsTable = () => {
                     <td className="whitespace-nowrap px-6 py-4 flex text-center justify-center">
                       <CopyToClipboard
                         onCopy={() => toast.success(t("copied"))}
-                        text={item.title}
+                        text={item.link}
                       >
                         <button>
                           <BiCopyAlt className="text-xl text-blue-600 cursor-pointer" />
