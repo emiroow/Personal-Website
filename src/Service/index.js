@@ -185,6 +185,10 @@ export const DeleteAdminPortfolio = (Id) => {
   const Url = `${Endpoint}/api/admin/delete/DeletePortfolio/${Id}`;
   return appAxios["delete"](Url);
 };
+export const DeleteAdminFile = (Id) => {
+  const Url = `${Endpoint}/api/File/DeleteLink/${Id}`;
+  return appAxios["delete"](Url);
+};
 
 // Admin Add
 export const SetAbout = (Data) => {

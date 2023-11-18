@@ -12,7 +12,13 @@ import UploadsTable from "./components/UploadsTable";
 import { useUploads } from "./hooks/useUploads";
 
 const Uploads = () => {
-  const { setUploadModalState, uploadModalState } = useUploads();
+  const {
+    setUploadModalState,
+    uploadModalState,
+    UploadFormik,
+    removeModalState,
+    setRemoveModalState,
+  } = useUploads();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const loader = useSelector((state) => state.uploads.loader);

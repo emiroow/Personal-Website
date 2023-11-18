@@ -4,18 +4,34 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useTranslation } from "react-i18next";
 import { BiCopyAlt } from "react-icons/bi";
 import { BsTrashFill } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-
+import { fetchRemoveImage } from "../../../../Reducers/DashboardSlices/UploadsSlice";
+import Modal from "../../../DashboardComponents/Modal";
+import { useUploads } from "../hooks/useUploads";
 const UploadsTable = () => {
   const { t } = useTranslation();
   const uploadFiles = useSelector((state) => state.uploads.uploadFiles);
+  const dispatch = useDispatch();
   const dirRtl = {
     direction: "rtl",
   };
 
+  const { removeModalState, setRemoveModalState } = useUploads();
+
   return (
     <div className="inline-block min-w-full rounded-b-xl mt-5">
+      <Modal
+        SetModalState={setRemoveModalState}
+        modalState={removeModalState}
+        target={removeModalState.title}
+        func={async () => {
+          const { payload: res } = await dispatch(
+            fetchRemoveImage(removeModalState.id)
+          );
+          if (res.status === 200) toast.success(t("SuccessTopdelete"));
+        }}
+      />
       <div className="overflow-auto  rounded-b-xl">
         <table className="min-w-full text-right text-sm font-light  rounded-b-xl bg-neutral-700">
           <thead className="border-b  font-medium border-neutral-500 bg-black ">
@@ -48,7 +64,7 @@ const UploadsTable = () => {
                     <td className="whitespace-nowrap px-6 py-4 font-IranBold text-center">
                       {item.title}
                     </td>
-                    <td className=" px-6 py-4 truncate">
+                    <td className=" px-6 py-4 text-center m-auto truncate">
                       <a
                         href={item.link}
                         style={i18next.language === "fa" ? dirRtl : dirRtl}
@@ -68,7 +84,17 @@ const UploadsTable = () => {
                           <BiCopyAlt className="text-xl text-blue-600 cursor-pointer" />
                         </button>
                       </CopyToClipboard>
-                      <button className="mx-2">
+                      <button
+                        onClick={() =>
+                          setRemoveModalState({
+                            Access: false,
+                            id: item.id,
+                            Active: true,
+                            title: item.title,
+                          })
+                        }
+                        className="mx-2"
+                      >
                         <BsTrashFill className="text-xl text-red-600 cursor-pointer" />
                       </button>
                     </td>

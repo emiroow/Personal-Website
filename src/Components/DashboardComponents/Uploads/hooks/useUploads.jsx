@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -12,6 +13,12 @@ import {
 export const useUploads = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const [removeModalState, setRemoveModalState] = useState({
+    Access: false,
+    Active: false,
+    id: undefined,
+    title: "",
+  });
 
   const UploadFormik = useFormik({
     initialValues: { formData: "", title: "", imageUrl: "", fileType: "idle" },
@@ -33,5 +40,5 @@ export const useUploads = () => {
     },
   });
 
-  return { UploadFormik };
+  return { UploadFormik, removeModalState, setRemoveModalState };
 };

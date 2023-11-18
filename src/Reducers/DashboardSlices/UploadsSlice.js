@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { SetAdminUpload, getAdminUploads } from "../../Service";
+import {
+  DeleteAdminFile,
+  SetAdminUpload,
+  getAdminUploads,
+} from "../../Service";
 
 export const fetchGetUploads = createAsyncThunk(
   "/uploads/fetchGetUploads",
@@ -14,6 +18,14 @@ export const fetchUploadImage = createAsyncThunk(
   async (data) => {
     const response = await SetAdminUpload(data);
     return { data: response.data, status: response.status };
+  }
+);
+
+export const fetchRemoveImage = createAsyncThunk(
+  "/uploads/fetchRemoveImage",
+  async (id) => {
+    const response = await DeleteAdminFile(id);
+    return { status: response.status, id: id };
   }
 );
 
@@ -48,6 +60,18 @@ const UploadsSlice = createSlice({
     });
     builder.addCase(fetchUploadImage.fulfilled, (state, action) => {
       state.loader = false;
+    });
+
+    // remove image
+    builder.addCase(fetchRemoveImage.pending, (state, action) => {
+      state.loader = true;
+    });
+    builder.addCase(fetchRemoveImage.fulfilled, (state, action) => {
+      state.loader = false;
+      const filter = state.uploadFiles.filter(
+        (item) => item.id !== action.payload.id
+      );
+      state.uploadFiles = filter;
     });
   },
 });
