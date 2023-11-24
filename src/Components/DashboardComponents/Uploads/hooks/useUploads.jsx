@@ -20,6 +20,57 @@ export const useUploads = () => {
     title: "",
   });
 
+  const [modalDetailState, setModalDetailState] = useState({
+    title: "",
+    isOpen: false,
+    Link: "",
+  });
+
+  const image_types = [
+    "jpeg",
+    "png",
+    "gif",
+    "bmp",
+    "tiff",
+    "svg",
+    "raw",
+    "webp",
+    "ico",
+    "heif",
+    "psd",
+    "eps",
+    "ai",
+    "pdf",
+    "jpeg 2000",
+    "apng",
+    "exif",
+    "cr2",
+    "nef",
+    "orf",
+    "JPEG",
+    "PNG",
+    "GIF",
+    "BMP",
+    "TIFF",
+    "SVG",
+    "RAW",
+    "WebP",
+    "ICO",
+    "HEIF",
+    "PSD",
+    "EPS",
+    "AI",
+    "PDF",
+    "JPEG 2000",
+    "APNG",
+    "EXIF",
+    "CR2",
+    "NEF",
+    "ORF",
+    "jpg",
+    "JPG",
+  ];
+
   const UploadFormik = useFormik({
     initialValues: { formData: "", title: "", imageUrl: "", fileType: "idle" },
     validationSchema: yup.object().shape({
@@ -40,5 +91,12 @@ export const useUploads = () => {
     },
   });
 
-  return { UploadFormik, removeModalState, setRemoveModalState };
+  return {
+    UploadFormik,
+    removeModalState,
+    setRemoveModalState,
+    modalDetailState,
+    setModalDetailState,
+    image_types,
+  };
 };

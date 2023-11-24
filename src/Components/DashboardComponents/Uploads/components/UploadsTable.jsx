@@ -3,12 +3,14 @@ import React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useTranslation } from "react-i18next";
 import { BiCopyAlt } from "react-icons/bi";
-import { BsTrashFill } from "react-icons/bs";
+import { BsEyeFill, BsTrashFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { fetchRemoveImage } from "../../../../Reducers/DashboardSlices/UploadsSlice";
 import Modal from "../../../DashboardComponents/Modal";
 import { useUploads } from "../hooks/useUploads";
+import DetailModal from "./DetailModal";
+
 const UploadsTable = () => {
   const { t } = useTranslation();
   const uploadFiles = useSelector((state) => state.uploads.uploadFiles);
@@ -17,7 +19,13 @@ const UploadsTable = () => {
     direction: "rtl",
   };
 
-  const { removeModalState, setRemoveModalState } = useUploads();
+  const {
+    removeModalState,
+    setRemoveModalState,
+    modalDetailState,
+    setModalDetailState,
+    image_types,
+  } = useUploads();
 
   return (
     <div className="inline-block min-w-full rounded-b-xl mt-5">
@@ -31,6 +39,12 @@ const UploadsTable = () => {
           );
           if (res.status === 200) toast.success(t("SuccessTopdelete"));
         }}
+      />
+      <DetailModal
+        modalState={modalDetailState}
+        setRemoveModalState={setRemoveModalState}
+        removeModalState={removeModalState}
+        SetModalState={setModalDetailState}
       />
       <div className="overflow-auto  rounded-b-xl">
         <table className="min-w-full text-right text-sm font-light  rounded-b-xl bg-neutral-700">
@@ -53,6 +67,8 @@ const UploadsTable = () => {
           <tbody>
             {uploadFiles.length ? (
               uploadFiles.map((item, index) => {
+                const ImagePathLength = item.link.split(".").length;
+                const isImage = item.link.split(".")[ImagePathLength - 1];
                 return (
                   <tr
                     key={index}
@@ -76,12 +92,26 @@ const UploadsTable = () => {
                       </a>
                     </td>
                     <td className="whitespace-nowrap px-6 py-4 flex text-center justify-center">
+                      {image_types.includes(isImage) && (
+                        <button
+                          onClick={() =>
+                            setModalDetailState({
+                              isOpen: true,
+                              Link: item.link,
+                              title: item.title,
+                              id: item.id,
+                            })
+                          }
+                        >
+                          <BsEyeFill className="mx-3 text-xl" />
+                        </button>
+                      )}
                       <CopyToClipboard
                         onCopy={() => toast.success(t("copied"))}
                         text={item.link}
                       >
                         <button>
-                          <BiCopyAlt className="text-xl text-blue-600 cursor-pointer" />
+                          <BiCopyAlt className="text-xl cursor-pointer" />
                         </button>
                       </CopyToClipboard>
                       <button
@@ -93,7 +123,7 @@ const UploadsTable = () => {
                             title: item.title,
                           })
                         }
-                        className="mx-2"
+                        className="mx-3"
                       >
                         <BsTrashFill className="text-xl text-red-600 cursor-pointer" />
                       </button>

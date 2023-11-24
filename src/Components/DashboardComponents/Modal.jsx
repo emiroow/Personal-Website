@@ -20,7 +20,7 @@ export default function Modal({ target, modalState, SetModalState, func }) {
             className="w-full h-full absolute top-0 left-0 z-10"
             onClick={() => SetModalState({ ...modalState, Active: false })}
           ></div>
-          <div className="w-[95%] lg:w-[40%] bg-BackColorWhiter text-white p-10 rounded-xl z-50">
+          <div className="w-[95%] lg:w-[40%] border-y-2 border-LightYellowDark dark:border-DarkPurple bg-BackColorWhiter text-white p-10 rounded-xl z-50">
             <div className="w-full text-center flex mb-4 justify-center items-center flex-col space-y-3">
               <span className="text-center">{t("DeletAlert")}</span>
               {target ? <span className="mb-5">"{target}" </span> : null}
