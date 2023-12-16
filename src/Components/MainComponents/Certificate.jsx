@@ -48,7 +48,7 @@ export default function Certificate() {
                           .locale("en")
                           .format("YYYY/MM/DD")}
                   </span>
-                  <span className="font-IranLight text-sm mt-1 break-all">
+                  <span className="font-IranLight text-sm mt-1 break-words">
                     {item.description}
                   </span>
                 </div>
