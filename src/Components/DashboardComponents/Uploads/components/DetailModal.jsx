@@ -19,7 +19,6 @@ const DetailModal = ({
     SetModalState({ ...modalState, isOpen: false });
   };
 
-  console.log(modalState);
   return (
     <>
       {modalState.isOpen ? (

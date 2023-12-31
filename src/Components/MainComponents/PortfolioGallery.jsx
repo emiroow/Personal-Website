@@ -122,10 +122,14 @@ export default function PortfolioGallery() {
           </ul>
         </div>
       </div>
-      <div className="w-full flex-wrap justify-center md:justify-center px-5 md:pt-4 flex">
+      <div className="w-full flex-wrap justify-center md:justify-evenly mt-5 px-7 flex">
         <Fancybox options={{ infinite: true }}>
           {portfoliosState?.map((item) => {
-            return <Portfolio key={item.portfolioId} data={item} />;
+            return (
+              <>
+                <Portfolio key={item.portfolioId} data={item} />
+              </>
+            );
           })}
         </Fancybox>
       </div>
