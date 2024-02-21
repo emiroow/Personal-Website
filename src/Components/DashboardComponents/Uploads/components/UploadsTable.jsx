@@ -28,7 +28,7 @@ const UploadsTable = () => {
   } = useUploads();
 
   return (
-    <div className="inline-block min-w-full rounded-b-xl mt-5">
+    <div className=" min-w-full rounded-b-xl mt-5">
       <Modal
         SetModalState={setRemoveModalState}
         modalState={removeModalState}
@@ -46,9 +46,9 @@ const UploadsTable = () => {
         removeModalState={removeModalState}
         SetModalState={setModalDetailState}
       />
-      <div className="overflow-auto  rounded-b-xl">
-        <table className="min-w-full text-right text-sm font-light  rounded-b-xl bg-neutral-700">
-          <thead className="border-b  font-medium border-neutral-500 bg-black ">
+      <div className=" overflow-auto rounded-b-xl">
+        <table className="min-w-full text-right text-sm font-light rounded-b-xl bg-neutral-700">
+          <thead className="border-b font-medium border-neutral-500 bg-black ">
             <tr>
               <th scope="col" className="px-6 py-4 ">
                 #

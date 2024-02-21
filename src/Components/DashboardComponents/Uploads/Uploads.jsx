@@ -29,8 +29,7 @@ const Uploads = () => {
 
   return (
     <div>
-      {loader ? <Preloader /> : null}
-
+      {loader && <Preloader />}
       <button
         onClick={() => dispatch(changeModalState(true))}
         className=" bg-DarkPurple font-IranBold rounded-lg text-md flex justify-between items-center px-5 p-3 "

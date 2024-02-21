@@ -11,10 +11,6 @@ const DetailModal = ({
 }) => {
   const { t } = useTranslation();
 
-  const handleAccess = () => {
-    SetModalState({ ...modalState, isOpen: false });
-  };
-
   const handleClose = () => {
     SetModalState({ ...modalState, isOpen: false });
   };
@@ -63,7 +59,6 @@ const DetailModal = ({
           </div>
         </div>
       ) : null}
-      ;
     </>
   );
 };
